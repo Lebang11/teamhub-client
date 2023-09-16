@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+  font-family: Quicksand;
+}
+
+body {
+  
+}
+
+.add-myself-button {
+  padding: 40px;
+  font-size: 45px;
+  background-color: rgb(191,155,48);
+  border: none;
+  color: white;
+  cursor: pointer;
+  width: 600px;
+}
+
+.add-myself-button:hover {
+  transform: skew(-12deg);
+}
+
+.add-myself-div {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 60px;
+}
+
+.opening-div {
+  display: flex;
+  flex-direction: column;
+  column-gap: 50px;
+  margin-top: 200px;
+}
+
+
+
+.form-box {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 70px;
+  border: solid;
+  border-width: 1px;
+  border-color: rgb(206, 206, 206);
+  width: 500px;
+  height: 600px;
+  transition: background-color 0.5s;
+}
+
+.form-box:hover {
+  background-color: rgb(66,69,73);
+}
+
+.full-name-text-box,
+.email-text-box,
+.preferred-name-text-box,
+.password-box {
+  padding: 20px 10px;
+  width: 400px;
+  border-radius: 10px;
+  border-width: 1px;
+}
+
+.submit-button {
+  font-size: 20px;
+  background-color: rgb(255, 255, 255);
+  height: 50px;
+  width: 100px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.submit-button:hover {
+  color: white;
+  background-color: aqua;
+  transform: scale(1.2);
+}
+
+h1 {
+  color: rgb(193, 193, 193);
+}
+
+.form-box-flex {
+  display: flex;
+  justify-content: center;
+}
+
+.back-button {
+  height: 30px;
+  background-color: rgb(66,69,73);
+  color: white;
+}
+
+.back-button:hover {
+  background-color: rgb(191,155,48);
+}
