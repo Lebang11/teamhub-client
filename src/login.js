@@ -4,7 +4,7 @@ const Login = () => {
     
     return (
         <div className="register">
-        <Link to="https://roaring-florentine-6468ec.netlify.app">
+        <Link to="https://team-hub.netlify.app">
         <button class="submit-button back-button">Back</button>
         </Link>
         
