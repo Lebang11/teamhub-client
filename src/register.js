@@ -9,7 +9,7 @@ const Login = () => {
         </Link>
         
         <div class="form-box-flex">
-            <form  method="POST" class="form-box">
+            <form action="https://team-hub.onrender.com/create" method="POST" class="form-box">
                 <h1>Sign Up</h1>
                 <input name="username" type="text" placeholder="Username" class="email-text-box js-email"/>
                 <input name="email" type="text" placeholder="Email" class="email-text-box js-email"/>
