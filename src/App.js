@@ -14,7 +14,6 @@ function App() {
         <Route path='/create' element={<Register/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/main' element={<OpenPage/>}/>
-
       </Routes>
     </Router>
   );
