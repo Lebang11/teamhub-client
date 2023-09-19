@@ -1,12 +1,8 @@
-function MainPage() {
-    
-    fetch('https://team-hub.onrender.com/api/main')
-    .then(data => console.log(data))
-    .catch(error => console.error(error));
+function MainPage(name) {
 
     return (
         <div>
-            Welcome
+            Welcome {name}
         </div>
     )
 }
