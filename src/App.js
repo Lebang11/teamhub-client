@@ -13,7 +13,7 @@ function App() {
         <Route path='/' element={<OpenPage/>}/>
         <Route path='/create' element={<Register/>}/>
         <Route path='/login' element={<Login/>}/>
-        <Route path='/main' element={<OpenPage/>}/>
+        <Route path='/main' element={<MainPage/>}/>
       </Routes>
     </Router>
   );
