@@ -101,3 +101,7 @@ h1 {
 .back-button:hover {
   background-color: rgb(191,155,48);
 }
+
+.error-message {
+  color: red;
+}

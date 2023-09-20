@@ -1,8 +1,8 @@
-function MainPage(name) {
+function MainPage() {
 
     return (
         <div>
-            Welcome {name}
+            Welcome 
         </div>
     )
 }

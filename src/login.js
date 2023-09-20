@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 //Testing:
 
@@ -12,10 +14,13 @@ const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("Submit");
-    
+    const [error, setError] = useState("");
+    const [token, setToken] = useState("");
+
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
-        const data = []
+
         e.preventDefault();
         axios.defaults.headers.post['Content-Type'] ='application/x-www-form-urlencoded';
   
@@ -23,9 +28,15 @@ const Login = () => {
         await axios.post(loginURL, {
         email,
         password,
-        }).then(response => data.push(response.data)).catch((err) => console.log(err))
-        
-        console.log(data);
+        })
+        .then(response => {
+            setToken(response.data.token)
+            console.log(token)
+            
+            })
+        .catch((err) => {
+            setMessage('Submit')
+            setError(err.response.data.message)})
     }
     
 
@@ -52,7 +63,8 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 value={password} type="password" placeholder="Password" className="password-box" name="password"/>
                 <button onClick={handleMessage} type="submit" className="submit-button js-submit-button">{message}</button>
-                
+                <p className="error-message">{error}</p>
+                <p>{token}</p>
             </form>     
         </div>
     </div>   
