@@ -31,12 +31,14 @@ const Login = () => {
         })
         .then(response => {
             setToken(response.data.token)
-            console.log(token)
-            
+            setMessage("Submit")
+            setError("")
             })
         .catch((err) => {
             setMessage('Submit')
-            setError(err.response.data.message)})
+            setError(err.response.data.message)
+            setPassword('')
+        })
     }
     
 
