@@ -44,6 +44,7 @@ const Register = () => {
             setPassword('')
             setPasswordConfirm('')
             setError(err.response.data.message)})
+            setToken('')
     }
     
 

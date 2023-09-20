@@ -37,6 +37,7 @@ const Login = () => {
         .catch((err) => {
             setMessage('Submit')
             setError(err.response.data.message)
+            setToken('')
             setPassword('')
         })
     }
