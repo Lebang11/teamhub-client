@@ -7,8 +7,8 @@ function MainPage() {
 
     const getInfo = async () => {
         const info = await axios.get('https://team-hub.onrender.com/api/main');
-        console.log(Cookies.get('token'))
-        setInfo(Cookies.get('token'))
+        console.log(Cookies.get('token_name'))
+        setInfo(Cookies.get('token_name'))
     }
     
 

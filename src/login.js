@@ -35,8 +35,11 @@ const Login = () => {
             setMessage("Submit")
             setError("")
             navigate('/main')
-            Cookies.set('token', response.data.token , { expires: 7 });
-            setToken(Cookies.get('token'))
+            Cookies.set('token_id', response.data.token_id , { expires: 7 });
+            Cookies.set('token_name', response.data.token_name , { expires: 7 });
+            Cookies.set('token_email', response.data.token_email , { expires: 7 });
+            
+            setToken(Cookies.get('token_name'))
             })
         .catch((err) => {
             setMessage('Submit')
