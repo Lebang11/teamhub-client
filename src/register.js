@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 
 //Testing:
@@ -37,6 +38,11 @@ const Register = () => {
             setError("")
             setToken(response.data.token)
             setMessage('Submit')
+            Cookies.set('token_id', response.data.token_id , { expires: 7 });
+            Cookies.set('token_name', response.data.token_name , { expires: 7 });
+            Cookies.set('token_email', response.data.token_email , { expires: 7 });
+            
+            setToken(Cookies.get('token_name'))
             navigate('/main')
             })
         .catch((err) => {
@@ -80,7 +86,7 @@ const Register = () => {
                 value={passwordConfirm} type="password" placeholder="Confirm Password" className="password-box" name="passwordConfirm"/>
                 <button onClick={handleMessage} type="submit" className="submit-button js-submit-button">{message}</button>
                 <p className="error-message">{error}</p>
-                <p>{token}</p>
+                
             </form>     
         </div>
     </div>   

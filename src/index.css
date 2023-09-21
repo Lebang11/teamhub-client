@@ -58,7 +58,6 @@ body {
 
 .full-name-text-box,
 .email-text-box,
-.preferred-name-text-box,
 .password-box {
   padding: 20px 10px;
   width: 400px;
@@ -79,7 +78,7 @@ body {
 
 .submit-button:hover {
   color: white;
-  background-color: aqua;
+  background-color: rgb(191,155,48);
   transform: scale(1.2);
 }
 
