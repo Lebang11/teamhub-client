@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 
 //Testing:
@@ -30,9 +31,12 @@ const Login = () => {
         password,
         })
         .then(response => {
-            setToken(response.data.token)
+            
             setMessage("Submit")
             setError("")
+            navigate('/main')
+            Cookies.set('token', response.data.token , { expires: 7 });
+            setToken(Cookies.get('token'))
             })
         .catch((err) => {
             setMessage('Submit')

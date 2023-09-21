@@ -37,6 +37,7 @@ const Register = () => {
             setError("")
             setToken(response.data.token)
             setMessage('Submit')
+            navigate('/main')
             })
         .catch((err) => {
             console.log(err)

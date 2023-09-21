@@ -6,6 +6,7 @@ import Login from './login';
 import MainPage from './main';
 
 function App() {
+
   return (
     
     <Router>
@@ -13,7 +14,7 @@ function App() {
         <Route path='/' element={<OpenPage/>}/>
         <Route path='/create' element={<Register/>}/>
         <Route path='/login' element={<Login/>}/>
-        <Route path='/main' element={<MainPage/>}/>
+        <Route path='/main' element={<MainPage />}/>
       </Routes>
     </Router>
   );
