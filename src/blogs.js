@@ -3,45 +3,56 @@
 // import { Link } from "react-router-dom";
 import React from "react";
 // import App from "./App";
-import blogs from "./test.blogs.json"
+import { useEffect, useState } from "react";
 
-function ShowBlogs(props) {
-    const blog = 
-        // (
-            <div className="blog-box">
-                <h3 className="author">
-                    Written by {props.username}
-                </h3>
-                <div>This is my first blog</div>
-                <p></p>
-                <div>email me: {props.email}</div>
-            </div>
-        // )
+const ShowBlogs = (props) => {
+    const [dbBlogs, setDbBlogs] = useState([]);
 
-            (
-                <div>
-                    {blogs.blogs.map((blo) => {
-                        return (
-                            <div>
-                                {/* <div className="blog-box">
-                                    <h3 className="author">
-                                        Written by {blo.author}
-                                    </h3>
-                                    <div>{blo.text}</div>
-                                    
-                                    <div>email me: </div>
-                                </div> */}
-                                test
-                            </div>
-                        )
-                    })}
-                </div>
+    
+
+    const getBlogs =  async () => {
+        
+        await fetch('https://team-hub.onrender.com/api/blogs')
+        .then(response => response.json())
+        .then(res => {
+            setDbBlogs(res)
+            console.log(res)
+        }
             )
-    return (
+        .catch(err => console.log(err));
+
+        
+        }
+
+    useEffect(()=> {
+        try {
+            getBlogs();
+        } catch(err) {
+            console.log(err);
+        }
+        
+    }, [])
+
+    return(
         <div>
-            {blog}
-        </div>
-    );
+            {
+            dbBlogs.map((blo) => {
+                console.log(blo)
+                return (
+                    <div>
+                        <div className="blog-box">
+                            <h2 className="author">
+                                {blo.title}
+                            </h2>
+                            <div>{blo.text}</div>
+                            <h3>Written by {blo.author}</h3>
+                            
+                        </div> 
+                        
+                    </div>
+                )
+            }) || console.log('wait')}   
+        </div>)
 }
  
 export default ShowBlogs;

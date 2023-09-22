@@ -1,35 +1,35 @@
 import { useState } from "react";
 import Cookies from "js-cookie";
 import ShowBlogs from "./blogs";
-import axios from "axios";
-import blogs from "./test.blogs.json"
-import { json } from "react-router-dom";
+import NewBlog from "./new-blog";
 
 function MainPage() {
     const [username, setUser] = useState('');
     const [showBlogs, setShowBlogs] = useState(false);
-    const [email, setEmail] = useState('')
+    const [email, setEmail] = useState('');
+    const [newBlog, setNewBlog] = useState(false);
 
     const getInfo = async () => {
-        // await axios.post('https://team-hub.onrender.com/api/blogs',
-        // {
-        //     author: 'Lebang',
-        //     title: 'Test',
-        //     text: 'Its only test that I want'
-        // }).then((res)=> console.log('done')).catch(err=>console.log(err))
         
         setUser(Cookies.get(`token_name`));
         setEmail(Cookies.get(`token_email`));
         if (showBlogs === true) {
-            setShowBlogs(false)
+            setShowBlogs(false);
         } else {
             setShowBlogs(true);
         } 
     }
 
-    const data = blogs.blogs[0]._id.$oid;
-
-    console.log(data)
+    const createBlog = () => {
+        if (newBlog === true) {
+            setNewBlog(false);
+        } else {
+            setNewBlog(true);
+        } 
+    }
+    
+    
+    
     
     
     
@@ -45,8 +45,12 @@ function MainPage() {
                 </h1>
             </div>
             <div className="blogs-box">
-                <h2>Blogs</h2>
-                <button onClick={getInfo} className="blogs-button">view blogs</button>
+                <h1 className="blogs-title">Blogs</h1>
+                <div>
+                    <button onClick={getInfo} className="blogs-button">view blogs</button>
+                    <button onClick={createBlog} className="blogs-button">New Blog</button>
+                </div>
+                    {newBlog && <NewBlog />}
                 <div>
                     {showBlogs && <ShowBlogs/>}
                 </div>
