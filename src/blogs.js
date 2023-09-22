@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 const ShowBlogs = (props) => {
     const [dbBlogs, setDbBlogs] = useState([]);
-
+    const [refresh, setRefresh] = useState('refresh')
     
 
     const getBlogs =  async () => {
@@ -16,6 +16,7 @@ const ShowBlogs = (props) => {
         .then(response => response.json())
         .then(res => {
             setDbBlogs(res)
+            setRefresh('refresh');
             console.log(res)
         }
             )
@@ -33,8 +34,16 @@ const ShowBlogs = (props) => {
         
     }, [])
 
+    function refreshBlogs() {
+        setRefresh('Refreshing...')
+        getBlogs();
+        
+    }
+
     return(
         <div>
+            <button onClick={refreshBlogs} className="refresh-button">{refresh}</button>
+            <div>
             {
             dbBlogs.map((blo) => {
                 console.log(blo)
@@ -51,8 +60,10 @@ const ShowBlogs = (props) => {
                         
                     </div>
                 )
-            }) || console.log('wait')}   
-        </div>)
+            }) }   
+            </div>
+        </div>
+       )
 }
  
 export default ShowBlogs;

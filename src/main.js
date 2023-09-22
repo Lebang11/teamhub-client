@@ -52,6 +52,7 @@ function MainPage() {
                 </div>
                     {newBlog && <NewBlog />}
                 <div>
+
                     {showBlogs && <ShowBlogs/>}
                 </div>
             </div>

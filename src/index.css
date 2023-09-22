@@ -205,3 +205,19 @@ h3 {
   height: 10px;
   
 }
+
+.refresh-button {
+  font-size: 15px;
+  background-color: rgb(234, 234, 234);
+  height: 40px;
+  width: 80px;
+  margin-top: 30px;
+  border: none; 
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.refresh-button:hover {
+  background-color: rgb(191,155,48);
+}
