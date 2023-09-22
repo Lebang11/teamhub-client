@@ -3,6 +3,7 @@ import Cookies from "js-cookie";
 import ShowBlogs from "./blogs";
 import axios from "axios";
 import blogs from "./test.blogs.json"
+import { json } from "react-router-dom";
 
 function MainPage() {
     const [username, setUser] = useState('');
@@ -26,6 +27,9 @@ function MainPage() {
         } 
     }
 
+    const data = blogs.blogs[0]._id.$oid;
+
+    console.log(data)
     
     
     
@@ -44,9 +48,8 @@ function MainPage() {
                 <h2>Blogs</h2>
                 <button onClick={getInfo} className="blogs-button">view blogs</button>
                 <div>
-                    {showBlogs && <ShowBlogs username={username} email={email}/>}
+                    {showBlogs && <ShowBlogs/>}
                 </div>
-
             </div>
         </div>
     )
