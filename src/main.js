@@ -1,19 +1,32 @@
 import { useState } from "react";
 import Cookies from "js-cookie";
 import ShowBlogs from "./blogs";
+import axios from "axios";
+import blogs from "./test.blogs.json"
 
 function MainPage() {
-    const [info, setInfo] = useState('Details');
     const [username, setUser] = useState('');
-    let showBlogs = false
+    const [showBlogs, setShowBlogs] = useState(false);
+    const [email, setEmail] = useState('')
 
-    const getInfo = async (data) => {
-        console.log(Cookies.get(`token_${data}`));
-        setInfo(Cookies.get(`token_${data}`));
+    const getInfo = async () => {
+        // await axios.post('https://team-hub.onrender.com/api/blogs',
+        // {
+        //     author: 'Lebang',
+        //     title: 'Test',
+        //     text: 'Its only test that I want'
+        // }).then((res)=> console.log('done')).catch(err=>console.log(err))
+        
         setUser(Cookies.get(`token_name`));
-        showBlogs = true
+        setEmail(Cookies.get(`token_email`));
+        if (showBlogs === true) {
+            setShowBlogs(false)
+        } else {
+            setShowBlogs(true);
+        } 
     }
 
+    
     
     
     // const username = getInfo('name')
@@ -31,8 +44,9 @@ function MainPage() {
                 <h2>Blogs</h2>
                 <button onClick={getInfo} className="blogs-button">view blogs</button>
                 <div>
-                    {showBlogs && <ShowBlogs/>}
+                    {showBlogs && <ShowBlogs username={username} email={email}/>}
                 </div>
+
             </div>
         </div>
     )
