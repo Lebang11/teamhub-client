@@ -58,9 +58,11 @@ const Login = () => {
     
     return (
         <div className="register">
-        <Link to="https://team-hub.netlify.app">
-        <button className="submit-button back-button">Back</button>
-        </Link>
+            <div className="back-button-div">
+                <Link to="https://team-hub.netlify.app">
+                    <button className="submit-button back-button">Back</button>
+                </Link>
+            </div>
         
         <div className="form-box-flex">
             <form onSubmit={handleSubmit} className="form-box">
