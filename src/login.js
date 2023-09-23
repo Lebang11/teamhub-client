@@ -59,7 +59,7 @@ const Login = () => {
     return (
         <div className="register">
             <div className="back-button-div">
-                <Link to="https://team-hub.netlify.app">
+                <Link to="/">
                     <button className="submit-button back-button">Back</button>
                 </Link>
             </div>

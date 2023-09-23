@@ -13,7 +13,7 @@ class App extends Component {
       <Router>
         <Routes>
           <Route path='/blogs' element={<showBlogs/>}/>
-          <Route path='/' element={<OpenPage/>}/>
+          <Route exact path='/' element={<OpenPage/>}/>
           <Route path='/create' element={<Register/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/main' element={<MainPage />}/>     

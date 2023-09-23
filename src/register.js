@@ -65,7 +65,7 @@ const Register = () => {
     return (
         <div className="register">
             <div className="back-button-div">
-                <Link to="https://team-hub.netlify.app">
+                <Link to="/">
                     <button className="submit-button back-button">Back</button>
                 </Link>
             </div>
@@ -73,7 +73,7 @@ const Register = () => {
         
         <div className="form-box-flex">
             <form onSubmit={handleSubmit} className="form-box">
-                <h1>Sign In</h1>
+                <h1>Sign Up</h1>
                 <input 
                 onChange={(e) => setUsername(e.target.value)} value={username}
                 type="text" placeholder="Username" className="email-text-box js-email"
