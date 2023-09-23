@@ -5,6 +5,8 @@ import Register from './register';
 import Login from './login';
 import MainPage from './main';
 import { Component } from 'react';
+import Problems from './problems';
+import ProblemPage from './problem-page';
 
 
 class App extends Component {
@@ -17,6 +19,7 @@ class App extends Component {
           <Route path='/create' element={<Register/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/main' element={<MainPage />}/>     
+          <Route path='/problems' element={<ProblemPage/>}/>
         </Routes>
       </Router>
     );

@@ -2,6 +2,7 @@ import { useState } from "react";
 import Cookies from "js-cookie";
 import ShowBlogs from "./blogs";
 import NewBlog from "./new-blog";
+import { Link } from "react-router-dom";
 
 function MainPage() {
     const [username, setUser] = useState('');
@@ -48,7 +49,10 @@ function MainPage() {
                 <h1 className="blogs-title">Blogs</h1>
                 <div>
                     <button onClick={getInfo} className="blogs-button">view blogs</button>
-                    <button onClick={createBlog} className="blogs-button">New Blog</button>
+                    <button onClick={createBlog} className="blogs-button">new blog</button>
+                    <Link to="/problems">
+                        <button onClick={createBlog} className="blogs-button">view problems</button>
+                    </Link>
                 </div>
                     {newBlog && <NewBlog />}
                 <div>
