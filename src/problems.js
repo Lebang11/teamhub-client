@@ -52,7 +52,7 @@ const ShowProblems = (props) => {
                             <h2 className="author">
                                 {blo.title}
                             </h2>
-                            <div>{blo.description}</div>
+                            {/* <div>{blo.text || blo.description}</div> */}
                             <h3>Written by {blo.author}</h3>
                             <div className="blog-date">
                                 <div >{blo.date}</div>

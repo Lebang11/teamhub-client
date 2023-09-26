@@ -66,7 +66,7 @@ const ShowBlogs = (props) => {
                             <div>{blo.text || blo.description}</div>
                             <h3>Written by {blo.author}</h3>
                             <div className="blog-date">
-                                <div >{`${fulldate} ${fulltime}`}</div>
+                                <div >{`${fulldate}, ${fulltime}`}</div>
                             </div>
                         </div> 
                         
