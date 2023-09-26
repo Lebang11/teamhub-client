@@ -53,7 +53,7 @@ const ShowBlogs = (props) => {
                             <h2 className="author">
                                 {blo.title}
                             </h2>
-                            <div>{blo.text}</div>
+                            <div>{blo.text || blo.description}</div>
                             <h3>Written by {blo.author}</h3>
                             
                         </div> 
