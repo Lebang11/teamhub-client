@@ -263,3 +263,11 @@ h3 {
   align-items: center;
   margin-top: 20px;
 }
+
+.blog-date {
+  display: flexbox;
+  flex-direction: row;
+  text-align: end;
+  font-weight: 500;
+  color: rgb(73, 73, 73);
+}

@@ -1,9 +1,9 @@
 import Cookies from "js-cookie";
 import axios from "axios";
 import { useState } from "react";
-import {storage} from "./firebase";
-import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
-import { v4 } from 'uuid';
+// import {storage} from "./firebase";
+// import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
+// import { v4 } from 'uuid';
 
 const NewProblem = () => {
     // const [text, setText] = useState('');
@@ -14,29 +14,29 @@ const NewProblem = () => {
     const [Ref, setRef] = useState('');
     const today = new Date();
 
-    const handleFileUpload = async () => {
-        // const file = selectedFile;
-        // // setFileName(file.name)
-        // // const formData = new FormData();
-        // // formData.append('file', file);
-        // // await axios
-        // // .post("https://team-hub.onrender.com/api/problems", formData, {
-        // //   headers: {
-        // //     "Content-Type": "multipart/form-data",
-        // //     "x-rapidapi-host": "file-upload8.p.rapidapi.com",
-        // //     "x-rapidapi-key": "your-rapidapi-key-here",
-        // //   },
-        // // })
-        // // .then((res) => console.log('file sent successfully'))
-        // // .catch(err=> console.log(err))
+    // const handleFileUpload = async () => {
+    //     // const file = selectedFile;
+    //     // // setFileName(file.name)
+    //     // // const formData = new FormData();
+    //     // // formData.append('file', file);
+    //     // // await axios
+    //     // // .post("https://team-hub.onrender.com/api/problems", formData, {
+    //     // //   headers: {
+    //     // //     "Content-Type": "multipart/form-data",
+    //     // //     "x-rapidapi-host": "file-upload8.p.rapidapi.com",
+    //     // //     "x-rapidapi-key": "your-rapidapi-key-here",
+    //     // //   },
+    //     // // })
+    //     // // .then((res) => console.log('file sent successfully'))
+    //     // // .catch(err=> console.log(err))
 
-        let Ref = await ref(storage, `files/${v4()}-${selectedFile.name}`);        
-        setRef(Ref)
-        uploadBytes(Ref, selectedFile).then(()=> {
-            alert('Uploaded')
-        });
-        console.log(Ref.name)
-    }
+    //     let Ref = await ref(storage, `files/${v4()}-${selectedFile.name}`);        
+    //     setRef(Ref)
+    //     uploadBytes(Ref, selectedFile).then(()=> {
+    //         alert('Uploaded')
+    //     });
+    //     console.log(Ref.name)
+    // }
 
     const createProblem= async () => {
         const author = Cookies.get('token_name');
@@ -57,7 +57,7 @@ const NewProblem = () => {
 
         setDone('Loading...');
 
-        handleFileUpload();
+        // handleFileUpload();
         
         await axios.post('https://team-hub.onrender.com/api/problems',
         {
@@ -121,12 +121,7 @@ const NewProblem = () => {
                 <button className="done-button clear-button" onClick={clearText}>clear</button>
             </div>
             <div>
-                <button onClick={() => {
-                    getDownloadURL(Ref).then(url => {
-                        setURL(Url)
-                        console.log(Url)
-                    })
-                }}>Download 
+                <button >Download 
                 </button>
                 <a href={Url}>Link</a>
             </div>

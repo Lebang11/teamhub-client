@@ -2,9 +2,21 @@ import { useState } from "react";
 import ShowProblems from "./problems";
 import NewProblem from "./new-problem";
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const ProblemPage = () => {
     const [problemsShown, setProblemsShown] = useState(false);
+
+    if (!Cookies.get(`token_name`) || !Cookies.get(`token_email`)){
+        return (
+            <div>
+                <h1>Please Login</h1>
+                <Link to='/login'>
+                    <h4>Login</h4>
+                </Link> 
+            </div>  
+        )
+    } 
 
     const showNewProblem = () => {
         if (problemsShown === false) {

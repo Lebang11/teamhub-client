@@ -10,6 +10,18 @@ function MainPage() {
     const [email, setEmail] = useState('');
     const [newBlog, setNewBlog] = useState(false);
 
+    
+    if (!Cookies.get(`token_name`) || !Cookies.get(`token_email`)){
+        return (
+            <div>
+                <h1>Please Login</h1>
+                <Link to='/login'>Login</Link> 
+            </div>
+            
+        )
+    } 
+    
+    
     const getInfo = async () => {
         
         setUser(Cookies.get(`token_name`));

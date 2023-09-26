@@ -17,7 +17,7 @@ const ShowBlogs = (props) => {
         .then(res => {
             setDbBlogs(res)
             setRefresh('refresh');
-            console.log(res)
+            
         }
             )
         .catch(err => console.log(err));
@@ -47,6 +47,16 @@ const ShowBlogs = (props) => {
             {
             dbBlogs.map((blo) => {
                 console.log(blo)
+                const date = new Date(blo.date)
+                const day = date.getDate()
+                const month = date.toLocaleString('default', {month: 'short'})
+                const year = date.getFullYear()
+                const timehours = date.getHours()
+                const timemin = date.getMinutes()
+                const timesec = date.getSeconds()
+                const fulltime = `${timehours}:${timemin}:${timesec}`
+                const fulldate = `${day} ${month} ${year}`;
+                console.log(fulldate)
                 return (
                     <div>
                         <div className="blog-box">
@@ -55,7 +65,9 @@ const ShowBlogs = (props) => {
                             </h2>
                             <div>{blo.text || blo.description}</div>
                             <h3>Written by {blo.author}</h3>
-                            
+                            <div className="blog-date">
+                                <div >{`${fulldate} ${fulltime}`}</div>
+                            </div>
                         </div> 
                         
                     </div>

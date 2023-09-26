@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 
+
 const ShowProblems = (props) => {
     const [dbProblems, setDbProblems] = useState([]);
     const [refresh, setRefresh] = useState('refresh')
+    
     
 
     const getProblems =  async () => {
@@ -34,7 +36,8 @@ const ShowProblems = (props) => {
         getProblems();
         
     }
- 
+    
+    
 
     return ( 
         <div>
@@ -49,9 +52,11 @@ const ShowProblems = (props) => {
                             <h2 className="author">
                                 {blo.title}
                             </h2>
-                            <div>{blo.text}</div>
+                            <div>{blo.description}</div>
                             <h3>Written by {blo.author}</h3>
-                            <p>{blo.date}</p>
+                            <div className="blog-date">
+                                <div >{blo.date}</div>
+                            </div>
                         </div> 
                         
                     </div>
