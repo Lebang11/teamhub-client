@@ -12,7 +12,7 @@ const ShowProblems = (props) => {
         .then(res => {
             setDbProblems(res)
             setRefresh('refresh');
-            console.log(res)
+            
         }
             )
         .catch(err => console.log(err));
@@ -42,7 +42,7 @@ const ShowProblems = (props) => {
             <div>
             {
             dbProblems.map((blo) => {
-                console.log(blo)
+                
                 return (
                     <div>
                         <div className="blog-box">

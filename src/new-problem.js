@@ -30,11 +30,12 @@ const NewProblem = () => {
         // // .then((res) => console.log('file sent successfully'))
         // // .catch(err=> console.log(err))
 
-        // let Ref = await ref(storage, `files/${v4()}-${selectedFile.name}`);        
-        // uploadBytes(Ref, selectedFile).then(()=> {
-        //     alert('Uploaded')
-        // });
-        // console.log(Ref.name)
+        let Ref = await ref(storage, `files/${v4()}-${selectedFile.name}`);        
+        setRef(Ref)
+        uploadBytes(Ref, selectedFile).then(()=> {
+            alert('Uploaded')
+        });
+        console.log(Ref.name)
     }
 
     const createProblem= async () => {
@@ -56,7 +57,7 @@ const NewProblem = () => {
 
         setDone('Loading...');
 
-        // handleFileUpload();
+        handleFileUpload();
         
         await axios.post('https://team-hub.onrender.com/api/problems',
         {
@@ -122,11 +123,12 @@ const NewProblem = () => {
             <div>
                 <button onClick={() => {
                     getDownloadURL(Ref).then(url => {
+                        setURL(Url)
                         console.log(Url)
-                        setURL(Url)})
-                }}>
-                    {Url } 
+                    })
+                }}>Download 
                 </button>
+                <a href={Url}>Link</a>
             </div>
         </div>
     );
