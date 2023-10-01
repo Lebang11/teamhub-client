@@ -13,17 +13,17 @@ const NewProblem = () => {
     const [Url, setURL] = useState('');
     const [file, setFile] = useState(null);
     const [fileList, setFileList] = useState([]);
-    const [fileDownload, setFileDownload] = useState(null);
+    const [fileDownload, setFileDownload] = useState();
 
 
     const today = new Date();
 
     const uploadFile = () => {
         if (file === null) return;
-        setFileName(`${today.getFullYear()}${today.getMonth()}${today.getDate()}${today.getHours()}${today.getMinutes()}-${file.name}`)
         const fileRef = ref(storage, `files/${filename}`);
         uploadBytes(fileRef, file).then(() => {
-          alert('File Uploaded')
+            setFileName(`${today.getFullYear()}${today.getMonth()}${today.getDate()}${today.getHours()}${today.getMinutes()}-${file.name}`)
+            alert('File Uploaded, name: ' + filename)
         })
         downloadFile();
       }
@@ -33,6 +33,7 @@ const NewProblem = () => {
         getDownloadURL(downloadRef)
         .then((url) => {
             setFileDownload(url)
+            console.log(fileDownload)
         })
         .catch(err => console.log(err))
         
@@ -48,16 +49,19 @@ const NewProblem = () => {
         const language = languageName.value;
         const date = `${today.getDate()} ${today.toLocaleString('default', { month: 'long' })} ${today.getFullYear()}, ${today.getHours()}:${today.getMinutes()}`;        
         
+        uploadFile()         
+
         console.log(author);
         console.log(title);
         console.log(text);
         console.log(language);
         console.log(date);
         console.log(filename);
+        console.log(fileDownload);
+
 
         setDone('Loading...');
 
-        uploadFile()         
         
         await axios.post('https://team-hub.onrender.com/api/problems',
         {
@@ -66,8 +70,7 @@ const NewProblem = () => {
             text,
             language,
             date,
-            filename,
-            fileDownload
+            filename
         }).then((res)=> console.log('Posted!', 'by', author)).catch(err=>console.log(err));
         setDone('Done')
         clearText()
