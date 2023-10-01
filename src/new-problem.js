@@ -1,42 +1,42 @@
 import Cookies from "js-cookie";
 import axios from "axios";
 import { useState } from "react";
-// import {storage} from "./firebase";
-// import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
-// import { v4 } from 'uuid';
+import { uploadBytes, getStorage, ref, getDownloadURL, getBlob, listAll } from "firebase/storage";
+import { storage } from "./firebase";
+import { v4 } from "uuid";
+
 
 const NewProblem = () => {
     // const [text, setText] = useState('');
     const [done, setDone] = useState('Done');
     const [filename, setFileName] = useState('');
-    const [selectedFile, setSelectedFile] = useState();
     const [Url, setURL] = useState('');
-    const [Ref, setRef] = useState('');
+    const [file, setFile] = useState(null);
+    const [fileList, setFileList] = useState([]);
+    const [fileDownload, setFileDownload] = useState(null);
+
+
     const today = new Date();
 
-    // const handleFileUpload = async () => {
-    //     // const file = selectedFile;
-    //     // // setFileName(file.name)
-    //     // // const formData = new FormData();
-    //     // // formData.append('file', file);
-    //     // // await axios
-    //     // // .post("https://team-hub.onrender.com/api/problems", formData, {
-    //     // //   headers: {
-    //     // //     "Content-Type": "multipart/form-data",
-    //     // //     "x-rapidapi-host": "file-upload8.p.rapidapi.com",
-    //     // //     "x-rapidapi-key": "your-rapidapi-key-here",
-    //     // //   },
-    //     // // })
-    //     // // .then((res) => console.log('file sent successfully'))
-    //     // // .catch(err=> console.log(err))
+    const uploadFile = () => {
+        if (file === null) return;
+        setFileName(`${today.getFullYear()}${today.getMonth()}${today.getDate()}${today.getHours()}${today.getMinutes()}-${file.name}`)
+        const fileRef = ref(storage, `files/${filename}`);
+        uploadBytes(fileRef, file).then(() => {
+          alert('File Uploaded')
+        })
+        downloadFile();
+      }
 
-    //     let Ref = await ref(storage, `files/${v4()}-${selectedFile.name}`);        
-    //     setRef(Ref)
-    //     uploadBytes(Ref, selectedFile).then(()=> {
-    //         alert('Uploaded')
-    //     });
-    //     console.log(Ref.name)
-    // }
+    const downloadFile = () => {
+        const downloadRef = ref(storage, `files/${filename}`)
+        getDownloadURL(downloadRef)
+        .then((url) => {
+            setFileDownload(url)
+        })
+        .catch(err => console.log(err))
+        
+    }
 
     const createProblem= async () => {
         const author = Cookies.get('token_name');
@@ -57,7 +57,7 @@ const NewProblem = () => {
 
         setDone('Loading...');
 
-        // handleFileUpload();
+        uploadFile()         
         
         await axios.post('https://team-hub.onrender.com/api/problems',
         {
@@ -66,7 +66,8 @@ const NewProblem = () => {
             text,
             language,
             date,
-            filename
+            filename,
+            fileDownload
         }).then((res)=> console.log('Posted!', 'by', author)).catch(err=>console.log(err));
         setDone('Done')
         clearText()
@@ -101,8 +102,7 @@ const NewProblem = () => {
                 </div>
                 <div>
                     <input type="file" onChange={(e) => {
-                        setSelectedFile(e.target.files[0])
-                        setFileName(e.target.files[0].name)
+                        setFile(e.target.files[0]);
                     }} />
                 </div>
                 <div className="language-div">
@@ -121,9 +121,9 @@ const NewProblem = () => {
                 <button className="done-button clear-button" onClick={clearText}>clear</button>
             </div>
             <div>
-                <button >Download 
+                <button onClick={downloadFile}>
+                    <a href={fileDownload}>Download</a>
                 </button>
-                <a href={Url}>Link</a>
             </div>
         </div>
     );
