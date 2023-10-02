@@ -151,6 +151,11 @@ h3 {
   flex-direction: column;
 }
 
+.blog-box:hover {
+  box-shadow: 7px 7px 5px rgb(145, 115, 27);
+  transform: scale(1.05);
+}
+
 .blog-box {
   border: 1px solid rgb(233, 233, 233);
   border-radius: 20px;
@@ -270,4 +275,17 @@ h3 {
   text-align: end;
   font-weight: 500;
   color: rgb(73, 73, 73);
+}
+
+.problem-details-h2 {
+  color: rgb(66,69,73);;
+}
+
+.problem-link {
+  text-decoration: none;
+  
+}
+
+p {
+  color: black
 }

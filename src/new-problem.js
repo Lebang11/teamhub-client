@@ -15,14 +15,15 @@ const NewProblem = () => {
     const [fileList, setFileList] = useState([]);
     const [fileDownload, setFileDownload] = useState();
 
-
     const today = new Date();
+
+
 
     const uploadFile = () => {
         if (file === null) return;
+        console.log(file.name)
         const fileRef = ref(storage, `files/${filename}`);
         uploadBytes(fileRef, file).then(() => {
-            setFileName(`${today.getFullYear()}${today.getMonth()}${today.getDate()}${today.getHours()}${today.getMinutes()}-${file.name}`)
             alert('File Uploaded, name: ' + filename)
         })
         downloadFile();
@@ -57,8 +58,6 @@ const NewProblem = () => {
         console.log(language);
         console.log(date);
         console.log(filename);
-        console.log(fileDownload);
-
 
         setDone('Loading...');
 
@@ -104,8 +103,9 @@ const NewProblem = () => {
                     <textarea name="blog" placeholder="text here" className="new-blog-text-box" ></textarea>
                 </div>
                 <div>
-                    <input type="file" onChange={(e) => {
+                    <input type="file" onChange={async (e) => {
                         setFile(e.target.files[0]);
+                        setFileName(`${today.getFullYear()}${today.getMonth()}${today.getDate()}${today.getHours()}${today.getMinutes()}-${e.target.files[0].name}`) 
                     }} />
                 </div>
                 <div className="language-div">
@@ -124,8 +124,9 @@ const NewProblem = () => {
                 <button className="done-button clear-button" onClick={clearText}>clear</button>
             </div>
             <div>
-                <button onClick={downloadFile}>
-                    <a href={fileDownload}>Download</a>
+                <button onClick={() => console.log(filename)}>
+                    {/* <a href={fileDownload}>Download</a> */}
+                    Show
                 </button>
             </div>
         </div>

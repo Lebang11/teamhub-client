@@ -3,7 +3,8 @@ import { uploadBytes, getStorage, ref, getDownloadURL, getBlob } from "firebase/
 import { storage } from "./firebase";
 import { v4 } from "uuid";
 import DownloadFile from "./downloadfile";
-import Problem from "./blog";
+import Problem from "./problem";
+import { Link } from "react-router-dom";
 
 const ShowProblems = (props) => {
     const [dbProblems, setDbProblems] = useState([]);
@@ -56,10 +57,9 @@ const ShowProblems = (props) => {
             dbProblems.map((blo) => {
 
                 return (
-                    <div>
-                        <Problem setFileDownload={setFileDownload} fileDownload={fileDownload} filename={blo.filename} id={blo.id} title={blo.title} text={blo.text} author={blo.author} />
-                        
-                    </div>
+                        <div>
+                        <Problem date={blo.date} _id={blo._id} filename={blo.filename} title={blo.title} text={blo.text} author={blo.author} />   
+                        </div>   
                 )
             }) }   
             </div>
