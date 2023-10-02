@@ -4,10 +4,13 @@
 import React from "react";
 // import App from "./App";
 import { useEffect, useState } from "react";
+import Comments from "./comments";
+
 
 const ShowBlogs = (props) => {
     const [dbBlogs, setDbBlogs] = useState([]);
-    const [refresh, setRefresh] = useState('refresh')
+    const [refresh, setRefresh] = useState('refresh');
+    const [comment, setComment] = useState(false)
     
 
     const getBlogs =  async () => {
@@ -57,18 +60,35 @@ const ShowBlogs = (props) => {
                 const fulltime = `${timehours}:${timemin}:${timesec}`
                 const fulldate = `${day} ${month} ${year}`;
                 console.log(fulldate)
+
                 return (
                     <div>
-                        <div className="blog-box">
-                            <h2 className="author">
-                                {blo.title}
-                            </h2>
-                            <div>{blo.text || blo.description}</div>
-                            <h3>Written by {blo.author}</h3>
-                            <div className="blog-date">
-                                <div >{`${fulldate}, ${fulltime}`}</div>
-                            </div>
-                        </div> 
+                        <div>
+                            { <div className="blog-box">
+                                <h2 className="author">
+                                    {blo.title}
+                                </h2>
+                                <div>{blo.text || blo.description}</div>
+                                <h3>Written by {blo.author}</h3>
+                                <div className="blog-date">
+                                    <div >{`${fulldate}, ${fulltime}`}</div>
+                                </div>
+                                <button onClick={
+                                    () => {
+                                        if (comment == false) {
+                                            setComment(true)
+                                        } else {
+                                            setComment(false)
+                                        }
+                                        
+                                    }
+                                } className="done-button comment-button">Comments</button>
+                                <div>
+                                    {comment && <Comments blogid={blo._id}/>}
+                                </div>
+                            </div>} 
+                        </div>
+                        
                         
                     </div>
                 )

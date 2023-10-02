@@ -34,22 +34,23 @@ const ProblemPage = () => {
                     Welcome to Team-Hub
                 </h1>
             </div>
-            <div className="problems">
+            <div className="blogs-box">
             <div className="back-button-div">
                 <Link to="/main">
                     <button className="submit-button back-button">Back</button>
                 </Link>
+            
             </div>
-            </div>
-            <button className="blogs-button" onClick={showNewProblem}>post problem</button>
+                <h2>Problems</h2>
+                <button className="blogs-button" onClick={showNewProblem}>post problem</button>
             <div>
                 {problemsShown && <NewProblem/>}
             </div>
             <div>
-                <h2>Problems</h2>
+                
                 {<ShowProblems/>}
             </div>
-            
+            </div>
         </div>
     );
 }

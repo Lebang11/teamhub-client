@@ -147,7 +147,7 @@ h3 {
 
 .blogs-box {
   display: flex;
-  margin-left: 10vw;
+  margin-left: 5vw;
   flex-direction: column;
 }
 
@@ -288,4 +288,34 @@ h3 {
 
 p {
   color: black
+}
+
+.download-file-button {
+  width: auto;
+}
+
+.download-file-button:hover {
+  transform: scale(1.2);
+} 
+
+.download-file-button a {
+  text-decoration: none;
+  color: white;
+}
+
+.comment-box {
+  border: none;
+}
+
+.comment-button {
+  background-color: rgb(234, 234, 234);
+}
+
+.comment-button:hover {
+  background-color: rgb(78, 132, 250);
+  color: white;
+}
+
+.blog-date {
+  font-size: 80%;
 }
