@@ -18,9 +18,15 @@ const ProfilePage = () => {
     const [showChangePic, setShowChangePic] =  useState(false);
 
 
-    useEffect(() => {
-        findUser()
+    useEffect( () => {
+        const loadPage = async () => {
+            await findUser()
+        }
+        loadPage().catch(console.error)
+    
     }, []);
+
+    
 
     const today = new Date();
 
@@ -34,10 +40,14 @@ const ProfilePage = () => {
             setEmail(res.email)
             
         })
+        .then(res => {
+            })
         .catch(err => console.log(err))
 
-        downloadFile();
+        
     }
+
+    
 
     const uploadImage = async () => {
         if (image === null) return;
@@ -67,7 +77,9 @@ const ProfilePage = () => {
         
     }
 
-    
+    setTimeout(() => {
+        downloadFile()}, 1000)
+
 
     return ( 
         <div>

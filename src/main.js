@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import ShowBlogs from "./blogs";
 import NewBlog from "./new-blog";
@@ -9,7 +9,14 @@ function MainPage() {
     const [showBlogs, setShowBlogs] = useState(false);
     const [email, setEmail] = useState('');
     const [newBlog, setNewBlog] = useState(false);
-
+    const [id, setId] = useState('');
+    
+    useEffect(() => {
+                
+        setUser(Cookies.get(`token_name`));
+        setEmail(Cookies.get(`token_email`));
+        setId(Cookies.get(`token_id`))
+    }, []);
     
     if (!Cookies.get(`token_name`) || !Cookies.get(`token_email`)){
         return (
@@ -23,9 +30,7 @@ function MainPage() {
     
     
     const getInfo = async () => {
-        
-        setUser(Cookies.get(`token_name`));
-        setEmail(Cookies.get(`token_email`));
+
         if (showBlogs === true) {
             setShowBlogs(false);
         } else {
@@ -64,6 +69,9 @@ function MainPage() {
                     <button onClick={createBlog} className="blogs-button">new blog</button>
                     <Link to="/problems">
                         <button onClick={createBlog} className="blogs-button">view problems</button>
+                    </Link>
+                    <Link to={`/user/${id}`}>
+                        <button onClick={createBlog} className="blogs-button">view profile</button>
                     </Link>
                 </div>
                     {newBlog && <NewBlog />}
