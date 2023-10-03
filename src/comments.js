@@ -7,6 +7,10 @@ const Comments = (props) => {
     const [showComments, setShowComments] = useState(false)
     const [text, setText] = useState()
 
+    useEffect(() => {
+        getComments()
+    }, []);
+
     const submitComment = async () => {
         const inputHTML = document.getElementById('comment');
         setText(text)
@@ -43,7 +47,6 @@ const Comments = (props) => {
                     <div >
                         <input onChange={(e) => setText(e.target.value)} placeholder="Comment here" type="text" id="comment" value={text}/>
                         <button onClick={submitComment}>Post</button>
-                        <button onClick={getComments}>Show Comments</button>
                         <div>
                             {showComments && dbComments.map((comment) => {
                                 const date = new Date(comment.date)

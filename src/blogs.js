@@ -5,13 +5,37 @@ import React from "react";
 // import App from "./App";
 import { useEffect, useState } from "react";
 import Comments from "./comments";
+import { uploadBytes, getStorage, ref, getDownloadURL, getBlob } from "firebase/storage";
+import { storage } from "./firebase";
+import Cookies from "js-cookie";
 
 
 const ShowBlogs = (props) => {
     const [dbBlogs, setDbBlogs] = useState([]);
     const [refresh, setRefresh] = useState('refresh');
-    const [comment, setComment] = useState(false)
-    
+    const [comment, setComment] = useState(false);
+    const [imageDownload, setImageDownload] =  useState([]);
+    const [imagename, setImageName] = useState('');
+    const [username, setUserName] = useState();
+    const [email, setEmail] = useState();
+    const [id, setId] = useState('');
+
+
+    const findUser = async () => {
+        await fetch(`https://team-hub.onrender.com/api/user?id=${id}`)
+        .then(response => response.json())
+        .then(res => {
+            console.log(res)
+            setImageName(res.imagename)
+            setUserName(res.username);
+            setEmail(res.email)
+           
+        })
+        .then(res => {
+            })
+        .catch(err => console.log(err))
+
+    }
 
     const getBlogs =  async () => {
         
@@ -19,14 +43,24 @@ const ShowBlogs = (props) => {
         .then(response => response.json())
         .then(res => {
             setDbBlogs(res)
-            setRefresh('refresh');
-            
+            setRefresh('refresh'); 
         }
             )
         .catch(err => console.log(err));
 
         
         }
+    
+    const downloadFile = async () => {
+        const downloadRef = ref(storage, `profilePics/${imagename}`)
+        getDownloadURL(downloadRef)
+        .then((url) => {
+            setImageDownload(url)
+        })
+        .catch(err => console.log(err))
+        
+    }
+
 
     useEffect(()=> {
         try {

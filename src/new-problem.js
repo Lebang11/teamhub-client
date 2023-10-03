@@ -42,6 +42,7 @@ const NewProblem = () => {
 
     const createProblem= async () => {
         const author = Cookies.get('token_name');
+        const authorID = Cookies.get('token_id')
         const textName = document.querySelector('.new-blog-text-box');
         const text = textName.value;
         const titleName = document.querySelector('.title-text-box');

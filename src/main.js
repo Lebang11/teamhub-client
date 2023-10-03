@@ -15,7 +15,7 @@ function MainPage() {
                 
         setUser(Cookies.get(`token_name`));
         setEmail(Cookies.get(`token_email`));
-        setId(Cookies.get(`token_id`))
+        setId(Cookies.get(`token_id`));
     }, []);
     
     if (!Cookies.get(`token_name`) || !Cookies.get(`token_email`)){

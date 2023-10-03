@@ -38,13 +38,10 @@ const ProfilePage = () => {
             setImageName(res.imagename)
             setUserName(res.username);
             setEmail(res.email)
-            
         })
         .then(res => {
             })
-        .catch(err => console.log(err))
-
-        
+        .catch(err => console.log(err)) 
     }
 
     
@@ -68,7 +65,7 @@ const ProfilePage = () => {
       }
     
     const downloadFile = async () => {
-        const downloadRef = await ref(storage, `profilePics/${imagename}`)
+        const downloadRef = ref(storage, `profilePics/${imagename}`)
         getDownloadURL(downloadRef)
         .then((url) => {
             setImageDownload(url)

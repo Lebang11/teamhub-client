@@ -42,6 +42,8 @@ const Register = () => {
             Cookies.set('token_id', response.data.token_id , { expires: 7 });
             Cookies.set('token_name', response.data.token_name , { expires: 7 });
             Cookies.set('token_email', response.data.token_email , { expires: 7 });
+            Cookies.set('token_imagename', response.data.token_imagename , { expires: 7 });
+            
             
             setToken(Cookies.get('token_name'))
             
