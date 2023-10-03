@@ -10,6 +10,7 @@ import ProblemPage from './problem-page';
 import ProblemDetails from './problem-details';
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import ProfilePage from './profile-page';
 
 
 class App extends Component {
@@ -25,7 +26,7 @@ class App extends Component {
           <Route path='/main' element={<MainPage />}/>     
           <Route exact path='/problems' element={<ProblemPage/>}/>
           <Route path='/problems/:id' element={<ProblemDetails/>}/>
-        
+          <Route path='/user/:id' element={<ProfilePage/>}/>
         </Routes>
       </Router>
     );

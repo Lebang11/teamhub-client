@@ -319,3 +319,16 @@ p {
 .blog-date {
   font-size: 80%;
 }
+
+.picture-area {
+  width: 30vb;
+  height: 30vb;
+  border: solid 1px grey;
+  border-radius: 50%;
+}
+
+.picture-area img {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;  
+}
