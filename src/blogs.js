@@ -8,6 +8,7 @@ import Comments from "./comments";
 import { uploadBytes, getStorage, ref, getDownloadURL, getBlob } from "firebase/storage";
 import { storage } from "./firebase";
 import Cookies from "js-cookie";
+import { Link } from "react-router-dom";
 
 
 const ShowBlogs = (props) => {
@@ -83,7 +84,7 @@ const ShowBlogs = (props) => {
             <div>
             {
             dbBlogs.map((blo) => {
-                console.log(blo)
+                
                 const date = new Date(blo.date)
                 const day = date.getDate()
                 const month = date.toLocaleString('default', {month: 'short'})
@@ -93,8 +94,32 @@ const ShowBlogs = (props) => {
                 const timesec = date.getSeconds()
                 const fulltime = `${timehours}:${timemin}:${timesec}`
                 const fulldate = `${day} ${month} ${year}`;
-                console.log(fulldate)
+                
 
+                const downloadFile = async (id) => {
+                    await fetch(`https://team-hub.onrender.com/api/user?id=${id}`)
+                    .then(response => response.json())
+                    .then(res => {
+                        console.log(res)
+                        setImageName(res.imagename)
+                        setUserName(res.username);
+                        setEmail(res.email)
+                    })
+                    .then(res => {
+                        })
+                    .catch(err => console.log(err)) 
+
+                    const downloadRef = ref(storage, `profilePics/${imagename}`)
+                    getDownloadURL(downloadRef)
+                    .then((url) => {
+                        setImageDownload(url)
+                    })
+                    .catch(err => console.log(err))
+                    
+                }
+
+                
+                
                 return (
                     <div>
                         <div>
@@ -103,7 +128,9 @@ const ShowBlogs = (props) => {
                                     {blo.title}
                                 </h2>
                                 <div>{blo.text || blo.description}</div>
-                                <h3>Written by {blo.author}</h3>
+                                <Link className='author-link' to={`/user/${blo.authorID}`}>
+                                    <h3>Written by <h3 className="author-name">{blo.author}</h3> <img src={imageDownload}></img> </h3>
+                                </Link>
                                 <div className="blog-date">
                                     <div >{`${fulldate}, ${fulltime}`}</div>
                                 </div>

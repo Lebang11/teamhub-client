@@ -35,6 +35,7 @@ function MainPage() {
             setShowBlogs(false);
         } else {
             setShowBlogs(true);
+            setNewBlog(false)
         } 
     }
 
@@ -43,6 +44,7 @@ function MainPage() {
             setNewBlog(false);
         } else {
             setNewBlog(true);
+            setShowBlogs(false)
         } 
     }
     
@@ -71,7 +73,7 @@ function MainPage() {
                         <button onClick={createBlog} className="blogs-button">view problems</button>
                     </Link>
                     <Link to={`/user/${id}`}>
-                        <button onClick={createBlog} className="blogs-button">view profile</button>
+                        <button className="blogs-button">view profile</button>
                     </Link>
                 </div>
                     {newBlog && <NewBlog />}

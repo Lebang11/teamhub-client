@@ -6,6 +6,7 @@ import Problem from "./problem";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 const ProfilePage = () => {
     const {id} = useParams();
@@ -16,14 +17,18 @@ const ProfilePage = () => {
     const [image, setImage] = useState(null);
     const [imageDownload, setImageDownload] =  useState([]);
     const [showChangePic, setShowChangePic] =  useState(false);
+    const [isUser, setIsUser] = useState();
 
+    
 
     useEffect( () => {
         const loadPage = async () => {
             await findUser()
         }
-        loadPage().catch(console.error)
-    
+        loadPage()
+        .catch(err => console.error)
+        
+        
     }, []);
 
     
@@ -65,12 +70,15 @@ const ProfilePage = () => {
       }
     
     const downloadFile = async () => {
-        const downloadRef = ref(storage, `profilePics/${imagename}`)
+        
+        let downloadRef = ref(storage, `profilePics/${imagename}`)
         getDownloadURL(downloadRef)
         .then((url) => {
             setImageDownload(url)
+            
         })
         .catch(err => console.log(err))
+        
         
     }
 
@@ -101,7 +109,7 @@ const ProfilePage = () => {
                 <h1>
                     {email}
                 </h1>
-               
+               {(id === Cookies.get(`token_id`)) &&
                 <button onClick={() => {
                     if (showChangePic === false) {
                         setShowChangePic(true)   
@@ -111,7 +119,7 @@ const ProfilePage = () => {
                     
                     }} className="submit-button ">
                     Change Profile Picture
-                </button>
+                </button>}
                 <div>
                     {showChangePic && 
                     <div>

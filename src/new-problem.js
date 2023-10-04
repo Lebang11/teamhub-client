@@ -66,11 +66,13 @@ const NewProblem = () => {
         await axios.post('https://team-hub.onrender.com/api/problems',
         {
             author,
+            authorID,
             title,
             text,
             language,
             date,
             filename
+
         }).then((res)=> console.log('Posted!', 'by', author)).catch(err=>console.log(err));
         setDone('Done')
         clearText()
