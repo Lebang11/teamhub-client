@@ -65,37 +65,27 @@ const Register = () => {
     
     
     return (
-        <div className="register">
-            <div className="back-button-div">
-                <Link to="/">
-                    <button className="submit-button back-button">Back</button>
-                </Link>
-            </div>
-        
-        
-        <div className="form-box-flex">
+        <div className="form-box-flex w-100 h-100">
             <form onSubmit={handleSubmit} className="form-box">
-                <h1>Sign Up</h1>
-                <input 
-                onChange={(e) => setUsername(e.target.value)} value={username}
-                type="text" placeholder="Username" className="email-text-box js-email"
-                name="username"/>
-                <input 
-                onChange={(e) => setEmail(e.target.value)} value={email}
-                type="text" placeholder="Email" className="email-text-box js-email"
-                name="email"/>
-                <input 
-                onChange={(e) => setPassword(e.target.value)}
-                value={password} type="password" placeholder="Password" className="password-box" name="password"/>
-                <input 
-                onChange={(e) => setPasswordConfirm(e.target.value)}
-                value={passwordConfirm} type="password" placeholder="Confirm Password" className="password-box" name="passwordConfirm"/>
-                <button onClick={handleMessage} type="submit" className="submit-button js-submit-button">{message}</button>
+                <h1 className="display-6 ">Sign up</h1>
+                <div class="form-group w-75">
+                <input type="text" class="form-control form-control-light" placeholder="Username" onChange={(e) => setUsername(e.target.value)} value={username} name="username"/>
+                </div>
+                <div class="form-group w-75">
+                <input type="email" class="form-control form-control-light" placeholder="Enter email" onChange={(e) => setEmail(e.target.value)} value={email} name="email"/>
+                </div>
+                <div class="form-group w-75">
+                    <input type="password" class="form-control form-control-light" placeholder="Password" onChange={(e) => setPassword(e.target.value)} value={password} name="password"/>
+                </div>
+                <div class="form-group w-75">
+                    <input type="password" class="form-control form-control-light" placeholder="Confirm password" onChange={(e) => setPasswordConfirm(e.target.value)} value={passwordConfirm} name="passwordConfirm"/>
+                </div>
+                <button type="submit" class="btn submit-button" onClick={handleMessage}>Submit</button>
                 <p className="error-message">{error}</p>
-                
-            </form>     
+                <p>{token}</p>
+            </form> 
         </div>
-    </div>   
+    
     );
 }
  
