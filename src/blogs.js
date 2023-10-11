@@ -80,8 +80,8 @@ const ShowBlogs = (props) => {
 
     return(
         <div>
-            <button onClick={refreshBlogs} className="refresh-button">{refresh}</button>
-            <div>
+            <button onClick={refreshBlogs} className="btn btn-light">{refresh}</button>
+            <div className=" w-100 d-flex flex-column justify-content-center align-items-center">
             {
             dbBlogs.map((blo) => {
                 
@@ -121,15 +121,14 @@ const ShowBlogs = (props) => {
                 
                 
                 return (
-                    <div>
-                        <div>
-                            { <div className="blog-box">
-                                <h2 className="author">
+                    <div className=" w-100 d-flex flex-column justify-content-center">
+                            { <div className="blog-box ">
+                                <h2>
                                     {blo.title}
                                 </h2>
-                                <div>{blo.text || blo.description}</div>
+                                <p>{blo.text || blo.description}</p>
                                 <Link className='author-link' to={`/user/${blo.authorID}`}>
-                                    <h3>Written by <h3 className="author-name">{blo.author}</h3> <img src={imageDownload}></img> </h3>
+                                    <h3 >Written by  <span className="author_name">{blo.author}</span></h3>
                                 </Link>
                                 <div className="blog-date">
                                     <div >{`${fulldate}, ${fulltime}`}</div>
@@ -143,12 +142,12 @@ const ShowBlogs = (props) => {
                                         }
                                         
                                     }
-                                } className="done-button comment-button">Comments</button>
+                                } className="comment-button btn btn-outline-info">Comments</button>
                                 <div>
                                     {comment && <Comments blogid={blo._id}/>}
                                 </div>
                             </div>} 
-                        </div>
+
                         
                         
                     </div>

@@ -66,7 +66,7 @@ const Login = () => {
                 <div class="form-group w-75">
                     <input type="password" class="form-control" placeholder="Password" onChange={(e) => setPassword(e.target.value)} value={password} name="password"/>
                 </div>
-                <button type="submit" class="btn submit-button" onClick={handleMessage}>Submit</button>
+                <button type="submit" class="btn submit-button" onClick={handleMessage}>{message}</button>
                 <p className="error-message">{error}</p>
                 <p>{token}</p>
             </form> 

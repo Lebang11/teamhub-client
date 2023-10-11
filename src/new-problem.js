@@ -91,46 +91,40 @@ const NewProblem = () => {
 
 
     return ( 
-        <div className="new-blog-blox">
-            <div>
-            </div>
-            <div>
+        <div className="new-blog-blox w-100">
+            
                 <div>
                     <h2>Post problem</h2>
                 </div>
                 
                 <div>
-                    <input placeholder="Title" className="title-text-box"></input>
+                    <input placeholder="Title" className="form-group w-75 mb-1"></input>
                 </div>
                 <div>
-                    <textarea name="blog" placeholder="text here" className="new-blog-text-box" ></textarea>
+                    <textarea name="blog" placeholder="text here" className="form-group w-75 mb-1" ></textarea>
                 </div>
-                <div>
-                    <input type="file" onChange={async (e) => {
+                <div className="form-group mb-1">
+                    <input className="form-control w-50" id="file" type="file" onChange={async (e) => {
                         setFile(e.target.files[0]);
                         setFileName(`${today.getFullYear()}${today.getMonth()}${today.getDate()}${today.getHours()}${today.getMinutes()}-${e.target.files[0].name}`) 
                     }} />
                 </div>
-                <div className="language-div">
-                    <label>Pick a language:_ 
-                        <select id="language" defaultValue="python">
-                            <option value="python">python</option>
-                            <option value="javascript">javascript</option>
-                            <option value="java">java</option>
-                            <option value="other">other</option>
-                        </select>
-                    </label>
-                </div>
+                
+                
+                <select className="form-select w-50" id="language" defaultValue="python">
+                    <option selected value="python">Pick language</option>
+                    <option value="python">python</option>
+                    <option value="javascript">javascript</option>
+                    <option value="java">java</option>
+                    <option value="other">other</option>
+                </select>
+                   
+            
+            <div>
+                <button className="btn btn-success m-1" onClick={createProblem}>{done}</button>
+                <button className="btn btn-danger m-1" onClick={clearText}>clear</button>
             </div>
             <div>
-                <button className="done-button" onClick={createProblem}>{done}</button>
-                <button className="done-button clear-button" onClick={clearText}>clear</button>
-            </div>
-            <div>
-                <button onClick={() => console.log(filename)}>
-                    {/* <a href={fileDownload}>Download</a> */}
-                    Show
-                </button>
             </div>
         </div>
     );

@@ -80,7 +80,7 @@ const Register = () => {
                 <div class="form-group w-75">
                     <input type="password" class="form-control form-control-light" placeholder="Confirm password" onChange={(e) => setPasswordConfirm(e.target.value)} value={passwordConfirm} name="passwordConfirm"/>
                 </div>
-                <button type="submit" class="btn submit-button" onClick={handleMessage}>Submit</button>
+                <button type="submit" class="btn submit-button" onClick={handleMessage}>{message}</button>
                 <p className="error-message">{error}</p>
                 <p>{token}</p>
             </form> 

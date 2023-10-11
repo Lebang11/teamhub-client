@@ -87,22 +87,15 @@
 }
 
 h1 {
-  font-size: 150%;
-  color: rgb(193, 193, 193);
+  color: rgb(193, 193, 193);;
 }
 
 h2 {
-  font-size: 4vb;
-
   color: rgb(191,155,48);
-
 }
 
 h3 {
-  font-size: 3vb;
-
-  color: rgb(193, 193, 193);
-
+  color: rgb(66,69,73);;
 }
 
 .form-box-flex {
@@ -139,22 +132,23 @@ h3 {
 
 .blogs-box {
   display: flex;
-  margin-left: 5vw;
   flex-direction: column;
+  align-items: center;
 }
 
-.blog-box:hover {
-  box-shadow: 7px 7px 5px rgb(145, 115, 27);
-  transform: scale(1.05);
-}
+
 
 .blog-box {
   border: 1px solid rgb(233, 233, 233);
   border-radius: 20px;
   padding: 30px 40px;
   margin-top: 30px;
-  width: 60%;
   text-overflow: ellipsis;
+}
+
+.blog-box:hover {
+  box-shadow: 7px 7px 5px rgb(145, 115, 27);
+  transform: scale(1.05);
 }
 
 .author {
@@ -186,7 +180,6 @@ h3 {
 
 .new-blog-text-box {
   padding: 20px 10px;
-  width: 70%;
   border-radius: 10px;
   border-width: 1px;
   
@@ -299,13 +292,9 @@ p {
   text-overflow: ellipsis;
 }
 
-.comment-button {
-  background-color: rgb(234, 234, 234);
-  
-}
+
 
 .comment-button:hover {
-  background-color: rgb(78, 132, 250);
   color: white;
 }
 
@@ -314,16 +303,14 @@ p {
 }
 
 .picture-area {
-  width: 30vb;
-  height: 30vb;
+  width: 25vb;
+  height: 25vb;
   border: solid 1px grey;
   border-radius: 50%;
 }
 
 .picture-area img {
-  height: 100%;
-  width: 100%;
-  border-radius: 50%;  
+  
 }
 
 .author-link {
@@ -338,7 +325,7 @@ p {
 
 
 
-.author-link h3:hover {
+.author-name:hover {
   transform: scale(1.1);
 }
 

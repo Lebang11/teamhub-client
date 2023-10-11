@@ -1,6 +1,7 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Comments = (props) => {
     const [dbComments, setDbComments] = useState([]);
@@ -41,12 +42,15 @@ const Comments = (props) => {
     
     return ( 
         <div>
-            <div className="blog-box comment-box" >
+            <div className="comment-box" >
                 <div >
                     <h3>Comments</h3>
                     <div >
-                        <input onChange={(e) => setText(e.target.value)} placeholder="Comment here" type="text" id="comment" value={text}/>
-                        <button onClick={submitComment}>Post</button>
+                        <div className="d-flex btn-group">
+                            <input className="form-control rounded-0" onChange={(e) => setText(e.target.value)} placeholder="Comment here" type="text" id="comment" value={text}/>
+                            <button className="btn btn-primary btn-rounded-right" onClick={submitComment}>Post</button>
+                        </div>
+                        
                         <div>
                             {showComments && dbComments.map((comment) => {
                                 const date = new Date(comment.date)
@@ -61,13 +65,14 @@ const Comments = (props) => {
 
                                 if (comment.blogid === props.blogid) {
                                 return (
-                                    <div className="blog-box">
-                                        <div>
+                                    <div className="container border border-light rounded m-2">
+                                        <p className="lead">
                                             {comment.text} 
-                                        </div>
-                                        <h4>
+                                        </p>
+                                        <h5>
                                             by {comment.author}
-                                        </h4>
+                                        </h5>
+                                    
                                         <div className="blog-date">
                                             {fulldate + ', ' + fulltime}
                                         </div>

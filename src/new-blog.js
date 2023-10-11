@@ -39,7 +39,7 @@ const NewBlog = () => {
 
 
     return ( 
-        <div className="new-blog-blox">
+        <div className="new-blog-blox w-75">
             <div>
             </div>
             <div>
@@ -47,16 +47,16 @@ const NewBlog = () => {
                     <h2>New Blog</h2>
                 </div>
                 <div>
-                    <input placeholder="Title" className="title-text-box"></input>
+                    <input placeholder="Title" className="form-control"></input>
                 </div>
                 <div>
-                    <textarea name="blog" placeholder="text here" className="new-blog-text-box" ></textarea>
+                    <textarea name="blog" placeholder="text here" className="form-control" ></textarea>
                 </div>
                 
             </div>
             <div>
-                <button className="done-button" onClick={createBlog}>{done}</button>
-                <button className="done-button clear-button" onClick={clearText}>clear</button>
+                <button className="btn btn-success m-1" onClick={createBlog}>{done}</button>
+                <button className="btn btn-danger m-1" onClick={clearText}>clear</button>
             </div>
         </div>
     );

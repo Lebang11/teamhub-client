@@ -92,23 +92,25 @@ const ProfilePage = () => {
             <div className="main-header">
             <div className="back-button-div">
                 <Link to="/main">
-                    <button className="submit-button back-button">Back</button>
+                    <button className="btn btn-secondary rounded-pill">Back</button>
                 </Link>
             </div>
                 <h1>
-                    Welcome to Team-Hub
+                    Team-Hub
                 </h1>
             </div>
-            <div className="blog-box">
-                <div className="picture-area">
-                    <img src={imageDownload}></img>
+            <div className="container-lg d-flex flex-column justify-content-center align-items-center">
+                <div className="picture-area d-flex justify-content-center align-items-center">
+                    <img className="w-100 h-100 rounded-circle" src={imageDownload}></img>
                 </div>
-                <h2>
+                <h2 className="display-5">
                     {username}
                 </h2>
-                <h1>
-                    {email}
-                </h1>
+                    <h1 className="display-5 text-break">
+                        {email}
+                    </h1>
+                
+                
                {(id === Cookies.get(`token_id`)) &&
                 <button onClick={() => {
                     if (showChangePic === false) {
@@ -117,19 +119,26 @@ const ProfilePage = () => {
                         setShowChangePic(false)
                     }
                     
-                    }} className="submit-button ">
+                    }} className="btn btn-lg btn-primary">
                     Change Profile Picture
                 </button>}
                 <div>
                     {showChangePic && 
                     <div>
-                        <input type="file" onChange={async (e) => {
+                        <input id="image" className="form-control my-1" type="file" onChange={async (e) => {
                             setImage(e.target.files[0]);
                             setImageName(`${today.getFullYear()}${today.getMonth()}${today.getDate()}${today.getHours()}${today.getMinutes()}-${e.target.files[0].name}`) 
                         }} />
                         <div>
-                            <button onClick={uploadImage}>
+                            <button className="btn btn-success my-1" onClick={uploadImage}>
                                 Change Profile Pic
+                            </button>
+                            <button className="btn btn-danger m-1" onClick={(e) => {
+                                document.getElementById('image').type=""
+                                document.getElementById('image').type="file"
+                                setImage(null)
+                                setImageName('')}}>
+                                Clear
                             </button>
                         </div>
                     </div>

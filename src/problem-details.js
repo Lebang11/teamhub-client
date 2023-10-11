@@ -67,7 +67,7 @@ const ProblemDetails = () => {
                         </div>
                         <div className="back-button-div">
                             <Link to="/problems">
-                                <button className="submit-button back-button">Back</button>
+                                <button className="btn btn-secondary rounded-pill">Back</button>
                             </Link>
                         
                         </div>

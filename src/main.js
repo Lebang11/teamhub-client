@@ -57,29 +57,28 @@ function MainPage() {
     // const id = getInfo('id')
 
     return (
-        <div>
+        <div className="d-flex flex-column justify-content-center align-items-center">
             <div className="main-header">
                 <h1>
-                    Welcome to Team-Hub
+                    Team-Hub
                 </h1>
             </div>
-            <div className="blogs-box">
+            <div className="container-md">
                 <h1 className="blogs-title">Blogs</h1>
                 <div>
-                    <button onClick={getInfo} className="blogs-button">view blogs</button>
-                    <button onClick={createBlog} className="blogs-button">new blog</button>
+                    <button onClick={getInfo} className="btn btn-outline-secondary btn-lg m-1">view blogs</button>
+                    <button onClick={createBlog} className="btn btn-outline-secondary btn-lg m-1">new blog</button>
                     <Link to="/problems">
-                        <button onClick={createBlog} className="blogs-button">view problems</button>
+                        <button onClick={createBlog} className="btn btn-outline-secondary btn-lg m-1">view problems</button>
                     </Link>
                     <Link to={`/user/${id}`}>
-                        <button className="blogs-button">view profile</button>
+                        <button className="btn btn-outline-secondary btn-lg m-1">view profile</button>
                     </Link>
                 </div>
                     {newBlog && <NewBlog />}
-                <div>
-
+            
                     {showBlogs && <ShowBlogs/>}
-                </div>
+                
             </div>
         </div>
     )

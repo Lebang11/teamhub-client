@@ -12,7 +12,7 @@ const Problem = (props) => {
     return ( 
         <div>
             <Link to={`/problems/${props._id}`} className="problem-link">
-                <div className="blog-box">
+                <div>
                     
                     <h2 className="author">
                         {props.title}
