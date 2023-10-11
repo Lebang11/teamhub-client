@@ -18,13 +18,12 @@ function MainPage() {
         setId(Cookies.get(`token_id`));
     }, []);
     
-    if (!Cookies.get(`token_name`) || !Cookies.get(`token_email`)){
+    if (!Cookies.get(`token_name`) || !Cookies.get(`token_email`) || !Cookies.get(`token_id`)){
         return (
             <div>
                 <h1>Please Login</h1>
                 <Link to='/login'>Login</Link> 
             </div>
-            
         )
     } 
     

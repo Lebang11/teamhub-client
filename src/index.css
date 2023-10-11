@@ -14,18 +14,12 @@
 }
 
 .add-myself-button {
-  padding: 10% 20%;
-  font-size: 200%;
-  background-color: rgb(191,155,48);
-  border: none;
-  color: white;
-  cursor: pointer;
-  width: 60vw;
-  max-width: 600px;  
+  height: 15vh;
+  max-width: 600px;
 }
 
 .add-myself-button:hover {
-  transform: skew(-12deg);
+  transform: scale3d(1.1, 1.1, 1.5);
 }
 
 .add-myself-div {
@@ -37,10 +31,11 @@
 
 .opening-div {
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  column-gap: 10%;
-  
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+
 }
 
 
@@ -162,6 +157,7 @@ h3 {
   padding: 30px 40px;
   margin-top: 30px;
   width: 60%;
+  text-overflow: ellipsis;
 }
 
 .author {
@@ -306,10 +302,13 @@ p {
 
 .comment-box {
   border: none;
+  width: 100%;
+  text-overflow: ellipsis;
 }
 
 .comment-button {
   background-color: rgb(234, 234, 234);
+  
 }
 
 .comment-button:hover {
@@ -348,5 +347,16 @@ p {
 
 .author-link h3:hover {
   transform: scale(1.1);
+}
+
+.full-page-button-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 

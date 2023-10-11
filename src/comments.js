@@ -41,8 +41,8 @@ const Comments = (props) => {
     
     return ( 
         <div>
-            <div >
-                <div className="blog-box comment-box">
+            <div className="blog-box comment-box" >
+                <div >
                     <h3>Comments</h3>
                     <div >
                         <input onChange={(e) => setText(e.target.value)} placeholder="Comment here" type="text" id="comment" value={text}/>
