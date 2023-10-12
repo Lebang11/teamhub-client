@@ -343,3 +343,13 @@ p {
   align-items: center;
 }
 
+.file-a {
+  text-decoration: none;
+}
+
+.file-button:hover {
+  transform: scale3d(1.1, 1.1, 1.8);
+  
+  background-color: white;
+}
+

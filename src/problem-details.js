@@ -5,13 +5,14 @@ import { v4 } from "uuid";
 import Problem from "./problem";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import Answers from "./answers";
 
 const ProblemDetails = () => {
     const [dbProblems, setDbProblems] = useState([]);
     const [refresh, setRefresh] = useState('refresh')
     const [fileDownload, setFileDownload] = useState();
     const [downloadMessage, setDownloadMessage] = useState('Get File');
-
+    const [showAnswers, setShowanswers] = useState(false)
 
     const getProblems =  async () => {
         
@@ -83,7 +84,7 @@ const ProblemDetails = () => {
                         <div className="blog-date">
                             <div >{blo.date}</div>
                         </div>
-                        <button className="done-button download-file-button" onClick={(atag) => {
+                        <button className="btn btn-success mx-1" onClick={(atag) => {
                             setDownloadMessage('Loading...')
                 
                             getDownloadURL(ref(storage, `files/${blo.filename}`))
@@ -95,6 +96,18 @@ const ProblemDetails = () => {
                         }}>
                             <a  id="atag" href={fileDownload}>{downloadMessage}</a>
                         </button>
+                        <button className="btn btn-info text-light" onClick={()=> {
+                            if (showAnswers===false) {
+                                setShowanswers(true)}
+                            else {
+                                setShowanswers(false)
+                            }    
+                                }}>
+                            Show Answers
+                        </button>
+                        <div>
+                                    {showAnswers && <Answers problemID={blo._id}/>}
+                        </div>
                     </div> 
                     </div>
                 )}
