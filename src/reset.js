@@ -25,7 +25,6 @@ function ResetPage() {
                 id,
                 password
             })
-            .then(respond => respond.json())
             .then(res => {
                 alert('Password has been reset :)')
                 console.log(res)
