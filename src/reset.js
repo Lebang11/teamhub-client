@@ -2,8 +2,11 @@ import './App.css';
 import { BrowserRouter as Router, Route, Routes,Link } from 'react-router-dom';
 import axios from 'axios';
 import { useState } from 'react';
+import { useParams } from "react-router-dom";
+
 
 function ResetPage() {
+    const {id} = useParams();
     const [password, setPassword] = useState('');
     const [passwordConfirm, setPasswordConfirm] = useState('');
 
@@ -15,6 +18,7 @@ function ResetPage() {
     
         await axios.post(`https://team-hub.onrender.com/api/email`,
         {
+            id,
             password
         }
         )

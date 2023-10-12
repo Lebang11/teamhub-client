@@ -30,7 +30,7 @@ class App extends Component {
           <Route path='/problems/:id' element={<ProblemDetails/>}/>
           <Route path='/user/:id' element={<ProfilePage/>}/>
           <Route path='/forgot' element={<ForgotPage/>}/>
-          <Route path='/reset' element={<ResetPage/>}/>
+          <Route path='/reset/:id' element={<ResetPage/>}/>
 
         </Routes>
       </Router>
