@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router, Route, Routes,Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes,Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useState } from 'react';
 import { useParams } from "react-router-dom";
@@ -12,7 +12,7 @@ function ResetPage() {
 
     const [error, setError] = useState('')
 
-
+    const navigate = useNavigate();
 
     const updatePassword = async () => {
         if (password.length <5) {
@@ -25,6 +25,13 @@ function ResetPage() {
                 id,
                 password
             })
+            .then(respond => respond.json())
+            .then(res => {
+                alert('Password has been reset :)')
+                console.log(res)
+                navigate('/login')    
+            })
+            .catch(err => console.log(err))
         }
         
     }
@@ -43,7 +50,6 @@ function ResetPage() {
                 <input className='form-control' type='password' onChange={(e) => setPasswordConfirm(e.target.value)} value={passwordConfirm}></input>
                 <small className='text-danger'>{error}</small>
               </div>
-
               <button type="button" class="btn btn-primary" onClick={updatePassword}>Submit</button>
             </form>
         </div>

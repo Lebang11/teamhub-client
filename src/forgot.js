@@ -6,6 +6,10 @@ import { useState } from 'react';
 function ForgotPage() {
   const [email, setEmail] = useState('');
   const [error, setError] = useState('')
+  const [showForm, setShowForm] = useState(true);
+  const [showMessage, setShowMessage] = useState(false);
+
+
 
   const findUser = async () => {
     await fetch(`https://team-hub.onrender.com/api/user?email=${email}`)
@@ -35,7 +39,9 @@ function ForgotPage() {
       )
       .then(res => {
         console.log(res)
-        console.log('Email sent')
+        alert(`Email successfully sent`)
+        setShowForm(false)
+        setShowMessage(true)
       })
       .catch(err => console.log(err))
 
@@ -48,7 +54,7 @@ function ForgotPage() {
 
   return (
         <div class="opening-div w-100">
-            <form className='border p-4 rounded '>
+            {showForm && <form className='border p-4 rounded '>
               <h3>Forgot Password</h3>
               <div className='mb-3'>
                 <label for='email' className='form-label'>Email address</label>
@@ -61,7 +67,10 @@ function ForgotPage() {
               <button type="button" class="btn btn-primary" onClick={() => {
                 findUser()
                 }}>Submit</button>
-            </form>
+            </form>}
+            {showMessage && <div>
+              <h1 className='display-1'>Check Emails</h1>
+              </div>}
         </div>
      
   
