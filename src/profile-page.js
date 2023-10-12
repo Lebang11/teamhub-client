@@ -49,8 +49,6 @@ const ProfilePage = () => {
         .catch(err => console.log(err)) 
     }
 
-    
-
     const uploadImage = async () => {
         if (image === null) return;
         console.log(image.name);

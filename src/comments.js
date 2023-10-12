@@ -66,12 +66,14 @@ const Comments = (props) => {
                                 if (comment.blogid === props.blogid) {
                                 return (
                                     <div className="container border border-light rounded m-2">
-                                        <p className="lead">
+                                        
+                                        <h3>
                                             {comment.text} 
-                                        </p>
-                                        <h5>
+                                        </h3>
+                                        <p className="lead">
+                                            
                                             by {comment.author}
-                                        </h5>
+                                        </p>
                                     
                                         <div className="blog-date">
                                             {fulldate + ', ' + fulltime}

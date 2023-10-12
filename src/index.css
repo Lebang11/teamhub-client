@@ -318,6 +318,9 @@ p {
   
 }
 
+.author-link h3:hover {
+  transform: skew(-15deg);
+}
 
 .author-name {
   display: inline;

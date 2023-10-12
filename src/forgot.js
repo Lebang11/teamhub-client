@@ -1,0 +1,71 @@
+import './App.css';
+import { BrowserRouter as Router, Route, Routes,Link } from 'react-router-dom';
+import axios from 'axios';
+import { useState } from 'react';
+
+function ForgotPage() {
+  const [email, setEmail] = useState('');
+  const [error, setError] = useState('')
+
+  const findUser = async () => {
+    await fetch(`https://team-hub.onrender.com/api/user?email=${email}`)
+    .then(response => response.json())
+    .then(res => {
+        console.log(res)
+        if (res.message) {
+          setError(res.message)
+        } else if (!res.message) {
+          setError('')
+          sendEmail()
+        } 
+    })
+    
+    .then(res => {
+        })
+    .catch(err => console.log(err)) 
+}
+
+  const sendEmail = async () => {
+
+    
+      await axios.post(`https://team-hub.onrender.com/api/email`,
+      {
+        email  
+      }
+      )
+      .then(res => {
+        console.log(res)
+        console.log('Email sent')
+      })
+      .catch(err => console.log(err))
+
+
+      
+
+  
+  }
+
+
+  return (
+        <div class="opening-div w-100">
+            <form className='border p-4 rounded '>
+              <h3>Forgot Password</h3>
+              <div className='mb-3'>
+                <label for='email' className='form-label'>Email address</label>
+                <input className='form-control' type='email' onChange={(e) => setEmail(e.target.value)} value={email}></input>
+                <div id="emailHelp" class="form-text">We'll send a link to reset password to this email.</div>
+                <small className='text-danger'>{error}</small>
+
+              </div>
+
+              <button type="button" class="btn btn-primary" onClick={() => {
+                findUser()
+                }}>Submit</button>
+            </form>
+        </div>
+     
+  
+  );
+}
+
+export default ForgotPage;
