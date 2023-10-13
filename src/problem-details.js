@@ -92,9 +92,16 @@ const ProblemDetails = () => {
                                 setFileDownload(url)
                                 setDownloadMessage('View '+ blo.filename)   
                             })
+                            .then(res => {
+                                const downloadLink = document.getElementById('atag')
+                                downloadLink.setAttribute(
+                                    'download',
+                                    blo.filename,
+                                  );
+                            })
                             .catch(err => console.log(err))
                         }}>
-                            <a  id="atag" href={fileDownload}>{downloadMessage}</a>
+                            <a id="atag" href={fileDownload}>{downloadMessage}</a>
                         </button>
                         <button className="btn btn-info text-light" onClick={()=> {
                             if (showAnswers===false) {
