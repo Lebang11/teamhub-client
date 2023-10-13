@@ -12,6 +12,7 @@ const Answers = (props) => {
     const [file, setFile] = useState(null);
     const [filename, setFileName] = useState('');
     const [fileDownload, setFileDownload] = useState();
+    const [email, setEmail] = useState('');
 
     const [downloadMessage, setDownloadMessage] = useState('Get File');
 
@@ -59,7 +60,21 @@ const Answers = (props) => {
             alert('File Uploaded, name: ' + filename)
         })
       }
-    
+
+    const sendEmail = async () => {
+        await axios.post(`https://team-hub.onrender.com/api/email`,
+        {
+            email  
+        }
+        )
+        .then(res => {
+            console.log(res)
+            alert(`Email successfully sent`)
+            
+        })
+        .catch(err => console.log(err))
+        }
+        
     return ( 
         <div>
             <div className="container-lg" >

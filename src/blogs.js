@@ -123,12 +123,12 @@ const ShowBlogs = (props) => {
                 return (
                     <div className=" w-100 d-flex flex-column justify-content-center">
                             { <div className="blog-box ">
-                                <h2>
+                                <h2 className="display-5">
                                     {blo.title}
                                 </h2>
-                                <p>{blo.text || blo.description}</p>
+                                <small>{blo.text || blo.description}</small>
                                 <Link className='author-link' to={`/user/${blo.authorID}`}>
-                                    <h3 >Written by  <span className="author_name">{blo.author}</span></h3>
+                                    <h3 className="display-6">Written by  <span className="author_name">{blo.author}</span></h3>
                                 </Link>
                                 <div className="blog-date">
                                     <div >{`${fulldate}, ${fulltime}`}</div>

@@ -14,11 +14,11 @@ const Problem = (props) => {
             <Link to={`/problems/${props._id}`} className="problem-link">
                 <div>
                     
-                    <h2 className="author">
+                    <h2 className="display-5 author">
                         {props.title}
                     </h2>
-                    <p>{props.text}</p>
-                    <h3>Written by {props.author}</h3>
+                    <small className="text-muted">{props.text}</small>
+                    <h3 className="display-6">Written by {props.author}</h3>
                     <div className="blog-date">
                         <div >{props.date}</div>
                     </div>

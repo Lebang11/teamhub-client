@@ -75,12 +75,12 @@ const ProblemDetails = () => {
                         <h2 className="problem-details-h2">
                             Problem
                         </h2>
-                        <div className="blog-box">
-                        <h2 className="author">
+                        <div className="blog-box rounded-0">
+                        <h2 className="display-5 author">
                             {blo.title}
                         </h2>
-                        <div>{blo.text}</div>
-                        <h3>Written by {blo.author}</h3>
+                        <p className="lead">{blo.text}</p>
+                        <h3 className="display-6">Written by {blo.author}</h3>
                         <div className="blog-date">
                             <div >{blo.date}</div>
                         </div>
