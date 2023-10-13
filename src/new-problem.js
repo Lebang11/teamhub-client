@@ -43,9 +43,9 @@ const NewProblem = () => {
     const createProblem= async () => {
         const author = Cookies.get('token_name');
         const authorID = Cookies.get('token_id')
-        const textName = document.querySelector('.new-blog-text-box');
+        const textName = document.getElementById('text');
         const text = textName.value;
-        const titleName = document.querySelector('.title-text-box');
+        const titleName = document.getElementById('text');
         const title = titleName.value;
         const languageName = document.getElementById('language');
         const language = languageName.value;
@@ -82,10 +82,10 @@ const NewProblem = () => {
 
 
     function clearText() {
-        const textarea = document.querySelector('.new-blog-text-box');
+        const textarea = document.getElementById('text');
         textarea.value = '';
 
-        const titlearea = document.querySelector('.title-text-box');
+        const titlearea = document.getElementById('text');
         titlearea.value = '';
     }
 
@@ -101,7 +101,7 @@ const NewProblem = () => {
                     <input placeholder="Title" className="form-group w-75 mb-1"></input>
                 </div>
                 <div>
-                    <textarea name="blog" placeholder="text here" className="form-group w-75 mb-1" ></textarea>
+                    <textarea name="blog" id='text' placeholder="text here" className="form-group w-75 mb-1" ></textarea>
                 </div>
                 <div className="form-group mb-1">
                     <input className="form-control w-50" id="file" type="file" onChange={async (e) => {
