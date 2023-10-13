@@ -45,7 +45,7 @@ const NewProblem = () => {
         const authorID = Cookies.get('token_id')
         const textName = document.getElementById('text');
         const text = textName.value;
-        const titleName = document.getElementById('text');
+        const titleName = document.getElementById('title');
         const title = titleName.value;
         const languageName = document.getElementById('language');
         const language = languageName.value;
@@ -85,7 +85,7 @@ const NewProblem = () => {
         const textarea = document.getElementById('text');
         textarea.value = '';
 
-        const titlearea = document.getElementById('text');
+        const titlearea = document.getElementById('title');
         titlearea.value = '';
     }
 
@@ -98,7 +98,7 @@ const NewProblem = () => {
                 </div>
                 
                 <div>
-                    <input placeholder="Title" className="form-group w-75 mb-1"></input>
+                    <input placeholder="Title" id="title" className="form-group w-75 mb-1"></input>
                 </div>
                 <div>
                     <textarea name="blog" id='text' placeholder="text here" className="form-group w-75 mb-1" ></textarea>
