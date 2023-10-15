@@ -59,8 +59,7 @@ function BlogPage() {
     // const id = getInfo('id')
 
     return (
-        <div className="d-flex flex-column justify-content-center align-items-center">
-            <div className="d-flex flex-column justify-content-center align-items-center">
+        <div className="w-100 d-flex flex-column justify-content-center align-items-center">
                 <h3 className="display-4">Blogs</h3>
                 <div className="w-75 m-4 mt-1">
                     <button onClick={createBlog} className="btn btn-outline-secondary">new blog</button>
@@ -73,7 +72,7 @@ function BlogPage() {
             
                     
                 
-            </div>
+            
         </div>
     )
 }
