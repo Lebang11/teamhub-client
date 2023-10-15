@@ -5,9 +5,9 @@ import NewBlog from "./new-blog";
 import { Link } from "react-router-dom";
 import NavBar from "./navbar";
 
-function MainPage() {
+function BlogPage() {
     const [username, setUser] = useState('');
-    const [showBlogs, setShowBlogs] = useState(false);
+    const [showBlogs, setShowBlogs] = useState(true);
     const [email, setEmail] = useState('');
     const [newBlog, setNewBlog] = useState(false);
     const [id, setId] = useState('');
@@ -42,6 +42,7 @@ function MainPage() {
     const createBlog = () => {
         if (newBlog === true) {
             setNewBlog(false);
+            setShowBlogs(true)
         } else {
             setNewBlog(true);
             setShowBlogs(false)
@@ -59,26 +60,22 @@ function MainPage() {
 
     return (
         <div className="d-flex flex-column justify-content-center align-items-center">
-            <NavBar/>
-            <div className="container-md">
-                <h1 className="blogs-title">Blogs</h1>
-                <div>
-                    <button onClick={getInfo} className="btn btn-outline-secondary btn-lg m-1">view blogs</button>
-                    <button onClick={createBlog} className="btn btn-outline-secondary btn-lg m-1">new blog</button>
-                    <Link to="/problems">
-                        <button onClick={createBlog} className="btn btn-outline-secondary btn-lg m-1">view problems</button>
-                    </Link>
-                    <Link to={`/user/${id}`}>
-                        <button className="btn btn-outline-secondary btn-lg m-1">view profile</button>
-                    </Link>
+            <div className="d-flex flex-column justify-content-center align-items-center">
+                <h3 className="display-4">Blogs</h3>
+                <div className="w-75 m-4 mt-1">
+                    <button onClick={createBlog} className="btn btn-outline-secondary">new blog</button>
+                {newBlog && <NewBlog />}
                 </div>
-                    {newBlog && <NewBlog />}
-            
+                <div className="w-75 ">
                     {showBlogs && <ShowBlogs/>}
+                </div>
+                    
+            
+                    
                 
             </div>
         </div>
     )
 }
 
-export default MainPage;
+export default BlogPage;

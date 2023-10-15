@@ -9,7 +9,8 @@ import { uploadBytes, getStorage, ref, getDownloadURL, getBlob } from "firebase/
 import { storage } from "./firebase";
 import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
-
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "./user";
 
 const ShowBlogs = (props) => {
     const [dbBlogs, setDbBlogs] = useState([]);
@@ -21,6 +22,12 @@ const ShowBlogs = (props) => {
     const [email, setEmail] = useState();
     const [id, setId] = useState('');
 
+    const dispatch = useDispatch();
+    const user = useSelector((state) => {return state.user.value});
+
+
+
+    
 
     const findUser = async () => {
         await fetch(`https://team-hub.onrender.com/api/user?id=${id}`)
@@ -70,6 +77,10 @@ const ShowBlogs = (props) => {
             console.log(err);
         }
         
+
+        dispatch(login(true))
+        console.log(user)
+        
     }, [])
 
     function refreshBlogs() {
@@ -81,7 +92,6 @@ const ShowBlogs = (props) => {
     return(
         <div>
             <button onClick={refreshBlogs} className="btn btn-light">{refresh}</button>
-            <div className=" w-100 d-flex flex-column justify-content-center align-items-center">
             {
             dbBlogs.map((blo) => {
                 
@@ -121,12 +131,12 @@ const ShowBlogs = (props) => {
                 
                 
                 return (
-                    <div className=" w-100 d-flex flex-column justify-content-center">
-                            { <div className="blog-box ">
-                                <h2 className="display-5">
+                    <div>
+                            { <div className="container-lg blog-box w-100 border border-bottom rounded-right">
+                                <h2 className="display-5 author">
                                     {blo.title}
                                 </h2>
-                                <small>{blo.text || blo.description}</small>
+                                <small className="text-muted">{blo.text || blo.description}</small>
                                 <Link className='author-link' to={`/user/${blo.authorID}`}>
                                     <h3 className="display-6">Written by  <span className="author_name">{blo.author}</span></h3>
                                 </Link>
@@ -153,7 +163,7 @@ const ShowBlogs = (props) => {
                     </div>
                 )
             }) }   
-            </div>
+            
         </div>
        )
 }

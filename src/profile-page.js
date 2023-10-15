@@ -3,7 +3,7 @@ import { uploadBytes, getStorage, ref, getDownloadURL, getBlob } from "firebase/
 import { storage } from "./firebase";
 import { v4 } from "uuid";
 import Problem from "./problem";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -17,9 +17,11 @@ const ProfilePage = () => {
     const [image, setImage] = useState(null);
     const [imageDownload, setImageDownload] =  useState([]);
     const [showChangePic, setShowChangePic] =  useState(false);
+    const [showChangeUsername, setShowChangeUsername] =  useState(false);
+    
     const [isUser, setIsUser] = useState();
 
-    
+    const navigate = useNavigate();
 
     useEffect( () => {
         const loadPage = async () => {
@@ -39,10 +41,10 @@ const ProfilePage = () => {
         await fetch(`https://team-hub.onrender.com/api/user?id=${id}`)
         .then(response => response.json())
         .then(res => {
-            console.log(res)
-            setImageName(res.imagename)
+            console.log(res);
+            setImageName(res.imagename);
             setUserName(res.username);
-            setEmail(res.email)
+            setEmail(res.email);
         })
         .then(res => {
             })
@@ -64,8 +66,25 @@ const ProfilePage = () => {
         const imageRef = ref(storage, `profilePics/${imagename}`);
         uploadBytes(imageRef, image).then(() => {
             alert('Image Uploaded, name: ' + imagename)
+            setShowChangePic(false);
+            downloadFile()
         })
       }
+
+    const uploadUsername = async () => {
+        await axios.post(`https://team-hub.onrender.com/api/user`, 
+        {
+            id,
+            username
+        })
+        .then(res => {
+            alert('Username change to ' + username)
+            document.getElementById('username').value = '';
+            setShowChangeUsername(false);
+            findUser()
+        })
+        .catch(err => console.log(err))
+    }
     
     const downloadFile = async () => {
         
@@ -80,23 +99,22 @@ const ProfilePage = () => {
         
     }
 
+    const logout = () => {
+        Cookies.remove('token_name');
+        Cookies.remove('token_id');
+        Cookies.remove('token_email');
+        Cookies.remove('token_imagename');
+
+        navigate('/')
+
+    }
+
     setTimeout(() => {
         downloadFile()}, 1000)
 
 
     return ( 
         <div>
-            
-            <div className="main-header">
-            <div className="back-button-div">
-                <Link to="/main">
-                    <button className="btn btn-secondary rounded-pill">Back</button>
-                </Link>
-            </div>
-                <h1>
-                    Team-Hub
-                </h1>
-            </div>
             <div className="container-lg d-flex flex-column justify-content-center align-items-center">
                 <div className="picture-area d-flex justify-content-center align-items-center">
                     <img className="w-100 h-100 rounded-circle" src={imageDownload}></img>
@@ -112,14 +130,28 @@ const ProfilePage = () => {
                {(id === Cookies.get(`token_id`)) &&
                 <button onClick={() => {
                     if (showChangePic === false) {
-                        setShowChangePic(true)   
+                        setShowChangePic(true)  
+                        setShowChangeUsername(false) 
                     } else {
                         setShowChangePic(false)
                     }
                     
-                    }} className="btn btn-lg btn-primary">
+                    }} className="btn btn-lg btn-primary my-1">
                     Change Profile Picture
                 </button>}
+                {(id === Cookies.get(`token_id`)) &&
+                <button onClick={() => {
+                    if (showChangeUsername === false) {
+                        setShowChangeUsername(true)
+                        setShowChangePic(false)   
+                    } else {
+                        setShowChangeUsername(false)
+                    }
+                    
+                    }} className="btn btn-lg btn-primary my-1">
+                    Change Username
+                </button>}
+                
                 <div>
                     {showChangePic && 
                     <div>
@@ -139,8 +171,37 @@ const ProfilePage = () => {
                                 Clear
                             </button>
                         </div>
+                        
                     </div>
                     }
+                    {showChangeUsername &&
+                    <div className="container-sm">
+                        <input onChange={(e) => {
+                            setUserName(e.target.value);
+                        }} placeholder="Enter new username" id="username" type="text" className="my-1 form-control" />
+                    <div>
+                            <button className="btn btn-success my-1" onClick={uploadUsername}>
+                                Change Username
+                            </button>
+                            <button className="btn btn-danger m-1" onClick={(e) => {
+                                document.getElementById('username').value = '';
+                                setImage(null)
+                                setImageName('')}}>
+                                Clear
+                            </button>
+                        </div>
+                    </div>
+                    
+                    }
+                    <div>
+                        {id === Cookies.get('token_id') &&
+                        <button onClick={logout} className="btn btn-danger my-1">
+                                Logout
+                            </button>
+                        }
+                            
+                            
+                        </div>
                 </div> 
                 
             </div>

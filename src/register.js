@@ -3,6 +3,8 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "./user";
 
 
 //Testing:
@@ -20,6 +22,8 @@ const Register = () => {
     const [error, setError] = useState("");
     const [token, setToken] = useState("");
 
+    const dispatch = useDispatch();
+
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -35,18 +39,14 @@ const Register = () => {
         passwordConfirm
         })
         .then(response => {
-            setError("")
-            setToken(response.data.token)
-            setMessage('Submit')
-            navigate('/main')
             Cookies.set('token_id', response.data.token_id , { expires: 7 });
             Cookies.set('token_name', response.data.token_name , { expires: 7 });
             Cookies.set('token_email', response.data.token_email , { expires: 7 });
-            Cookies.set('token_imagename', response.data.token_imagename , { expires: 7 });
-            
-            
             setToken(Cookies.get('token_name'))
-            
+            setMessage("Submit")
+            setError("")
+            dispatch(login(true))
+            navigate('/blogs')                       
             })
         .catch((err) => {
             console.log(err)

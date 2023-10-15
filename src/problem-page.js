@@ -3,6 +3,7 @@ import ShowProblems from "./problems";
 import NewProblem from "./new-problem";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
+import NavBar from "./navbar";
 
 const ProblemPage = () => {
     const [problemsShown, setProblemsShown] = useState(false);
@@ -33,20 +34,9 @@ const ProblemPage = () => {
 
     return ( 
         <div>
-            <div className="main-header">
-                <h1>
-                    Team-Hub
-                </h1>
-            </div>
-            <div className="back-button-div">
-                <Link to="/main">
-                    <button className="btn btn-secondary rounded-pill">Back</button>
-                </Link>
-            
-            </div>
             <div className="d-flex flex-column justify-content-center align-items-center">
-            <h2>Problems</h2>
-            <div className="w-75 m-4">
+            <h3 className="display-4">Problems</h3>
+            <div className="w-75 m-4 mt-1">
                 <button className="btn btn-outline-secondary" onClick={showNewProblem}>post problem</button>
             </div>
             
