@@ -61,20 +61,16 @@ const ProblemDetails = () => {
 
                 return (
                     <div>
-                        <div className="main-header">
-                            <h1>
-                                Welcome to Team-Hub
-                            </h1>
-                        </div>
-                        <div className="back-button-div">
+                        
+                        <div>
                             <Link to="/problems">
-                                <button className="btn btn-secondary rounded-pill">Back</button>
+                                <button className="ms-4 btn btn-secondary rounded-pill">Back</button>
                             </Link>
                         
                         </div>
-                        <h2 className="problem-details-h2">
+                        <h3 className="display-4 text-center">
                             Problem
-                        </h2>
+                        </h3>
                         <div className="blog-box rounded-0">
                         <h2 className="display-5 author">
                             {blo.title}
