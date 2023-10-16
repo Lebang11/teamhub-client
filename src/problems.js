@@ -58,7 +58,7 @@ const ShowProblems = (props) => {
 
                 return (
                         <div className="container-lg blog-box w-100 border border-bottom rounded-left">
-                        <Problem date={blo.date} _id={blo._id} filename={blo.filename} title={blo.title} text={blo.text} author={blo.author} />   
+                        <Problem date={blo.date} _id={blo._id} filename={blo.filename} title={blo.title} text={blo.text} author={blo.author} authorID={blo.authorID} />   
                         </div>   
                 )
             }) }   

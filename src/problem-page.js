@@ -4,6 +4,7 @@ import NewProblem from "./new-problem";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import NavBar from "./navbar";
+import axios from "axios";
 
 const ProblemPage = () => {
     const [problemsShown, setProblemsShown] = useState(false);
@@ -31,6 +32,13 @@ const ProblemPage = () => {
         }
     }
 
+    const sendNotification = () => {
+        axios.post('https://team-hub.onrender.com/api/email/notification', 
+        {})
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
+    }
+
 
     return ( 
         <div>
@@ -39,7 +47,7 @@ const ProblemPage = () => {
             <div className="w-75 m-4 mt-1">
                 <button className="btn btn-outline-secondary" onClick={showNewProblem}>post problem</button>
             </div>
-            
+            <button onClick={sendNotification}>Send Email</button>
             <div className="blogs-box w-75">
                 {problemsShown && <NewProblem/>}
                 
