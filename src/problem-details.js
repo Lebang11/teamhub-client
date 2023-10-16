@@ -111,7 +111,7 @@ const ProblemDetails = () => {
                             Show Answers
                         </button>
                         <div>
-                                    {showAnswers && <Answers problemID={blo._id} problemAuthor={blo.author} problemEmail={blo.email}/>}
+                                    {showAnswers && <Answers problemID={blo._id} problemAuthorID={blo.authorID}/>}
                         </div>
                     </div> 
                     </div>
