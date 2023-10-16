@@ -47,7 +47,6 @@ const ProblemPage = () => {
             <div className="w-75 m-4 mt-1">
                 <button className="btn btn-outline-secondary" onClick={showNewProblem}>post problem</button>
             </div>
-            <button onClick={sendNotification}>Send Email</button>
             <div className="blogs-box w-75">
                 {problemsShown && <NewProblem/>}
                 

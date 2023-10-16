@@ -76,7 +76,9 @@ const ProblemDetails = () => {
                             {blo.title}
                         </h2>
                         <p className="lead">{blo.text}</p>
-                        <h3 className="display-6">Written by {blo.author}</h3>
+                        <Link className='author-link' to={`/user/${blo.authorID}`}>
+                            <h3 className="display-6">Written by  <span className="author_name">{blo.author}</span></h3>
+                        </Link>
                         <div className="blog-date">
                             <div >{blo.date}</div>
                         </div>
