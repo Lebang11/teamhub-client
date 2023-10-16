@@ -82,8 +82,11 @@ const NewProblem = () => {
             date,
             filename
 
-        }).then((res)=> console.log('Posted!', 'by', author)).catch(err=>console.log(err));
+        }).then((res)=> console.log('Posted!', 'by', author))
+        .then(() => 
         sendNotification(`${author} has posted a problem, hop on Team-hub to help solve it :)`)
+        )
+        .catch(err=>console.log(err));
         setDone('Done')
         clearText()
     
