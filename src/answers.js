@@ -26,6 +26,7 @@ const Answers = (props) => {
         const author = Cookies.get('token_name');
         const authorID = Cookies.get('token_id');
         const problemID = props.problemID
+        const problemAuthor = props.problemAuthor
 
         await axios.post('https://team-hub.onrender.com/api/answers',
             {
@@ -38,9 +39,20 @@ const Answers = (props) => {
         )
         .then(res => console.log('answered by '+ author))
         .then(res => uploadFile())
+        .then(res => sendNotification(`Your question was answered by ${author}`, author))
         .catch(err=> console.log(err))
         setText('');
         getAnswers()
+    }
+
+    const sendNotification = (message, author) => {
+        axios.post('https://team-hub.onrender.com/api/email/notification', 
+        {   
+            email: props.problemEmail,
+            message: message
+        })
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
     }
 
     const getAnswers = async () => {
@@ -61,19 +73,7 @@ const Answers = (props) => {
         })
       }
 
-    const sendEmail = async () => {
-        await axios.post(`https://team-hub.onrender.com/api/email`,
-        {
-            email  
-        }
-        )
-        .then(res => {
-            console.log(res)
-            alert(`Email successfully sent`)
-            
-        })
-        .catch(err => console.log(err))
-        }
+    
         
     return ( 
         <div>

@@ -43,7 +43,7 @@ const NewProblem = () => {
     const sendNotification = (message) => {
         axios.post('https://team-hub.onrender.com/api/email/notification', 
         {
-            message
+            message: message
         })
         .then(res => console.log(res))
         .catch(err => console.log(err))
