@@ -32,12 +32,7 @@ const ProblemPage = () => {
         }
     }
 
-    const sendNotification = () => {
-        axios.post('https://team-hub.onrender.com/api/email/notification', 
-        {})
-        .then(res => console.log(res))
-        .catch(err => console.log(err))
-    }
+    
 
 
     return ( 

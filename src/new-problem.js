@@ -40,6 +40,15 @@ const NewProblem = () => {
         
     }
 
+    const sendNotification = (message) => {
+        axios.post('https://team-hub.onrender.com/api/email/notification', 
+        {
+            message
+        })
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
+    }
+
     const createProblem= async () => {
         const author = Cookies.get('token_name');
         const authorID = Cookies.get('token_id')
@@ -74,6 +83,7 @@ const NewProblem = () => {
             filename
 
         }).then((res)=> console.log('Posted!', 'by', author)).catch(err=>console.log(err));
+        sendNotification(`${author} has posted a problem, hop on Team-hub to help solve it :)`)
         setDone('Done')
         clearText()
     
