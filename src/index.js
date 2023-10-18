@@ -6,13 +6,10 @@ import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import NavBar from './navbar';
 import userReducer from "./user";
-import themeReducer from "./theme";
-
 
 const store = configureStore({
   reducer: {
-    user: userReducer,
-    theme: themeReducer
+    user: userReducer
   },
 })
 
@@ -22,8 +19,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <NavBar/>
-      <App />
+        <App />
     </Provider>
   </React.StrictMode>
 );

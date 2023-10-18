@@ -23,16 +23,6 @@ const Register = () => {
     const [token, setToken] = useState("");
     const [colour, setColour] = useState('dark')
     
-    let theme = useSelector((state) => {return state.theme.value})
-
-
-    useEffect(()=> {
-        if (theme == 'dark') {
-        setColour('secondary')
-        } else {
-        setColour('dark')
-        }
-    }, [theme])
 
     const dispatch = useDispatch();
 

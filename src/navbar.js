@@ -13,12 +13,9 @@ const NavBar = () => {
     const [newBlog, setNewBlog] = useState(false);
     const [id, setId] = useState('');
 
-    let theme = useSelector((state) => {return state.theme.value})
     const dispatch = useDispatch()
 
     useEffect(() => {
-        console.log(theme)
-        document.documentElement.setAttribute('data-bs-theme', theme) 
         setUser(Cookies.get(`token_name`));
         setEmail(Cookies.get(`token_email`));
         setId(Cookies.get(`token_id`));

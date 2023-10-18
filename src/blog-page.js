@@ -12,9 +12,10 @@ function BlogPage() {
     const [email, setEmail] = useState('');
     const [newBlog, setNewBlog] = useState(false);
     const [id, setId] = useState('');
+
     
     useEffect(() => {
-                
+
         setUser(Cookies.get(`token_name`));
         setEmail(Cookies.get(`token_email`));
         setId(Cookies.get(`token_id`));
@@ -70,10 +71,7 @@ function BlogPage() {
                     {showBlogs && <ShowBlogs/>}
                 </div>
                     
-            
-                    
-                
-            
+
         </div>
     )
 }

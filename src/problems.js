@@ -51,7 +51,7 @@ const ShowProblems = (props) => {
 
     return ( 
         <div>
-            <button onClick={refreshBlogs} className="refresh-button">{refresh}</button>
+            <button onClick={refreshBlogs} className="btn btn-outline-warning">{refresh}</button>
             <div>
             {
             dbProblems.map((blo) => {

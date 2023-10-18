@@ -93,7 +93,7 @@ const ShowBlogs = (props) => {
 
     return(
         <div>
-            <button onClick={refreshBlogs} className="btn btn-light">{refresh}</button>
+            <button onClick={refreshBlogs} className="btn btn-outline-warning">{refresh}</button>
             {
             dbBlogs.map((blo) => {
                 

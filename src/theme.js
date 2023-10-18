@@ -11,5 +11,5 @@ export const themeSlicer = createSlice({
 });
 
 
-export default themeSlicer.reducer;
 export const {change} = themeSlicer.actions;
+export default themeSlicer.reducer;

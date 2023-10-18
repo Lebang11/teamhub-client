@@ -3,9 +3,9 @@ import './App.css';
 import { BrowserRouter as Router, Route, Routes,Link } from 'react-router-dom';
 import { UseSelector, useSelector } from 'react-redux';
 
-function OpenPage() {
+function OpenPage(props) {
   const [colour, setColour] = useState('dark')
-  let theme = useSelector((state) => {return state.theme.value})
+  let theme = props.theme;
   document.documentElement.setAttribute('data-bs-theme', theme)
 
   useEffect(()=> {

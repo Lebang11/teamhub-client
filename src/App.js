@@ -25,20 +25,24 @@ import { change } from './theme';
 
 const App = () => {
     const dispatch = useDispatch()
-    let user = useSelector((state) => {return state.user.value})
-    let theme = useSelector((state) => {return state.theme.value})
+    let user = useSelector((state) => {return state.user.value});
+    let theme = window.localStorage.getItem('theme') || 'light';
+
+    
 
     useEffect(() => {
-      document.documentElement.setAttribute('data-bs-theme', theme)
-    }, [theme]);
+        document.documentElement.setAttribute('data-bs-theme', theme)
+    }, [])
 
     const changeTheme = () => {
-      if (theme == 'dark') {
-          document.documentElement.setAttribute('data-bs-theme', 'light')
-          dispatch(change('light'))
+      if (window.localStorage.getItem('theme') == 'dark') {
+        window.localStorage.setItem('theme', 'light')
+        document.documentElement.setAttribute('data-bs-theme', 'light')
+
       } else {
-          document.documentElement.setAttribute('data-bs-theme', 'dark')
-          dispatch(change('dark'))
+        window.localStorage.setItem('theme', 'dark')
+        document.documentElement.setAttribute('data-bs-theme', 'dark')
+
       }
   }
 
@@ -52,22 +56,23 @@ const App = () => {
     if (user) {
       return (
         <Router>
+          <NavBar/>
           <div className="form-check form-switch" onClick={changeTheme}>
                 <input id="theme-switch" className="form-check-input" type="checkbox"></input>
                 <label for="theme-switch" >Dark mode</label>
             </div>
   
           <Routes>
-            <Route path='/blogs' element={<BlogPage/>}/>
-            <Route exact path='/' element={<OpenPage/>}/>
-            <Route path='/create' element={<Register/>}/>
-            <Route path='/login' element={<Login/>}/>
-            <Route path='/main' element={<MainPage />}/>     
-            <Route exact path='/problems' element={<ProblemPage/>}/>
-            <Route path='/problems/:id' element={<ProblemDetails/>}/>
-            <Route path='/user/:id' element={<ProfilePage/>}/>
-            <Route path='/forgot' element={<ForgotPage/>}/>
-            <Route path='/reset/:id' element={<ResetPage/>}/>
+            <Route path='/blogs' element={<BlogPage theme={theme}/>}/>
+            <Route exact path='/' element={<OpenPage theme={theme}/>}/>
+            <Route path='/create' element={<Register theme={theme}/>}/>
+            <Route path='/login' element={<Login theme={theme}/>}/>
+            <Route path='/main' element={<MainPage theme={theme}/>}/>     
+            <Route exact path='/problems' element={<ProblemPage theme={theme}/>}/>
+            <Route path='/problems/:id' element={<ProblemDetails theme={theme}/>}/>
+            <Route path='/user/:id' element={<ProfilePage theme={theme}/>}/>
+            <Route path='/forgot' element={<ForgotPage theme={theme}/>}/>
+            <Route path='/reset/:id' element={<ResetPage theme={theme}/>}/>
   
           </Routes>
         </Router>
@@ -75,17 +80,23 @@ const App = () => {
     } else {
       return (
         <Router>
+          <NavBar/>
+          <div className="form-check form-switch" onClick={changeTheme}>
+                <input id="theme-switch" className="form-check-input" type="checkbox"></input>
+                <label for="theme-switch" >Dark mode</label>
+            </div>
+
           <Routes>
-            <Route exact path='/' element={<OpenPage/>}/>
-            <Route path='/create' element={<Register/>}/>
-            <Route path='/login' element={<Login/>}/>
-            <Route path='/forgot' element={<ForgotPage/>}/>
-            <Route path='/reset/:id' element={<ResetPage/>}/>
-            <Route path='/blogs' element={<NotUser/>}/>
-            <Route path='/main' element={<NotUser/>}/>     
-            <Route exact path='/problems' element={<NotUser/>}/>
-            <Route path='/problems/:id' element={<NotUser/>}/>
-            <Route path='/user/:id' element={<NotUser/>}/>
+            <Route exact path='/' theme={theme} element={<OpenPage/>}/>
+            <Route path='/create' theme={theme} element={<Register/>}/>
+            <Route path='/login' theme={theme} element={<Login/>}/>
+            <Route path='/forgot' theme={theme} element={<ForgotPage/>}/>
+            <Route path='/reset/:id' theme={theme} element={<ResetPage/>}/>
+            <Route path='/blogs' theme={theme} element={<NotUser/>}/>
+            <Route path='/main' theme={theme} element={<NotUser/>}/>     
+            <Route exact path='/problems' theme={theme} element={<NotUser/>}/>
+            <Route path='/problems/:id' theme={theme} element={<NotUser/>}/>
+            <Route path='/user/:id' theme={theme} element={<NotUser/>}/>
           </Routes>
         </Router>
       )
