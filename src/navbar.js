@@ -31,7 +31,7 @@ const NavBar = () => {
 
             <nav className="navbar navbar-expand-sm">
                 <div className="container-fluid">
-                    <a href="/blogs" className="navbar-brand">
+                    <a href="/" className="navbar-brand">
                         <h3 className="fw-bold text-secondary ms-3">
                             Team-hub
                         </h3>
