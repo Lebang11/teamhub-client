@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,6 +21,18 @@ const Register = () => {
     const [message, setMessage] = useState("Submit");
     const [error, setError] = useState("");
     const [token, setToken] = useState("");
+    const [colour, setColour] = useState('dark')
+    
+    let theme = useSelector((state) => {return state.theme.value})
+
+
+    useEffect(()=> {
+        if (theme == 'dark') {
+        setColour('secondary')
+        } else {
+        setColour('dark')
+        }
+    }, [theme])
 
     const dispatch = useDispatch();
 
@@ -80,7 +92,7 @@ const Register = () => {
                 <div class="form-group w-75">
                     <input type="password" class="form-control form-control-light" placeholder="Confirm password" onChange={(e) => setPasswordConfirm(e.target.value)} value={passwordConfirm} name="passwordConfirm"/>
                 </div>
-                <button type="submit" class="btn submit-button" onClick={handleMessage}>{message}</button>
+                <button type="submit" class={`btn text-${colour} submit-button`} onClick={handleMessage}>{message}</button>
                 <p className="error-message">{error}</p>
                 <p>{token}</p>
             </form> 

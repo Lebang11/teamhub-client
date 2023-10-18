@@ -3,6 +3,8 @@ import Cookies from "js-cookie";
 import ShowBlogs from "./blogs";
 import NewBlog from "./new-blog";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { change } from "./theme";
 
 const NavBar = () => {
     const [username, setUser] = useState('');
@@ -11,16 +13,25 @@ const NavBar = () => {
     const [newBlog, setNewBlog] = useState(false);
     const [id, setId] = useState('');
 
+    let theme = useSelector((state) => {return state.theme.value})
+    const dispatch = useDispatch()
+
     useEffect(() => {
-                
+        console.log(theme)
+        document.documentElement.setAttribute('data-bs-theme', theme) 
         setUser(Cookies.get(`token_name`));
         setEmail(Cookies.get(`token_email`));
         setId(Cookies.get(`token_id`));
     }, []);
+
+    
     
     return ( 
 
         <div className="border-bottom mb-3">
+
+            
+
             <nav className="navbar navbar-expand-sm">
                 <div className="container-fluid">
                     <a href="/blogs" className="navbar-brand">
@@ -54,6 +65,7 @@ const NavBar = () => {
                 </div>
                 </div>
             </nav>
+            
         </div>
      );
 }

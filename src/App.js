@@ -4,7 +4,7 @@ import OpenPage from './opening';
 import Register from './register';
 import Login from './login';
 import MainPage from './main';
-import { Component } from 'react';
+import { Component, useEffect } from 'react';
 import Problems from './problems';
 import ProblemPage from './problem-page';
 import ProblemDetails from './problem-details';
@@ -20,19 +20,42 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from './user';
 import NotUser from './not-user';
+import theme, { selectTheme } from './theme';
+import { change } from './theme';
 
 const App = () => {
     const dispatch = useDispatch()
     let user = useSelector((state) => {return state.user.value})
+    let theme = useSelector((state) => {return state.theme.value})
+
+    useEffect(() => {
+      document.documentElement.setAttribute('data-bs-theme', theme)
+    }, [theme]);
+
+    const changeTheme = () => {
+      if (theme == 'dark') {
+          document.documentElement.setAttribute('data-bs-theme', 'light')
+          dispatch(change('light'))
+      } else {
+          document.documentElement.setAttribute('data-bs-theme', 'dark')
+          dispatch(change('dark'))
+      }
+  }
+
     if (!Cookies.get(`token_name`) || !Cookies.get(`token_email`) || !Cookies.get(`token_id`)){
       dispatch(login(false))
     } else if (Cookies.get(`token_name`) && Cookies.get(`token_email`) && Cookies.get(`token_id`)) {
       dispatch(login(true))
     }
 
+
     if (user) {
       return (
         <Router>
+          <div className="form-check form-switch" onClick={changeTheme}>
+                <input id="theme-switch" className="form-check-input" type="checkbox"></input>
+                <label for="theme-switch" >Dark mode</label>
+            </div>
   
           <Routes>
             <Route path='/blogs' element={<BlogPage/>}/>

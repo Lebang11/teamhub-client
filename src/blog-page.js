@@ -4,6 +4,7 @@ import ShowBlogs from "./blogs";
 import NewBlog from "./new-blog";
 import { Link } from "react-router-dom";
 import NavBar from "./navbar";
+import { useSelector } from "react-redux";
 
 function BlogPage() {
     const [username, setUser] = useState('');
