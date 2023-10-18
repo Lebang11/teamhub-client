@@ -5,18 +5,17 @@ import { UseSelector, useSelector } from 'react-redux';
 
 function OpenPage(props) {
   const [colour, setColour] = useState('dark')
-  let theme = props.theme;
-  document.documentElement.setAttribute('data-bs-theme', theme)
 
-  useEffect(()=> {
+  let theme = window.localStorage.getItem('theme');
+
+  useEffect(() => {
     if (theme == 'dark') {
       setColour('secondary')
     } else {
       setColour('dark')
     }
-  }, [theme])
+  }, [props.theme])
   
-
   return (
       
 

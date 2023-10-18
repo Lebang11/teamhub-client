@@ -4,7 +4,7 @@ import OpenPage from './opening';
 import Register from './register';
 import Login from './login';
 import MainPage from './main';
-import { Component, useEffect } from 'react';
+import { Component, useEffect, useState } from 'react';
 import Problems from './problems';
 import ProblemPage from './problem-page';
 import ProblemDetails from './problem-details';
@@ -24,24 +24,33 @@ import theme, { selectTheme } from './theme';
 import { change } from './theme';
 
 const App = () => {
+    const [themeChanged, setTheme] = useState('')
+    const [checked, setCheck] = useState(false)
+
     const dispatch = useDispatch()
     let user = useSelector((state) => {return state.user.value});
-    let theme = window.localStorage.getItem('theme') || 'light';
 
+    let theme = window.localStorage.getItem('theme') || 'light';
     
 
     useEffect(() => {
+        if (theme == 'dark') {
+          setCheck(true)
+        } else {
+          setCheck(false)
+        }
         document.documentElement.setAttribute('data-bs-theme', theme)
-    }, [])
+      }, [themeChanged])
 
     const changeTheme = () => {
       if (window.localStorage.getItem('theme') == 'dark') {
         window.localStorage.setItem('theme', 'light')
         document.documentElement.setAttribute('data-bs-theme', 'light')
-
+        setTheme('light')
       } else {
         window.localStorage.setItem('theme', 'dark')
         document.documentElement.setAttribute('data-bs-theme', 'dark')
+        setTheme('dark')
 
       }
   }
@@ -58,7 +67,7 @@ const App = () => {
         <Router>
           <NavBar/>
           <div className="form-check form-switch" onClick={changeTheme}>
-                <input id="theme-switch" className="form-check-input" type="checkbox"></input>
+                {<input checked={checked} id="theme-switch" className="form-check-input" type="checkbox"></input>}
                 <label for="theme-switch" >Dark mode</label>
             </div>
   
