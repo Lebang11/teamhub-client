@@ -322,6 +322,10 @@ p {
   transform: skew(-15deg);
 }
 
+.author-link p:hover {
+  transform: skew(-15deg);
+}
+
 .author-name {
   display: inline;
 }

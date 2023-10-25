@@ -14,6 +14,7 @@ import ProfilePage from './profile-page';
 import ForgotPage from './forgot';
 import ResetPage from './reset';
 import BlogPage from './blog-page';
+import ChallengesPage from './challenges-page';
 import NavBar from './navbar';
 import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
@@ -22,6 +23,7 @@ import { login } from './user';
 import NotUser from './not-user';
 import theme, { selectTheme } from './theme';
 import { change } from './theme';
+import ChallengeDetails from './challenge-details';
 
 const App = () => {
     const [themeChanged, setTheme] = useState('')
@@ -82,7 +84,8 @@ const App = () => {
             <Route path='/user/:id' element={<ProfilePage theme={theme}/>}/>
             <Route path='/forgot' element={<ForgotPage theme={theme}/>}/>
             <Route path='/reset/:id' element={<ResetPage theme={theme}/>}/>
-  
+            <Route path='/challenges' element={<ChallengesPage theme={theme}/>}/>
+            <Route path='/challenge/:id' element={<ChallengeDetails theme={theme}/>}/>
           </Routes>
         </Router>
       );
@@ -106,6 +109,8 @@ const App = () => {
             <Route exact path='/problems' theme={theme} element={<NotUser/>}/>
             <Route path='/problems/:id' theme={theme} element={<NotUser/>}/>
             <Route path='/user/:id' theme={theme} element={<NotUser/>}/>
+            <Route path='/challenges' element={<NotUser theme={theme}/>}/>
+            <Route path='/challenge/:id' element={<NotUser theme={theme}/>}/>
           </Routes>
         </Router>
       )

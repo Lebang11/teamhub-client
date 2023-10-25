@@ -82,10 +82,14 @@ const NewProblem = () => {
             date,
             filename
 
-        }).then((res)=> console.log('Posted!', 'by', author))
+        })
         .then(() => 
         sendNotification(`${author} has posted a problem, hop on Team-hub to help solve it :)`)
         )
+        .then((res)=> {
+            alert('Problem Created')
+            window.location.reload(false);
+        })
         .catch(err=>console.log(err));
         setDone('Done')
         clearText()
@@ -129,6 +133,7 @@ const NewProblem = () => {
                     <option value="python">python</option>
                     <option value="javascript">javascript</option>
                     <option value="java">java</option>
+                    <option value="c">C/C++</option>
                     <option value="other">other</option>
                 </select>
                    
