@@ -35,6 +35,7 @@ const NewChallenge = (props) => {
             date,
         })
         .then(res => console.log(res))
+        .then(res => sendNotification(`Challenge has been created by ${author}, click button to log in!`))
         .then(res => {
             clearText()
             alert('Challenge Created :)')
@@ -43,6 +44,14 @@ const NewChallenge = (props) => {
         .catch(err => console.log(err))
     }
 
+    const sendNotification = (message) => {
+        axios.post('https://team-hub.onrender.com/api/email/notification', 
+        {
+            message: message
+        })
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
+    }
 
     function clearText() {
         const textarea = document.getElementById('description');
