@@ -17,7 +17,7 @@ const ChallengesPage = () => {
                 }} className="btn btn-outline-warning">
                     Add Challenge
                 </button>      
-                <div className="d-flex flex-md-column container-lg justify-content-center align-items-cente">
+                <div className="w-75 d-flex flex-md-column container-lg justify-content-center align-items-cente">
                     <div >
                         {addChallenge && 
                         <NewChallenge/>

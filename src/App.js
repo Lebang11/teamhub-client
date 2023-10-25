@@ -28,11 +28,14 @@ import ChallengeDetails from './challenge-details';
 const App = () => {
     const [themeChanged, setTheme] = useState('')
     const [checked, setCheck] = useState(false)
+    const [footerColour, setFooterColour] = useState('light')
 
     const dispatch = useDispatch()
     let user = useSelector((state) => {return state.user.value});
 
     let theme = window.localStorage.getItem('theme') || 'light';
+    
+    
     
 
     useEffect(() => {
@@ -42,6 +45,11 @@ const App = () => {
           setCheck(false)
         }
         document.documentElement.setAttribute('data-bs-theme', theme)
+        if (theme === 'light') {
+          setFooterColour('light')
+        } else {
+          setFooterColour('secondary')
+        }
       }, [themeChanged])
 
     const changeTheme = () => {
@@ -66,7 +74,8 @@ const App = () => {
 
     if (user) {
       return (
-        <Router>
+        <div className='mb-5'>
+          <Router >
           <NavBar/>
           <div className="form-check form-switch" onClick={changeTheme}>
                 {<input checked={checked} id="theme-switch" className="form-check-input" type="checkbox"></input>}
@@ -87,8 +96,16 @@ const App = () => {
             <Route path='/challenges' element={<ChallengesPage theme={theme}/>}/>
             <Route path='/challenge/:id' element={<ChallengeDetails theme={theme}/>}/>
           </Routes>
+          <footer class={`bg-${footerColour} text-center text-lg-start footer mt-4`}>
+            <div class="text-center p-3" >
+              Made by:
+              Lebang Nong :)
+            </div>
+          </footer>
         </Router>
-      );
+
+        </div>
+              );
     } else {
       return (
         <Router>
