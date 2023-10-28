@@ -64,7 +64,7 @@ const App = () => {
 
     if (user) {
       return (
-        <Router>
+        <Router >
           <NavBar/>
           <div className="form-check form-switch" onClick={changeTheme}>
                 {<input checked={checked} id="theme-switch" className="form-check-input" type="checkbox"></input>}

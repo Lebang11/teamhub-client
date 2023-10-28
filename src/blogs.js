@@ -133,15 +133,18 @@ const ShowBlogs = (props) => {
                 
                 
                 return (
-                    <div>
+                    <div >
                             { <div className="container-lg blog-box w-100 border border-bottom rounded-right">
-                                <h2 className="display-5 author">
+                                <h2 className="display-6 text-center text-secondary">
                                     {blo.title}
                                 </h2>
-                                <small className="text-muted">{blo.text || blo.description}</small>
-                                <Link className='author-link' to={`/user/${blo.authorID}`}>
-                                    <h3 className="display-6">Written by  <span className="author_name">{blo.author}</span></h3>
-                                </Link>
+                                <figure className="text-center mt-4">
+                                    <blockquote className="blockquote">{blo.text || blo.description}</blockquote>
+                                    <Link className='author-link' to={`/user/${blo.authorID}`}>
+                                        <figcaption className="blockquote-footer">Written by  <span className="author_name text-primary">{blo.author}</span></figcaption>
+                                    </Link> 
+                                </figure>
+                                
                                 <div className="blog-date">
                                     <div >{`${fulldate}, ${fulltime}`}</div>
                                 </div>
