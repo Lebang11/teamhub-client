@@ -18,19 +18,18 @@ const ProfilePage = () => {
     const [imageDownload, setImageDownload] =  useState([]);
     const [showChangePic, setShowChangePic] =  useState(false);
     const [showChangeUsername, setShowChangeUsername] =  useState(false);
-    
+    const [gotImage, setGotImage] = useState(false)
+
     const [isUser, setIsUser] = useState();
 
     const navigate = useNavigate();
 
     useEffect( () => {
-        const loadPage = async () => {
-            await findUser()
+        try {
+            findUser()
+        } catch(err) {
+            console.log(err)
         }
-        loadPage()
-        .catch(err => console.error)
-        
-        
     }, []);
 
     
@@ -45,9 +44,8 @@ const ProfilePage = () => {
             setImageName(res.imagename);
             setUserName(res.username);
             setEmail(res.email);
+            downloadFile(res.imagename)
         })
-        .then(res => {
-            })
         .catch(err => console.log(err)) 
     }
 
@@ -86,15 +84,24 @@ const ProfilePage = () => {
         .catch(err => console.log(err))
     }
     
-    const downloadFile = async () => {
-        
-        let downloadRef = ref(storage, `profilePics/${imagename}`)
+    const downloadFile = async (imagename) => {
+        if (!imagename) {
+            setImageDownload('https://firebasestorage.googleapis.com/v0/b/team-hub-18735.appspot.com/o/profilePics%2FDefault_pfp.svg.png?alt=media&token=b3f4690b-2917-49d3-a075-efab941c082d')
+            setGotImage(true)
+        } else {
+            let downloadRef = ref(storage, `profilePics/${imagename}`)
         getDownloadURL(downloadRef)
         .then((url) => {
             setImageDownload(url)
-            
+        })
+        .then(res => {
+            setGotImage(true)
         })
         .catch(err => console.log(err))
+        }
+        
+        
+        
         
         
     }
@@ -109,15 +116,20 @@ const ProfilePage = () => {
 
     }
 
-    setTimeout(() => {
-        downloadFile()}, 1000)
+    // setTimeout(() => {
+    //     downloadFile()}, 2000)
 
 
     return ( 
         <div>
             <div className="container-lg d-flex flex-column justify-content-center align-items-center">
                 <div className="picture-area d-flex justify-content-center align-items-center">
-                    <img className="w-100 h-100 rounded-circle" src={imageDownload}></img>
+                    {gotImage && <img className="w-100 h-100 rounded-circle" src={imageDownload}></img>}
+                    {!gotImage && 
+                    <div class="spinner-border text-info" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    }
                 </div>
                 <h2 className="display-5">
                     {username}
