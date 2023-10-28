@@ -316,10 +316,13 @@ p {
 
 .author-link {
   text-decoration: none;
-  
 }
 
 .author-link h3:hover {
+  transform: skew(-15deg);
+}
+
+.author-link p:hover {
   transform: skew(-15deg);
 }
 
@@ -352,4 +355,10 @@ p {
   transform: scale3d(1.1, 1.1, 1.8);
   
   background-color: white;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }

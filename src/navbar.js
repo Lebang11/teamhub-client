@@ -54,10 +54,16 @@ const NavBar = () => {
                             </a>
                         </li>
                         <li className="nav-item">
+                            <a href={`/challenges`} className="nav-link">
+                                Challenges
+                            </a>
+                        </li>
+                        <li className="nav-item">
                             <a href={`/user/${id}`} className="nav-link">
                                 Profile
                             </a>
                         </li>
+                        
                     </ul>
                 </div>
                 </div>

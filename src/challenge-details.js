@@ -5,21 +5,21 @@ import { v4 } from "uuid";
 import Problem from "./problem";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import Answers from "./answers";
+import ChallengeAnswers from "./answers-challenge";
 
-const ProblemDetails = () => {
-    const [dbProblems, setDbProblems] = useState([]);
+const ChallengeDetails = () => {
+    const [dbChallenges, setDbChallenges] = useState([]);
     const [refresh, setRefresh] = useState('refresh')
     const [fileDownload, setFileDownload] = useState();
     const [downloadMessage, setDownloadMessage] = useState('Get File');
     const [showAnswers, setShowanswers] = useState(false)
 
-    const getProblems =  async () => {
+    const getChallenges =  async () => {
         
-        await fetch('https://team-hub.onrender.com/api/problems')
+        await fetch('https://team-hub.onrender.com/api/challenges')
         .then(response => response.json())
         .then(res => {
-            setDbProblems(res)
+            setDbChallenges(res)
             setRefresh('refresh');
             
         }
@@ -33,7 +33,7 @@ const ProblemDetails = () => {
     
     useEffect(()=> {
         try {
-            getProblems();
+            getChallenges();
         } catch(err) {
             console.log(err);
         }
@@ -44,7 +44,7 @@ const ProblemDetails = () => {
 
     function refreshBlogs() {
         setRefresh('Refreshing...')
-        getProblems();
+        getChallenges();
         
     }
     
@@ -54,7 +54,7 @@ const ProblemDetails = () => {
         <div>
             <div>
             {
-            dbProblems.map((blo) => {
+            dbChallenges.map((blo) => {
                 console.log(blo._id)
                 
                 if (blo._id === id) {
@@ -63,7 +63,7 @@ const ProblemDetails = () => {
                     <div>
                         
                         <div>
-                            <Link to="/problems">
+                            <Link to="/challenges">
                                 <button className="ms-4 btn btn-secondary rounded-pill">Back</button>
                             </Link>
                         
@@ -71,15 +71,15 @@ const ProblemDetails = () => {
                         <h3 className="display-4 text-center">
                             {blo.title}
                         </h3>
-                        <div className="blog-box rounded-0">
-                        <p className="lead">{blo.text}</p>
+                        <div className="container-lg blog-box w-100 rounded-0 border border-bottom">
+                        <p className="lead text-muted">{blo.description}</p>
                         <Link className='author-link' to={`/user/${blo.authorID}`}>
                             <h3 className="display-6">Written by  <span className="author_name">{blo.author}</span></h3>
                         </Link>
                         <div className="blog-date">
                             <div >{blo.date}</div>
                         </div>
-                        <button className="btn btn-success mx-1" onClick={(atag) => {
+                        {/* <button className="btn btn-success mx-1" onClick={(atag) => {
                             setDownloadMessage('Loading...')
                 
                             getDownloadURL(ref(storage, `files/${blo.filename}`))
@@ -97,7 +97,7 @@ const ProblemDetails = () => {
                             .catch(err => console.log(err))
                         }}>
                             <a id="atag" href={fileDownload}>{downloadMessage}</a>
-                        </button>
+                        </button> */}
                         <button className="btn btn-info text-light" onClick={()=> {
                             if (showAnswers===false) {
                                 setShowanswers(true)}
@@ -105,10 +105,11 @@ const ProblemDetails = () => {
                                 setShowanswers(false)
                             }    
                                 }}>
-                            Show Answers ({blo.answerCount})
+                            Show Answers (<span>{blo.answerCount}</span>)
                         </button>
+                        
                         <div>
-                                    {showAnswers && <Answers problemID={blo._id} problemAuthorID={blo.authorID}/>}
+                                    {showAnswers && <ChallengeAnswers answerCount={blo.answerCount} challengeID={blo._id} challengeAuthorID={blo.authorID}/>}
                         </div>
                     </div> 
                     </div>
@@ -119,4 +120,4 @@ const ProblemDetails = () => {
     );
 }
  
-export default ProblemDetails;
+export default ChallengeDetails;

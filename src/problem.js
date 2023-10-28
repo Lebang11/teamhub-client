@@ -18,7 +18,7 @@ const Problem = (props) => {
                         {props.title}
                     </h2>
                     <small className="text-muted">{props.text}</small>
-                    <Link className='author-link' to={`/user/${props.authorID}`}>
+                    <Link className='author-link w-75 d-block' to={`/user/${props.authorID}`}>
                         <h3 className="display-6">Written by  <span className="author_name">{props.author}</span></h3>
                     </Link>
                     <div className="blog-date">

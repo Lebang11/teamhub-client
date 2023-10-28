@@ -14,6 +14,7 @@ import ProfilePage from './profile-page';
 import ForgotPage from './forgot';
 import ResetPage from './reset';
 import BlogPage from './blog-page';
+import ChallengesPage from './challenges-page';
 import NavBar from './navbar';
 import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
@@ -22,15 +23,19 @@ import { login } from './user';
 import NotUser from './not-user';
 import theme, { selectTheme } from './theme';
 import { change } from './theme';
+import ChallengeDetails from './challenge-details';
 
 const App = () => {
     const [themeChanged, setTheme] = useState('')
     const [checked, setCheck] = useState(false)
+    const [footerColour, setFooterColour] = useState('light')
 
     const dispatch = useDispatch()
     let user = useSelector((state) => {return state.user.value});
 
     let theme = window.localStorage.getItem('theme') || 'light';
+    
+    
     
 
     useEffect(() => {
@@ -40,6 +45,11 @@ const App = () => {
           setCheck(false)
         }
         document.documentElement.setAttribute('data-bs-theme', theme)
+        if (theme === 'light') {
+          setFooterColour('light')
+        } else {
+          setFooterColour('secondary')
+        }
       }, [themeChanged])
 
     const changeTheme = () => {
@@ -64,7 +74,8 @@ const App = () => {
 
     if (user) {
       return (
-        <Router >
+        <div className='mb-5'>
+          <Router >
           <NavBar/>
           <div className="form-check form-switch" onClick={changeTheme}>
                 {<input checked={checked} id="theme-switch" className="form-check-input" type="checkbox"></input>}
@@ -82,10 +93,19 @@ const App = () => {
             <Route path='/user/:id' element={<ProfilePage theme={theme}/>}/>
             <Route path='/forgot' element={<ForgotPage theme={theme}/>}/>
             <Route path='/reset/:id' element={<ResetPage theme={theme}/>}/>
-  
+            <Route path='/challenges' element={<ChallengesPage theme={theme}/>}/>
+            <Route path='/challenge/:id' element={<ChallengeDetails theme={theme}/>}/>
           </Routes>
+          <footer class={`bg-${footerColour} text-center text-lg-start footer mt-4`}>
+            <div class="text-center p-3" >
+              Made by:
+              Lebang Nong :)
+            </div>
+          </footer>
         </Router>
-      );
+
+        </div>
+              );
     } else {
       return (
         <Router>
@@ -106,6 +126,8 @@ const App = () => {
             <Route exact path='/problems' theme={theme} element={<NotUser/>}/>
             <Route path='/problems/:id' theme={theme} element={<NotUser/>}/>
             <Route path='/user/:id' theme={theme} element={<NotUser/>}/>
+            <Route path='/challenges' element={<NotUser theme={theme}/>}/>
+            <Route path='/challenge/:id' element={<NotUser theme={theme}/>}/>
           </Routes>
         </Router>
       )
