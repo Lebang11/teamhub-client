@@ -11,6 +11,7 @@ import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "./user";
+import Blog from "./blog";
 
 const ShowBlogs = (props) => {
     const [dbBlogs, setDbBlogs] = useState([]);
@@ -134,34 +135,7 @@ const ShowBlogs = (props) => {
                 
                 return (
                     <div >
-                            { <div className="container-lg blog-box w-100 border border-bottom rounded-right my-0">
-                                <h2 className="display-6 text-center text-secondary">
-                                    {blo.title}
-                                </h2>
-                                <figure className="text-center">
-                                    <blockquote className="text-muted">{blo.text || blo.description}</blockquote>
-                                    <Link className='author-link' to={`/user/${blo.authorID}`}>
-                                        <figcaption className="blockquote-footer">Written by  <cite className="text-info">{blo.author}</cite></figcaption>
-                                    </Link> 
-                                </figure>
-                                
-                                <div className="blog-date">
-                                    <div >{`${fulldate}, ${fulltime}`}</div>
-                                </div>
-                                <button onClick={
-                                    () => {
-                                        if (comment == false) {
-                                            setComment(true)
-                                        } else {
-                                            setComment(false)
-                                        }
-                                        
-                                    }
-                                } className="comment-button btn btn-outline-info">Comments</button>
-                                <div>
-                                    {comment && <Comments blogid={blo._id}/>}
-                                </div>
-                            </div>} 
+                        <Blog blo={blo} fulldate={fulldate} fulltime={fulltime}/>
                     </div>
                 )
             }) }     

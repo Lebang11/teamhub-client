@@ -9,6 +9,9 @@ import { v4 } from "uuid";
 const NewProblem = () => {
     // const [text, setText] = useState('');
     const [done, setDone] = useState('Done');
+    const [error, setError] = useState('');
+    const [isLoading, setLoading] = useState(false)
+    const [message, setMessage] = useState('');
     const [filename, setFileName] = useState('');
     const [Url, setURL] = useState('');
     const [file, setFile] = useState(null);
@@ -69,30 +72,37 @@ const NewProblem = () => {
         console.log(date);
         console.log(filename);
 
-        setDone('Loading...');
+        setLoading(true)
 
+        if (text === '' || title === '') {
+            clearText()
+            setError('Enter title and text')
+            setLoading(false)
+        } else {
+            await axios.post('https://team-hub.onrender.com/api/problems',
+            {
+                author,
+                authorID,
+                title,
+                text,
+                language,
+                date,
+                filename
+
+            })
+            .then(() => 
+            sendNotification(`${author} has posted a problem, hop on Team-hub to help solve it :)`)
+            )
+            .then((res)=> {
+                setMessage('Problem created successfully!')
+                window.location.reload(false);
+            })
+            .catch(err=>console.log(err));
+            setDone('Done')
+            clearText()
+        }
         
-        await axios.post('https://team-hub.onrender.com/api/problems',
-        {
-            author,
-            authorID,
-            title,
-            text,
-            language,
-            date,
-            filename
-
-        })
-        .then(() => 
-        sendNotification(`${author} has posted a problem, hop on Team-hub to help solve it :)`)
-        )
-        .then((res)=> {
-            alert('Problem Created')
-            window.location.reload(false);
-        })
-        .catch(err=>console.log(err));
-        setDone('Done')
-        clearText()
+        
     
         
     }
@@ -115,11 +125,14 @@ const NewProblem = () => {
                 </div>
                 
                 <div>
-                    <input placeholder="Title" id="title" className="form-group w-75 mb-1"></input>
+                    <input placeholder="Title" id="title" className="form-control w-75 mb-1"></input>
                 </div>
                 <div>
-                    <textarea name="blog" id='text' placeholder="text here" className="form-group w-75 mb-1" ></textarea>
+                    <textarea name="blog" id='text' placeholder="text here" className="form-control w-75 mb-1" ></textarea>
                 </div>
+                <p className="text-danger text-center">{error}</p>
+                <p className="text-success text-center">{message}</p>
+                
                 <div className="form-group mb-1">
                     <input className="form-control w-50" id="file" type="file" onChange={async (e) => {
                         setFile(e.target.files[0]);
@@ -139,8 +152,19 @@ const NewProblem = () => {
                    
             
             <div>
+            {!isLoading && 
                 <button className="btn btn-success m-1" onClick={createProblem}>{done}</button>
+                }
+                {!isLoading && 
                 <button className="btn btn-danger m-1" onClick={clearText}>clear</button>
+                
+                }
+                {isLoading && 
+                <button class="btn btn-primary" type="button" disabled>
+                    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                    Loading...
+                </button>
+                }
             </div>
             <div>
             </div>

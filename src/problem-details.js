@@ -106,7 +106,7 @@ const ProblemDetails = () => {
                                 setShowanswers(false)
                             }    
                                 }}>
-                            Show Answers ({blo.answerCount})
+                            Show Answers <span className="badge border bg-info">{blo.answerCount}</span> 
                         </button>
                         <div>
                                     {showAnswers && <Answers problemID={blo._id} problemAuthorID={blo.authorID}/>}

@@ -16,6 +16,7 @@ const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("Submit");
+    const [isLoading, setLoading] = useState(false)
     const [error, setError] = useState("");
     const [token, setToken] = useState("");
     const [colour, setColour] = useState('dark')
@@ -27,7 +28,7 @@ const Login = () => {
 
         e.preventDefault();
         axios.defaults.headers.post['Content-Type'] ='application/x-www-form-urlencoded';
-  
+        setLoading(true)
   
         await axios.post(loginURL, {
         email,
@@ -38,13 +39,13 @@ const Login = () => {
             Cookies.set('token_name', response.data.token_name , { expires: 7 });
             Cookies.set('token_email', response.data.token_email , { expires: 7 });
             setToken(Cookies.get('token_name'))
-            setMessage("Submit")
+            setLoading(false)
             setError("")
             dispatch(login(true))
             navigate('/blogs')
             })
         .catch((err) => {
-            setMessage('Submit')
+            setLoading(false)
             setError(err.response.data.message)
             setToken('')
             setPassword('')
@@ -69,8 +70,13 @@ const Login = () => {
                     <input type="password" class="form-control" placeholder="Password" onChange={(e) => setPassword(e.target.value)} value={password} name="password"/>
                 </div>
                 
-                <button type="submit" class={`btn text-${colour} submit-button`} onClick={handleMessage}>{message}</button>
-                
+                {!isLoading &&  <button type="submit" class={`btn text-${colour} submit-button`}>{message}</button>}
+                {isLoading && 
+                <button class="btn btn-secondary" type="button" disabled>
+                <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                Loading...
+                </button>
+                }
                 <p className="error-message">{error}</p>
                 <p>{token}</p>
                 <Link to="/forgot">

@@ -5,36 +5,49 @@ import { useState } from "react";
 const NewBlog = () => {
     // const [text, setText] = useState('');
     const [done, setDone] = useState('Done');
+    const [isLoading, setLoading] = useState(false);
+    const [error, setError] = useState('');
+    const [message, setMessage] = useState('');
 
     const createBlog= async () => {
         const author = Cookies.get('token_name');
-        const textName = document.querySelector('.new-blog-text-box');
-        const text = textName.value;
-        const titleName = document.querySelector('.title-text-box');
-        const title = titleName.value;
+        const text = document.getElementById('text').value
+        const title = document.getElementById('title').value
 
         console.log(text)
         console.log(author)
         console.log(title)
 
-        setDone('Loading...')
+        setLoading(true)
+
+        if (text === '' || title === '') {
+            setError('Enter title and text')
+            clearText()
+            setLoading(false)
+        } else {
+            await axios.post('https://team-hub.onrender.com/api/blogs',
+            {
+                author,
+                text,
+                title
+            }).then((res)=> console.log('Posted!', 'by', author)).catch(err=>console.log(err));
+            setLoading(false)
+            setError('')
+            setMessage('Blog posted successfully!')
+            clearText()
+            window.location.reload(false);
+
+        }
         
-        await axios.post('https://team-hub.onrender.com/api/blogs',
-        {
-            author,
-            text,
-            title
-        }).then((res)=> console.log('Posted!', 'by', author)).catch(err=>console.log(err));
-        setDone('Done')
-        clearText()
+        
     }
 
     function clearText() {
-        const textarea = document.querySelector('.new-blog-text-box');
-        textarea.value = '';
+        let text = document.getElementById('text')
+        let title = document.getElementById('title')
 
-        const titlearea = document.querySelector('.title-text-box');
-        titlearea.value = '';
+        text.value = '';
+        title.value = '';
     }
 
 
@@ -47,16 +60,30 @@ const NewBlog = () => {
                     <h2>New Blog</h2>
                 </div>
                 <div>
-                    <input placeholder="Title" className="form-control"></input>
+                    <input id="title" placeholder="Title" className="form-control"></input>
                 </div>
                 <div>
-                    <textarea name="blog" placeholder="text here" className="form-control" ></textarea>
+                    <textarea id="text" name="blog" placeholder="text here" className="form-control" ></textarea>
                 </div>
                 
             </div>
+            <p className="text-center text-danger mb-1">{error}</p>
+            <p className="text-center text-success mb-1">{message}</p>
+
             <div>
+                {!isLoading && 
                 <button className="btn btn-success m-1" onClick={createBlog}>{done}</button>
+                }
+                {!isLoading && 
                 <button className="btn btn-danger m-1" onClick={clearText}>clear</button>
+                
+                }
+                {isLoading && 
+                <button class="btn btn-primary" type="button" disabled>
+                    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                    Loading...
+                </button>
+                }
             </div>
         </div>
     );

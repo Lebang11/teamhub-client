@@ -1,10 +1,14 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const NewChallenge = (props) => {
     const navigate = useNavigate();
     const today = new Date();
+    const [isLoading, setLoading] = useState(false);
+    const [error, setError] = useState('');
+    const [message, setMessage] = useState('');
 
 
     const createChallenge = async () => {
@@ -22,26 +26,38 @@ const NewChallenge = (props) => {
         console.log(authorID);
         console.log(language);
         console.log(date);
+
+        setLoading(true)
+
+
+        if (title === '' || description ==='') {
+            setError('Enter title and description')
+            clearText()
+            setLoading(false)
+        } else {
+            axios.post('https://team-hub.onrender.com/api/challenges',
+            {
+                title,
+                description,
+                language,
+                author,
+                authorID,
+                date,
+            })
+            .then(res => console.log(res))
+            .then(res => sendNotification(`Challenge has been created by ${author}, click button to log in!`))
+            .then(res => {
+                clearText()
+                alert('Challenge Created :)')
+                setLoading(false)
+                setMessage('Challenge posted successfully!')
+                window.location.reload(false);
+            })
+            .catch(err => console.log(err))
+        }
         
 
-
-        axios.post('https://team-hub.onrender.com/api/challenges',
-        {
-            title,
-            description,
-            language,
-            author,
-            authorID,
-            date,
-        })
-        .then(res => console.log(res))
-        .then(res => sendNotification(`Challenge has been created by ${author}, click button to log in!`))
-        .then(res => {
-            clearText()
-            alert('Challenge Created :)')
-            window.location.reload(false);
-        })
-        .catch(err => console.log(err))
+        
     }
 
     const sendNotification = (message) => {
@@ -64,20 +80,21 @@ const NewChallenge = (props) => {
     }
 
     return (     
-        <div className="new-blog-blox w-100">
+        <div className="w-100">
             
             <div>
                 <h2>Add Challenge</h2>
             </div>
             
             <div>
-                <input placeholder="Title" id="title" className="form-group w-75 mb-1"></input>
+                <input placeholder="Title" id="title" className="form-control w-75 mb-1"></input>
             </div>
             <div>
-                <textarea name="blog" id='description' placeholder="Description" className="form-group w-75 mb-1" ></textarea>
+                <textarea name="blog" id='description' placeholder="Description" className="form-control w-75 mb-1" ></textarea>
             </div>
 
-            
+            <p className="text-danger text-center">{error}</p>
+            <p className="text-success text-center">{message}</p>
             
             <select className="form-select w-50" id="language" defaultValue="any">
                 <option selected value="any">Required Language</option>
@@ -90,8 +107,19 @@ const NewChallenge = (props) => {
                
         
         <div>
-            <button className="btn btn-success m-1" onClick={createChallenge}>Done</button>
-            <button className="btn btn-danger m-1" onClick={clearText}>clear</button>
+        {!isLoading && 
+                <button className="btn btn-success m-1" onClick={createChallenge}>Done</button>
+                }
+                {!isLoading && 
+                <button className="btn btn-danger m-1" onClick={clearText}>clear</button>
+                
+                }
+                {isLoading && 
+                <button class="btn btn-primary" type="button" disabled>
+                    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                    Loading...
+                </button>
+                }
         </div>
         <div>
         </div>

@@ -19,6 +19,7 @@ const Register = () => {
     const [password, setPassword] = useState("");
     const [passwordConfirm, setPasswordConfirm] = useState("");
     const [message, setMessage] = useState("Submit");
+    const [isLoading, setLoading] = useState(false)
     const [error, setError] = useState("");
     const [token, setToken] = useState("");
     const [colour, setColour] = useState('dark')
@@ -33,7 +34,7 @@ const Register = () => {
         e.preventDefault();
         //axios.defaults.headers.post['Content-Type'] ='application/x-www-form-urlencoded';
   
-  
+        setLoading(true)
         await axios.post(registerURL, {
         username,
         email,
@@ -45,14 +46,14 @@ const Register = () => {
             Cookies.set('token_name', response.data.token_name , { expires: 7 });
             Cookies.set('token_email', response.data.token_email , { expires: 7 });
             setToken(Cookies.get('token_name'))
-            setMessage("Submit")
+            setLoading(false)
             setError("")
             dispatch(login(true))
             navigate('/blogs')                       
             })
         .catch((err) => {
             console.log(err)
-            setMessage('Submit')
+            setLoading(false)
             setPassword('')
             setPasswordConfirm('')
             setError(err.response.data.message)})
@@ -82,7 +83,13 @@ const Register = () => {
                 <div class="form-group w-75">
                     <input type="password" class="form-control form-control-light" placeholder="Confirm password" onChange={(e) => setPasswordConfirm(e.target.value)} value={passwordConfirm} name="passwordConfirm"/>
                 </div>
-                <button type="submit" class={`btn text-${colour} submit-button`} onClick={handleMessage}>{message}</button>
+                {!isLoading &&  <button type="submit" class={`btn text-${colour} submit-button`}>{message}</button>}
+                {isLoading && 
+                <button class="btn btn-secondary" type="button" disabled>
+                <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                Loading...
+                </button>
+                }
                 <p className="error-message">{error}</p>
                 <p>{token}</p>
             </form> 
