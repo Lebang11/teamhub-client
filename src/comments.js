@@ -67,13 +67,13 @@ const Comments = (props) => {
                                 return (
                                     <div className="container border border-light rounded m-2">
                                         
-                                        <h3>
+                                        <blockquote className="fs-4">
                                             {comment.text} 
-                                        </h3>
-                                        <p className="lead">
+                                        </blockquote>
+                                        <figcaption className="blockquote-footer">
                                             
                                             by {comment.author}
-                                        </p>
+                                        </figcaption>
                                     
                                         <div className="blog-date">
                                             {fulldate + ', ' + fulltime}

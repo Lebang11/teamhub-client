@@ -23,7 +23,7 @@ const Challenges = () => {
             {
                 challenges.map((challenge) => {
                     return (
-                        <div className="container-lg blog-box w-100 border border-bottom rounded-left">
+                        <div className="container-lg blog-box w-100 border border-bottom rounded-left my-0">
                             <Challenge challenge={challenge}/>
                         </div>
                     )

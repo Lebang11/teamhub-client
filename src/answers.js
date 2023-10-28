@@ -14,7 +14,7 @@ const Answers = (props) => {
     const [fileDownload, setFileDownload] = useState();
     const [email, setEmail] = useState('');
 
-    const [downloadMessage, setDownloadMessage] = useState('Get File');
+    const [downloadMessage, setDownloadMessage] = useState('Getting File...');
 
     const today = new Date()
 
@@ -42,6 +42,15 @@ const Answers = (props) => {
         .catch(err=> console.log(err))
         setText('');
         getAnswers()
+    }
+
+    const download = async (answer) => {
+        getDownloadURL(ref(storage, `files/${answer.filename}`))
+                    .then((url) => {
+                        setFileDownload(url)
+                        setDownloadMessage('View '+ answer.filename)   
+                    })
+                    .catch(err => console.log(err))
     }
 
     const sendNotification = (message) => {
@@ -108,7 +117,8 @@ const Answers = (props) => {
                                 const fulldate = `${day} ${month} ${year}`;
 
                                 if (answer.problemID === props.problemID) {
-                                return (
+                                    download(answer)
+                                    return (
                                     <div className="container border border-light rounded m-2">
                                         
                                         <h6>
@@ -121,12 +131,7 @@ const Answers = (props) => {
                                         <button className="btn btn-sm btn-outline-warning file-button mx-1" onClick={(atag) => {
                                             setDownloadMessage('Loading...')
                                 
-                                            getDownloadURL(ref(storage, `files/${answer.filename}`))
-                                            .then((url) => {
-                                                setFileDownload(url)
-                                                setDownloadMessage('View '+ answer.filename)   
-                                            })
-                                            .catch(err => console.log(err))
+                                            
                                         }}>
                                             <a className="file-a text-warning  text-decoration-none" id="atag" href={fileDownload}>{downloadMessage}</a>
                                         </button>

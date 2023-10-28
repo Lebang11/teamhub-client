@@ -11,8 +11,24 @@ const ProblemDetails = () => {
     const [dbProblems, setDbProblems] = useState([]);
     const [refresh, setRefresh] = useState('refresh')
     const [fileDownload, setFileDownload] = useState();
-    const [downloadMessage, setDownloadMessage] = useState('Get File');
+    const [downloadMessage, setDownloadMessage] = useState('Getting File...');
     const [showAnswers, setShowanswers] = useState(false)
+
+    const download = async (blo) => {
+        await getDownloadURL(ref(storage, `files/${blo.filename}`))
+            .then((url) => {
+                setFileDownload(url)
+                setDownloadMessage('View '+ blo.filename)   
+            })
+            .then(res => {
+                const downloadLink = document.getElementById('atag')
+                downloadLink.setAttribute(
+                    'download',
+                    blo.filename,
+                    );
+            })
+            .catch(err => console.log(err))
+    }
 
     const getProblems =  async () => {
         
@@ -25,8 +41,6 @@ const ProblemDetails = () => {
         }
             )
         .catch(err => console.log(err));
-
-        
         }
 
         
@@ -34,6 +48,7 @@ const ProblemDetails = () => {
     useEffect(()=> {
         try {
             getProblems();
+            
         } catch(err) {
             console.log(err);
         }
@@ -58,7 +73,7 @@ const ProblemDetails = () => {
                 console.log(blo._id)
                 
                 if (blo._id === id) {
-
+                    download(blo)
                 return (
                     <div>
                         
@@ -72,29 +87,15 @@ const ProblemDetails = () => {
                             {blo.title}
                         </h3>
                         <div className="blog-box rounded-0">
-                        <p className="lead">{blo.text}</p>
+                        <p className="lead text-muted">{blo.text}</p>
                         <Link className='author-link' to={`/user/${blo.authorID}`}>
-                            <h3 className="display-6">Written by  <span className="author_name">{blo.author}</span></h3>
+                            <figcaption className="blockquote-footer">Written by  <cite className="text-info">{blo.author}</cite></figcaption>
                         </Link>
                         <div className="blog-date">
                             <div >{blo.date}</div>
                         </div>
                         <button className="btn btn-success mx-1" onClick={(atag) => {
                             setDownloadMessage('Loading...')
-                
-                            getDownloadURL(ref(storage, `files/${blo.filename}`))
-                            .then((url) => {
-                                setFileDownload(url)
-                                setDownloadMessage('View '+ blo.filename)   
-                            })
-                            .then(res => {
-                                const downloadLink = document.getElementById('atag')
-                                downloadLink.setAttribute(
-                                    'download',
-                                    blo.filename,
-                                  );
-                            })
-                            .catch(err => console.log(err))
                         }}>
                             <a id="atag" href={fileDownload}>{downloadMessage}</a>
                         </button>

@@ -74,7 +74,7 @@ const ChallengeDetails = () => {
                         <div className="container-lg blog-box w-100 rounded-0 border border-bottom">
                         <p className="lead text-muted">{blo.description}</p>
                         <Link className='author-link' to={`/user/${blo.authorID}`}>
-                            <h3 className="display-6">Written by  <span className="author_name">{blo.author}</span></h3>
+                            <figcaption className="blockquote-footer">Written by  <cite className="text-info">{blo.author}</cite></figcaption>
                         </Link>
                         <div className="blog-date">
                             <div >{blo.date}</div>

@@ -23,7 +23,7 @@ const ChallengesPage = () => {
                         <NewChallenge/>
                         }
                     </div>
-                    <div>
+                    <div className="mt-4">
                     {!addChallenge && <Challenges/>}
 
                     </div>

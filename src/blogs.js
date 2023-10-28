@@ -138,10 +138,10 @@ const ShowBlogs = (props) => {
                                 <h2 className="display-6 text-center text-secondary">
                                     {blo.title}
                                 </h2>
-                                <figure className="text-center mt-4">
-                                    <blockquote className="blockquote">{blo.text || blo.description}</blockquote>
+                                <figure className="text-center">
+                                    <blockquote className="text-muted">{blo.text || blo.description}</blockquote>
                                     <Link className='author-link' to={`/user/${blo.authorID}`}>
-                                        <figcaption className="blockquote-footer">Written by  <span className="author_name text-primary">{blo.author}</span></figcaption>
+                                        <figcaption className="blockquote-footer">Written by  <cite className="text-info">{blo.author}</cite></figcaption>
                                     </Link> 
                                 </figure>
                                 

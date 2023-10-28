@@ -15,7 +15,7 @@ const ChallengeAnswers = (props) => {
     const [email, setEmail] = useState('');
     const [isChallengeUser, setChallengeUser] = useState(false)
 
-    const [downloadMessage, setDownloadMessage] = useState('Get File');
+    const [downloadMessage, setDownloadMessage] = useState('Getting File...');
 
     const today = new Date()
 
@@ -64,6 +64,15 @@ const ChallengeAnswers = (props) => {
         .catch(err=> console.log(err))
         setText('');
         getAnswers()
+    }
+
+    const download = async (answer) => {
+        getDownloadURL(ref(storage, `files/${answer.filename}`))
+                    .then((url) => {
+                        setFileDownload(url)
+                        setDownloadMessage('View '+ answer.filename)   
+                    })
+                    .catch(err => console.log(err))
     }
 
     const sendNotification = (message) => {
@@ -127,7 +136,8 @@ const ChallengeAnswers = (props) => {
                                 const fulldate = `${day} ${month} ${year}`;
 
                                 if (answer.challengeID === props.challengeID) {
-                                return (
+                                    download(answer)
+                                    return (
                                     <div className="container-lg blog-box w-100 border border-bottom rounded p-4 m-1">
                                         
                                         <h6 className="display-6">
@@ -138,13 +148,6 @@ const ChallengeAnswers = (props) => {
                                         </p>
                                         <button className="btn btn-sm btn-outline-warning file-button mx-1" onClick={(atag) => {
                                             setDownloadMessage('Loading...')
-                                
-                                            getDownloadURL(ref(storage, `files/${answer.filename}`))
-                                            .then((url) => {
-                                                setFileDownload(url)
-                                                setDownloadMessage('View '+ answer.filename)   
-                                            })
-                                            .catch(err => console.log(err))
                                         }}>
                                             <a className="file-a text-warning  text-decoration-none" id="atag" href={fileDownload}>{downloadMessage}</a>
                                         </button>
