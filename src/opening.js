@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Routes,Link } from 'react-router-dom';
 import { UseSelector, useSelector } from 'react-redux';
 
 function OpenPage(props) {
-  const [colour, setColour] = useState('dark')
+  const [colour, setColour] = useState('dark');
 
   let theme = window.localStorage.getItem('theme');
 

@@ -6,6 +6,8 @@ import Problem from "./problem";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Answers from "./answers";
+import Cookies from "js-cookie";
+import axios from "axios";
 
 const ProblemDetails = () => {
     const [dbProblems, setDbProblems] = useState([]);
@@ -13,6 +15,8 @@ const ProblemDetails = () => {
     const [fileDownload, setFileDownload] = useState();
     const [downloadMessage, setDownloadMessage] = useState('Getting File...');
     const [showAnswers, setShowanswers] = useState(false)
+    const [isUser, setIsUser] = useState(false);
+    const [isLoading, setLoading] = useState(false)
 
     const download = async (blo) => {
         await getDownloadURL(ref(storage, `files/${blo.filename}`))
@@ -57,10 +61,18 @@ const ProblemDetails = () => {
 
 
 
-    function refreshBlogs() {
-        setRefresh('Refreshing...')
-        getProblems();
-        
+    const problemAnswered = async (problemID) => {
+        setLoading(true)
+        axios.post('https://team-hub.onrender.com/api/problems/answered',
+        {
+            problemID: problemID
+        })
+        .then(res => {
+            setLoading(false)
+            window.location.reload(false)
+        })
+        .then(res => alert('Problem Answered'))
+        .catch(err => console.log(err))
     }
     
     const { id } = useParams();
@@ -69,11 +81,17 @@ const ProblemDetails = () => {
         <div>
             <div>
             {
-            dbProblems.map((blo) => {
-                console.log(blo._id)
-                
+            dbProblems.map((blo) => {                
                 if (blo._id === id) {
                     download(blo)
+                    .then(res => {
+                        if (Cookies.get('token_id') === blo.authorID) {
+                            setIsUser(true)
+                        }
+                    })
+
+
+                
                 return (
                     <div>
                         
@@ -91,6 +109,17 @@ const ProblemDetails = () => {
                         <Link className='author-link' to={`/user/${blo.authorID}`}>
                             <figcaption className="blockquote-footer">Written by  <cite className="text-info">{blo.author}</cite></figcaption>
                         </Link>
+                        {!isLoading && isUser && !blo.answered && 
+                        <button className="btn btn-primary" onClick={()=> {
+                            problemAnswered(blo._id)
+                        }}>Click if answered</button>
+                        }
+                        {isLoading &&
+                        <button class="btn btn-primary" type="button" disabled>
+                            <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                            Loading...
+                        </button>
+                        }
                         <div className="blog-date">
                             <div >{blo.date}</div>
                         </div>

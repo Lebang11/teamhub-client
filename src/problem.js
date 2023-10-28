@@ -7,8 +7,14 @@ import { Link } from "react-router-dom";
 
 
 const Problem = (props) => {
-    const fileDownload = props.fileDownload
-    const setFileDownload = props.setFileDownload
+    const [answered, setAnswered] = useState(false);
+
+    useEffect(() => {
+        if (props.answered === true) {
+            setAnswered(true)
+        }
+    })
+
     return ( 
         <div>
             <Link to={`/problems/${props._id}`} className="problem-link">
@@ -23,6 +29,12 @@ const Problem = (props) => {
                             <figcaption className="blockquote-footer">Written by  <cite className="text-info">{props.author}</cite></figcaption>
                         </Link>
                     </figure>
+                    {answered && 
+                        <p className="text-success">Answered</p>
+                    }
+                    {!answered && 
+                        <p className="text-danger">Not Answered</p>
+                    }
                     
                     <div className="blog-date">
                         <div >{props.date}</div>
