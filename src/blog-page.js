@@ -67,7 +67,7 @@ function BlogPage() {
                     <button onClick={createBlog} className="btn btn-outline-secondary">new blog</button>
                 {newBlog && <NewBlog />}
                 </div>
-                <div className="w-75 ">
+                <div className="w-75">
                     {showBlogs && <ShowBlogs/>}
                 </div>
                     

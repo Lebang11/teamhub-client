@@ -93,7 +93,7 @@ const ShowBlogs = (props) => {
 
     return(
         <div>
-            <button onClick={refreshBlogs} className="btn btn-outline-warning">{refresh}</button>
+            <button onClick={refreshBlogs} className="btn btn-outline-warning mb-2">{refresh}</button>
             {
             dbBlogs.map((blo) => {
                 
@@ -134,7 +134,7 @@ const ShowBlogs = (props) => {
                 
                 return (
                     <div >
-                            { <div className="container-lg blog-box w-100 border border-bottom rounded-right">
+                            { <div className="container-lg blog-box w-100 border border-bottom rounded-right my-0">
                                 <h2 className="display-6 text-center text-secondary">
                                     {blo.title}
                                 </h2>
@@ -162,13 +162,9 @@ const ShowBlogs = (props) => {
                                     {comment && <Comments blogid={blo._id}/>}
                                 </div>
                             </div>} 
-
-                        
-                        
                     </div>
                 )
-            }) }   
-            
+            }) }     
         </div>
        )
 }
