@@ -205,7 +205,7 @@ const ProfilePage = () => {
 
     return ( 
         <div>
-            <div className="d-flex flex-wrap mt-4 gap-3">
+            <div className="d-flex flex-wrap justify-content-space-between mt-4 gap-3">
                 <div className="border border-top-0 border-bottom-0 border-start-0 border-2 px-4">
                     <div className="picture-area d-flex justify-content-center align-items-center">
                         {
