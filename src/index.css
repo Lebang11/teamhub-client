@@ -362,3 +362,11 @@ p {
   bottom: 0;
   width: 100%;
 }
+
+.github {
+  background-color: rgb(36,41,46);
+}
+
+.discord {
+  background-color: rgb(64 78 237);
+}

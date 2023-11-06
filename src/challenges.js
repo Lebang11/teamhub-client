@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Challenge from "./challenge";
 
-const Challenges = () => {
+const Challenges = (props) => {
     const [challenges, setChallenges] = useState([]);
 
     const getChallenges = async () => {
@@ -17,7 +17,23 @@ const Challenges = () => {
         getChallenges()  
     },[])
 
-
+    if (props.profile) {
+        return ( 
+            <div>
+                {
+                    challenges.map((challenge) => {
+                        if (challenge.authorID === props.id) {
+                        return (
+                            <div className="container-lg blog-box w-100 border border-bottom rounded-left my-0">
+                                <Challenge challenge={challenge}/>
+                            </div>
+                        )
+                    }})
+                }
+            </div>
+        );
+    }
+    else {
     return ( 
         <div>
             {
@@ -30,7 +46,7 @@ const Challenges = () => {
                 })
             }
         </div>
-    );
+    );}
 }
  
 export default Challenges;

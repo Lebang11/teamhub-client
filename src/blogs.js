@@ -92,6 +92,60 @@ const ShowBlogs = (props) => {
         
     }
 
+    if (props.profile) {
+        return(
+            <div>
+                <button onClick={refreshBlogs} className="btn btn-outline-warning mb-2">{refresh}</button>
+                {
+                dbBlogs.map((blo) => {
+
+                    if (blo.authorID === props.id) {
+                    
+                    const date = new Date(blo.date)
+                    const day = date.getDate()
+                    const month = date.toLocaleString('default', {month: 'short'})
+                    const year = date.getFullYear()
+                    const timehours = date.getHours()
+                    const timemin = date.getMinutes()
+                    const timesec = date.getSeconds()
+                    const fulltime = `${timehours}:${timemin}:${timesec}`
+                    const fulldate = `${day} ${month} ${year}`;
+                    
+    
+                    const downloadFile = async (id) => {
+                        await fetch(`https://team-hub.onrender.com/api/user?id=${id}`)
+                        .then(response => response.json())
+                        .then(res => {
+                            console.log(res)
+                            setImageName(res.imagename)
+                            setUserName(res.username);
+                            setEmail(res.email)
+                        })
+                        .then(res => {
+                            })
+                        .catch(err => console.log(err)) 
+    
+                        const downloadRef = ref(storage, `profilePics/${imagename}`)
+                        getDownloadURL(downloadRef)
+                        .then((url) => {
+                            setImageDownload(url)
+                        })
+                        .catch(err => console.log(err))
+                        
+                    }
+    
+                    
+                    
+                    return (
+                        <div >
+                            <Blog blo={blo} fulldate={fulldate} fulltime={fulltime}/>
+                        </div>
+                    )}
+                }) }     
+            </div>
+           )
+    } else {
+
     return(
         <div>
             <button onClick={refreshBlogs} className="btn btn-outline-warning mb-2">{refresh}</button>
@@ -141,7 +195,7 @@ const ShowBlogs = (props) => {
             }) }     
         </div>
        )
-}
+}}
  
 export default ShowBlogs;
 
