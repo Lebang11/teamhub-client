@@ -38,7 +38,7 @@ const ProblemPage = () => {
     return ( 
         <div>
             <div className="d-flex flex-column justify-content-center align-items-center">
-            <h3 className="display-4">Problems</h3>
+            <h3 className="display-4">Issues</h3>
             <div className="w-75 m-4 mt-1">
                 <button className="btn btn-outline-secondary" onClick={showNewProblem}>post problem</button>
             </div>

@@ -33,7 +33,7 @@ const ProfilePage = () => {
     const [showChangeEmail, setShowChangeEmail] =  useState(false);
     const [showGithub, setShowGithub] = useState(false);
     const [showDiscord, setShowDiscord] = useState(false);
-
+    const [isLoading, setLoading] = useState(true)
 
     const [isUser, setIsUser] = useState(false);
 
@@ -67,6 +67,10 @@ const ProfilePage = () => {
             setAbout(res.about);
             setGithub(res.github);
             setDiscord(res.discord);
+
+            if (!res.imagename) {
+                setImageName('Default_pfp.svg.png')
+            }
 
         })
         .then(res => {
@@ -171,13 +175,14 @@ const ProfilePage = () => {
     
     const downloadFile = async () => {
         let downloadRef = ref(storage, `profilePics/${imagename}`)
-
            getDownloadURL(downloadRef)
         .then((url) => {
-            setImageDownload(url)
-            
+            setImageDownload(url) 
         })
+        .then(() => setLoading(false))
         .catch(err => console.log(err))
+
+
          
         
         
@@ -200,17 +205,26 @@ const ProfilePage = () => {
 
     return ( 
         <div>
-            <div className="d-flex mt-4">
+            <div className="d-flex flex-wrap mt-4 gap-3">
                 <div className="border border-top-0 border-bottom-0 border-start-0 border-2 px-4">
                     <div className="picture-area d-flex justify-content-center align-items-center">
-                        <img className="w-100 h-100 rounded" src={imageDownload}></img>
+                        {
+                            !isLoading &&
+                            <img className="w-100 h-100 rounded" src={imageDownload}></img>
+                        }
+                        {
+                            isLoading &&
+                            <div class="spinner-border text-primary" role="status">
+                            <span class="sr-only"></span>
+                            </div>
+                        }
                     </div>
                 </div>
                 <div className="px-3 d-block w-75">
                     <div className="d-flex flex-column gap-3">
                         <div className="btn-group">
                             <button className="btn btn-secondary w-25 ">
-                                username:
+                                name:
                             </button>
                             {!showChangeUsername && isUser && <div className="btn btn-light w-75" onClick={() => {
                                 if (showChangeUsername === false) {

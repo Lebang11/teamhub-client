@@ -47,7 +47,14 @@ const App = () => {
         document.documentElement.setAttribute('data-bs-theme', theme)
         if (theme === 'light') {
           setFooterColour('light')
+          document.getElementById("footer").classList.add("bg-light")
+          document.getElementById("footer").classList.remove("bg-secondary")
+
         } else {
+          document.getElementById("footer").classList.add("bg-secondary")
+          document.getElementById("footer").classList.remove("bg-light")
+
+
           setFooterColour('secondary')
         }
       }, [themeChanged])
@@ -96,12 +103,7 @@ const App = () => {
             <Route path='/challenges' element={<ChallengesPage theme={theme}/>}/>
             <Route path='/challenge/:id' element={<ChallengeDetails theme={theme}/>}/>
           </Routes>
-          <footer class={`bg-${footerColour} text-center text-lg-start footer mt-4`}>
-            <div class="text-center p-3" >
-              Made by:
-              Lebang Nong :)
-            </div>
-          </footer>
+          
         </Router>
 
         </div>
