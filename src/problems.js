@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 const ShowProblems = (props) => {
     const [dbProblems, setDbProblems] = useState([]);
-    const [refresh, setRefresh] = useState('refresh')
+    const [refresh, setRefresh] = useState('refresh');
     const [fileDownload, setFileDownload] = useState();
 
     
