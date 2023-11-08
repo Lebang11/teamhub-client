@@ -84,8 +84,8 @@ const App = () => {
         <div className='mb-5'>
           <Router >
           <NavBar/>
-          <div className="form-check form-switch" onClick={changeTheme}>
-                {<input checked={checked} id="theme-switch" className="form-check-input" type="checkbox"></input>}
+          <div className="form-check form-switch" >
+                <input checked={checked} onClick={changeTheme} id="theme-switch" className="form-check-input" type="checkbox"></input>
                 <label for="theme-switch" >Dark mode</label>
             </div>
   

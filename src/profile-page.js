@@ -14,6 +14,8 @@ import ProblemPage from "./problem-page";
 import ShowProblems from "./problems";
 import Challenge from "./challenge";
 import Challenges from "./challenges";
+import App from "./App";
+import NavBar from "./navbar";
 
 const ProfilePage = () => {
     const {id} = useParams();
@@ -54,7 +56,7 @@ const ProfilePage = () => {
 
     
 
-    const today = new Date();
+    // const today = new Date();
 
     const findUser = async () => {
         await fetch(`https://team-hub.onrender.com/api/user?id=${id}`)
@@ -78,25 +80,25 @@ const ProfilePage = () => {
         .catch(err => console.log(err)) 
     }
 
-    const uploadImage = async () => {
-        if (image === null) return;
-        console.log(image.name);
-        await axios.post(`https://team-hub.onrender.com/api/user`, 
-        {
-            id,
-            imagename
-        })
-        .then(res => {
-            console.log(res)
-        })
-        .catch(err => console.log(err))
-        const imageRef = ref(storage, `profilePics/${imagename}`);
-        uploadBytes(imageRef, image).then(() => {
-            alert('Image Uploaded, name: ' + imagename)
-            setShowChangePic(false);
-            downloadFile()
-        })
-      }
+    // const uploadImage = async () => {
+    //     if (image === null) return;
+    //     console.log(image.name);
+    //     await axios.post(`https://team-hub.onrender.com/api/user`, 
+    //     {
+    //         id,
+    //         imagename
+    //     })
+    //     .then(res => {
+    //         console.log(res)
+    //     })
+    //     .catch(err => console.log(err))
+    //     const imageRef = ref(storage, `profilePics/${imagename}`);
+    //     uploadBytes(imageRef, image).then(() => {
+    //         alert('Image Uploaded, name: ' + imagename)
+    //         setShowChangePic(false);
+    //         downloadFile()
+    //     })
+    //   }
 
     const uploadUsername = async () => {
         await axios.post(`https://team-hub.onrender.com/api/user`, 
@@ -189,15 +191,15 @@ const ProfilePage = () => {
         
     }
 
-    const logout = () => {
-        Cookies.remove('token_name');
-        Cookies.remove('token_id');
-        Cookies.remove('token_email');
-        Cookies.remove('token_imagename');
+    // const logout = () => {
+    //     Cookies.remove('token_name');
+    //     Cookies.remove('token_id');
+    //     Cookies.remove('token_email');
+    //     Cookies.remove('token_imagename');
 
-        navigate('/')
+    //     navigate('/')
 
-    }
+    // }
 
     setTimeout(() => {
         downloadFile()}, 1000)
