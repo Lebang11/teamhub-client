@@ -18,19 +18,25 @@ function OpenPage(props) {
   
   return (
       
-
-        <div class="opening-div w-auto">
+        <div id='Landing' className='mt-1'>
+          
+          <h1 className='text-center display-3 fw-bold'>
+            Welcome to Team-hub
+          </h1>
+          <div class="opening-div mt-0 w-auto" >
           <div class="p-2 w-100">
               <Link className='w-100 d-flex justify-content-center text-decoration-none' to='/create'>
-                <button className={`add-myself-button btn btn-lg btn-${colour} w-75`}  >Add myself to team</button>
+                <button className={`add-myself-button btn btn-lg btn-secondary w-75`}  >Add myself to team</button>
               </Link>
           </div>
           <div class="p-2 w-100">
               <Link className='w-100 d-flex justify-content-center text-decoration-none' to='/login'>
-                <button className={`add-myself-button btn btn-lg btn-${colour} w-75`}  >Login</button>
+                <button className={`add-myself-button btn btn-lg btn-secondary w-75`}  >Login</button>
               </Link>
           </div>
         </div>
+        </div>
+        
      
   
   );
