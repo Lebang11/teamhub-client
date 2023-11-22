@@ -43,7 +43,7 @@ const NavBar = (props) => {
                         <span className="d-flex align-items-center">
                         <img src={icon}  width="35" height="35" alt=""></img>
                         <h3 className="fw-bold text-secondary d-inline-block m-0 "> 
-                            Team-hub
+                            Team-Hub
                             </h3>
                         </span>
                         
