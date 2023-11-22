@@ -21,7 +21,7 @@ function OpenPage(props) {
         <div id='Landing' className='mt-1'>
           
           <h1 className='text-center display-3 fw-bold'>
-            Welcome to Team-hub
+            Welcome to Team-Hub
           </h1>
           <div class="opening-div mt-0 w-auto" >
           <div class="p-2 w-100">
