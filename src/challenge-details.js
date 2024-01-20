@@ -105,7 +105,7 @@ const ChallengeDetails = () => {
                                 setShowanswers(false)
                             }    
                                 }}>
-                            Show Answers (<span>{blo.answerCount}</span>)
+                            Answer (<span>{blo.answerCount}</span>)
                         </button>
                         
                         <div>
