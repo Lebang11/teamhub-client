@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import ShowBlogs from "./blogs";
 import NewBlog from "./new-blog";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { change } from "./theme";
+
 
 const NavBar = (props) => {
     const [username, setUser] = useState('');
@@ -16,7 +17,7 @@ const NavBar = (props) => {
 
     const dispatch = useDispatch()
     let theme = window.localStorage.getItem('theme') || 'light';
-
+    const navigate = useNavigate();
 
     useEffect(() => {
         setUser(Cookies.get(`token_name`));
@@ -28,7 +29,7 @@ const NavBar = (props) => {
         } else {
             setIcon("team-hub-favicon-black.png")
         }
-    }, [theme]);
+    }, [,theme]);
     
     
     return ( 
@@ -39,7 +40,7 @@ const NavBar = (props) => {
 
             <nav className="navbar navbar-expand-sm">
                 <div className="container-fluid">
-                    <a href="/" className="navbar-brand">
+                    <a className="btn navbar-brand" onClick={() => navigate("/")}>
                         <span className="d-flex align-items-center">
                         <img src={icon}  width="35" height="35" alt=""></img>
                         <h3 className="fw-bold text-secondary d-inline-block m-0 "> 
@@ -57,22 +58,22 @@ const NavBar = (props) => {
                 <div id="main-nav" className="me-3 collapse navbar-collapse justify-content-end align-center">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <a href="/blogs" className="nav-link">
+                            <a className="btn nav-link" onClick={() => navigate("/blogs")}>
                                 Blogs
                             </a>
                         </li>
                         <li className="nav-item">
-                            <a href="/problems" className="nav-link">
+                            <a className="btn nav-link" onClick={() => navigate("/problems")}>
                                 Issues
                             </a>
                         </li>
                         <li className="nav-item">
-                            <a href={`/challenges`} className="nav-link">
+                            <a className="btn nav-link" onClick={() => navigate("/challenges")}>
                                 Challenges
                             </a>
                         </li>
                         <li className="nav-item">
-                            <a href={`/user/${id}`} className="nav-link">
+                            <a className="btn nav-link" onClick={() => navigate(`/user/${id}`)}>
                                 Profile
                             </a>
                         </li>

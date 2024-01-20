@@ -60,12 +60,6 @@ const Register = () => {
             setToken('')
     }
     
-
-    function handleMessage() {
-        setMessage('Loading...')
-    }
-    
-    
     
     return (
         <div className="form-box-flex w-100 h-100">

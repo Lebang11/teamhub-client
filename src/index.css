@@ -371,6 +371,10 @@ p {
   background-color: rgb(64 78 237);
 }
 
+.linkedin {
+  background-color: rgb(0, 119, 181);
+}
+
 #Landing {
   width: 100%;
   height: 100vh;
@@ -379,4 +383,8 @@ p {
   position: relative;
   margin-top: 70px;
   padding: 0;
+}
+
+.tip {
+  font-size: 10px;
 }

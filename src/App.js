@@ -35,9 +35,6 @@ const App = () => {
 
     let theme = window.localStorage.getItem('theme') || 'light';
     
-    
-    
-
     useEffect(() => {
         if (theme == 'dark') {
           setCheck(true)
@@ -53,7 +50,6 @@ const App = () => {
         } else {
           document.getElementById("footer").classList.add("bg-secondary")
           document.getElementById("footer").classList.remove("bg-light")
-
 
           setFooterColour('secondary')
         }

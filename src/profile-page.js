@@ -22,8 +22,15 @@ const ProfilePage = () => {
     const [username, setUserName] = useState();
     const [email, setEmail] = useState();
     const [about, setAbout] = useState();
+    
     const [github, setGithub] = useState(null);
     const [discord, setDiscord] = useState(null);
+    const [linkedin, setLinkedIn] = useState(null);
+
+    const [showGithub, setShowGithub] = useState(false);
+    const [showDiscord, setShowDiscord] = useState(false);
+    const [showLinkedIn, setShowLinkedIn] = useState(false);
+
 
     const [profilePic, setProfilePic] = useState();
     const [imagename, setImageName] = useState('');
@@ -33,13 +40,14 @@ const ProfilePage = () => {
     const [showChangeUsername, setShowChangeUsername] =  useState(false);
     const [showChangeAbout, setShowChangeAbout] =  useState(false);
     const [showChangeEmail, setShowChangeEmail] =  useState(false);
-    const [showGithub, setShowGithub] = useState(false);
-    const [showDiscord, setShowDiscord] = useState(false);
+    
     const [isLoading, setLoading] = useState(true)
 
     const [isUser, setIsUser] = useState(false);
 
     const navigate = useNavigate();
+
+    
 
     useEffect( () => {
         if (Cookies.get("token_id") === id) {
@@ -69,6 +77,7 @@ const ProfilePage = () => {
             setAbout(res.about);
             setGithub(res.github);
             setDiscord(res.discord);
+            setLinkedIn(res.linkedin)
 
             if (!res.imagename) {
                 setImageName('Default_pfp.svg.png')
@@ -125,6 +134,21 @@ const ProfilePage = () => {
             alert('Github change to ' + github)
             document.getElementById('github').value = '';
             setShowGithub(false);
+            findUser()
+        })
+        .catch(err => console.log(err))
+    }
+
+    const uploadLinkedIn = async () => {
+        await axios.post(`https://team-hub.onrender.com/api/user`, 
+        {
+            id,
+            linkedin
+        })
+        .then(res => {
+            alert('LinkedIn changed to ' + linkedin)
+            document.getElementById('linkedin').value = '';
+            setShowLinkedIn(false);
             findUser()
         })
         .catch(err => console.log(err))
@@ -369,8 +393,13 @@ const ProfilePage = () => {
                         <div>
                             {
                                 github && 
-                                 <a href={`https://github.com/${github}`} target="blank_" className="btn btn-secondary me-2 github" onClick={() => {
-                                
+                                 <a href={`https://github.com/${github}`} target="blank_" className="btn btn-secondary me-2 github"  onContextMenu={(e) => {
+                                    if (!showGithub && isUser) {
+                                        setShowGithub(true)
+                                    } else if (isUser) {
+                                        setShowGithub(false)
+                                    }
+                                        
                                 }}><span><i class="bi bi-github me-1"></i></span>Github</a>
                             }
                             {   !github && isUser &&
@@ -386,10 +415,24 @@ const ProfilePage = () => {
 
                             {                       
                                 discord && 
-                                 <a href="https://discordapp.com" className="btn btn-secondary me-2 discord"><span><i class="bi bi-discord me-1"></i></span>Discord: {discord}</a>
+                                 <a href="https://discordapp.com" target="blank_" className="btn btn-secondary me-2 discord" onContextMenu={(e) => {
+                                    if (!showDiscord && isUser) {
+                                        setShowDiscord(true)
+                                    } else if (isUser) {
+                                        setShowDiscord(false)
+                                    }
+                                        
+                                }}><span><i class="bi bi-discord me-1"></i></span>Discord: {discord}</a>
                             }
                             {   !discord && isUser &&
-                                <a className="btn btn-secondary me-2 discord" onClick={() => {
+                                <a className="btn btn-secondary me-2 discord"  onContextMenu={(e) => {
+                                    if (!showLinkedIn) {
+                                        setShowLinkedIn(true)
+                                    } else {
+                                        setShowLinkedIn(false)
+                                    }
+                                        
+                                }} onClick={() => {
                                     if (!showDiscord) {
                                         setShowDiscord(true)
                                     } else {
@@ -398,7 +441,28 @@ const ProfilePage = () => {
                                 
                             }}><span><i class="bi bi-discord me-1"></i></span>Add Discord</a>
                             }
-                           
+                            {
+                                linkedin && 
+                                 <a href={`https://${linkedin}`} target="blank_" className="btn btn-secondary me-2 linkedin"  onContextMenu={(e) => {
+                                    if (!showLinkedIn && isUser) {
+                                        setShowLinkedIn(true)
+                                    } else if (isUser) {
+                                        setShowLinkedIn(false)
+                                    }
+                                        
+                                }}><span><i class="bi bi-linkedin me-1"></i></span>LinkedIn</a>
+                            }
+                            {   !linkedin && isUser &&
+                                <a className="btn btn-secondary me-2 linkedin" onClick={() => {
+                                    if (!showLinkedIn) {
+                                        setShowLinkedIn(true)
+                                    } else {
+                                        setShowLinkedIn(false)
+                                    }
+                                
+                            }}><span><i class="bi bi-linkedin me-1"></i></span>Add LinkedIn</a>
+                            }
+                            
                            
                            {
                                 showDiscord && isUser &&
@@ -426,7 +490,25 @@ const ProfilePage = () => {
                                 </button>
                                 </div>
                                 }
-                            
+                            {
+                                showLinkedIn && isUser &&
+                                
+                                <div className="btn-group d-block mt-2">
+                                    
+                                    <input onChange={(e) => {
+                                    setLinkedIn(e.target.value);
+                                    }} placeholder="Enter LinkedIn URL" id="linkedin" type="text" className="btn btn-light w-75" value={linkedin}/>
+                                <button className="btn btn-success" onClick={uploadLinkedIn}>
+                                        Add LinkedIn
+                                </button>
+                                </div>
+                                }
+                            {
+                                isUser &&
+                            <small className="text-muted tip">*right click to edit existing Github/Discord/LinkedIn</small>
+                                
+                            }
+                           
                         </div>
 
                     </div>
