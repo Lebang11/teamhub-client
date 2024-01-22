@@ -45,6 +45,8 @@ const ProfilePage = () => {
 
     const [isUser, setIsUser] = useState(false);
 
+    const [imageChange, setImageChange] = useState(0)
+
     const navigate = useNavigate();
 
     
@@ -89,25 +91,31 @@ const ProfilePage = () => {
         .catch(err => console.log(err)) 
     }
 
-    // const uploadImage = async () => {
-    //     if (image === null) return;
-    //     console.log(image.name);
-    //     await axios.post(`https://team-hub.onrender.com/api/user`, 
-    //     {
-    //         id,
-    //         imagename
-    //     })
-    //     .then(res => {
-    //         console.log(res)
-    //     })
-    //     .catch(err => console.log(err))
-    //     const imageRef = ref(storage, `profilePics/${imagename}`);
-    //     uploadBytes(imageRef, image).then(() => {
-    //         alert('Image Uploaded, name: ' + imagename)
-    //         setShowChangePic(false);
-    //         downloadFile()
-    //     })
-    //   }
+    const uploadImage = async () => {
+        console.log('Uploading image')
+        if (image === null) {
+            console.log('No image')
+            return};
+        console.log(image.name);
+        await axios.post(`https://team-hub.onrender.com/api/user`, 
+        {
+            id,
+            imagename
+        })
+        .then(res => {
+            console.log(res)
+        })
+        .catch(err => console.log(err))
+        const imageRef = ref(storage, `profilePics/${imagename}`);
+        uploadBytes(imageRef, image).then(() => {
+            setLoading(true)
+            alert('Image Uploaded, name: ' + imagename)
+            setShowChangePic(false);
+            downloadFile();
+            findUser()
+            .then(() => setLoading(false))
+        })
+      }
 
     const uploadUsername = async () => {
         await axios.post(`https://team-hub.onrender.com/api/user`, 
@@ -228,23 +236,37 @@ const ProfilePage = () => {
     setTimeout(() => {
         downloadFile()}, 1000)
 
+    useEffect(() => {
+        uploadImage().then(() => console.log('Uploading'))
+    }, [imageChange])
+
 
     return ( 
         <div>
             <div className="d-flex flex-wrap justify-content-space-between mt-4 gap-3">
-                <div className="border border-top-0 border-bottom-0 border-start-0 border-2 px-4">
-                    <div className="picture-area d-flex justify-content-center align-items-center">
+                <div className="border border-top-0 border-bottom-0 border-start-0 border-2 px-4 ">
+                    <div className="picture-area d-flex justify-content-center align-items-center mb-3">
                         {
                             !isLoading &&
-                            <img className="w-100 h-100 rounded" src={imageDownload}></img>
+                            <label for="img-upload" className="w-100 h-100 rounded position-relative">
+                                <img for="img-upload" className="w-100 h-100 rounded position-relative" src={imageDownload}></img>
+
+                            </label>
                         }
                         {
                             isLoading &&
-                            <div class="spinner-border text-primary" role="status">
+                            <div class="spinner-border text-primary position-relative" role="status">
                             <span class="sr-only"></span>
                             </div>
                         }
+                        
                     </div>
+                        <p className="text-muted tip">*click to change</p>
+                        <input id="img-upload" type="file" className="form-control invisible " onChange={async (e) => {
+                            setImage(e.target.files[0])
+                            setImageName(e.target.files[0].name)
+                            setImageChange(imageChange + 1)
+                        }}/>
                 </div>
                 <div className="px-3 d-block w-75">
                     <div className="d-flex flex-column gap-3">
