@@ -37,7 +37,6 @@ const App = () => {
     ;
     
 
-
     
 
     if (!Cookies.get(`token_name`) || !Cookies.get(`token_email`) || !Cookies.get(`token_id`)){
@@ -90,6 +89,7 @@ const App = () => {
             <Route path='/challenges' element={<NotUser theme={theme}/>}/>
             <Route path='/challenge/:id' element={<NotUser theme={theme}/>}/>
           </Routes>
+         
         </Router>
       )
     }

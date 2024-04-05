@@ -34,6 +34,7 @@ const ProfilePage = () => {
     const [isLoading, setLoading] = useState(true)
 
     const [isUser, setIsUser] = useState(false);
+    
 
     useEffect( () => {
         if (Cookies.get("token_id") === id) {
@@ -194,21 +195,27 @@ const ProfilePage = () => {
 
 
     return ( 
-        <div>
-            <div className="d-flex flex-wrap justify-content-space-between mt-4 gap-3">
-                <div className="border border-top-0 border-bottom-0 border-start-0 border-2 px-4">
-                    <div className="picture-area d-flex justify-content-center align-items-center">
+        <div className="mb-4">
+            <div className="d-flex flex-wrap justify-content-space-between my-4 gap-3">
+                <div className="border border-top-0 border-bottom-0 border-start-0 border-2 px-4 ">
+                    <div className="picture-area d-flex justify-content-center align-items-center mb-3">
                         {
                             !isLoading &&
                                 <img className="profile-image w-100 h-100 rounded" data-bs-target="#exampleModal" data-bs-toggle="modal" src={imageDownload} ></img>                        
                         }
                         {
                             isLoading &&
-                            <div class="spinner-border text-primary" role="status">
+                            <div class="spinner-border text-primary position-relative" role="status">
                             <span class="sr-only"></span>
                             </div>
                         }
+                        
                     </div>
+                        <p className="text-muted tip">*click to change</p>
+                        <input id="img-upload" type="file" className="form-control invisible " onChange={async (e) => {
+                            setImage(e.target.files[0])
+                            setImageName(e.target.files[0].name)
+                        }}/>
                 </div>
                 <div className="px-3 d-block w-75">
                     
@@ -516,7 +523,7 @@ const ProfilePage = () => {
             </nav>
             
             
-            <div class="tab-content ms-4" id="nav-tabContent">
+            <div class="tab-content ms-4 mb-4" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                     <ShowBlogs profile={true} id={id}/>
                 </div>

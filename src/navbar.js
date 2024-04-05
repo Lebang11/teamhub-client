@@ -41,17 +41,17 @@ const NavBar = (props) => {
           setCheck(false)
         }
         document.documentElement.setAttribute('data-bs-theme', theme)
-        if (theme === 'light') {
-          setFooterColour('light')
-          document.getElementById("footer").classList.add("bg-light")
-          document.getElementById("footer").classList.remove("bg-secondary")
+        // if (theme === 'light') {
+        //   setFooterColour('light')
+        //   document.getElementById("footer").classList.add("bg-light")
+        //   document.getElementById("footer").classList.remove("bg-secondary")
 
-        } else {
-          document.getElementById("footer").classList.add("bg-secondary")
-          document.getElementById("footer").classList.remove("bg-light")
+        // } else {
+        //   document.getElementById("footer").classList.add("bg-secondary")
+        //   document.getElementById("footer").classList.remove("bg-light")
 
-          setFooterColour('secondary')
-        }
+        //   setFooterColour('secondary')
+        // }
       }, [themeChanged])
 
     useEffect(() => {
