@@ -8,7 +8,7 @@ const Blog = (props) => {
 
     return ( 
         <div>
-            { <div className="container-lg blog-box w-100 border border-bottom rounded-right my-0">
+            { <div className="container-lg blog-box w-100 border border-bottom rounded-right my-2">
                                 <h2 className="display-6 text-center text-secondary">
                                     {props.blo.title}
                                 </h2>

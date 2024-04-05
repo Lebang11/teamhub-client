@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "./user";
+import ParticlesComponent from './utilities/particles';
+
 
 //Testing:
 
@@ -61,6 +63,7 @@ const Login = () => {
     
     return (
         <div className="form-box-flex w-100 h-100">
+            
             <form onSubmit={handleSubmit} className="form-box">
                 <h1 className="display-6 ">Sign in</h1>
                 <div class="form-group w-75">

@@ -24,49 +24,21 @@ import NotUser from './not-user';
 import theme, { selectTheme } from './theme';
 import { change } from './theme';
 import ChallengeDetails from './challenge-details';
+import ParticlesComponent from './utilities/particles';
+import ParticlesComponent2 from './utilities/particles2';
+
 
 const App = () => {
-    const [themeChanged, setTheme] = useState('')
-    const [checked, setCheck] = useState(false)
-    const [footerColour, setFooterColour] = useState('light')
+    
 
     const dispatch = useDispatch()
     let user = useSelector((state) => {return state.user.value});
 
-    let theme = window.localStorage.getItem('theme') || 'light';
+    ;
     
-    useEffect(() => {
-        if (theme == 'dark') {
-          setCheck(true)
-        } else {
-          setCheck(false)
-        }
-        document.documentElement.setAttribute('data-bs-theme', theme)
-        if (theme === 'light') {
-          setFooterColour('light')
-          document.getElementById("footer").classList.add("bg-light")
-          document.getElementById("footer").classList.remove("bg-secondary")
 
-        } else {
-          document.getElementById("footer").classList.add("bg-secondary")
-          document.getElementById("footer").classList.remove("bg-light")
 
-          setFooterColour('secondary')
-        }
-      }, [themeChanged])
-
-    const changeTheme = () => {
-      if (window.localStorage.getItem('theme') == 'dark') {
-        window.localStorage.setItem('theme', 'light')
-        document.documentElement.setAttribute('data-bs-theme', 'light')
-        setTheme('light')
-      } else {
-        window.localStorage.setItem('theme', 'dark')
-        document.documentElement.setAttribute('data-bs-theme', 'dark')
-        setTheme('dark')
-
-      }
-  }
+    
 
     if (!Cookies.get(`token_name`) || !Cookies.get(`token_email`) || !Cookies.get(`token_id`)){
       dispatch(login(false))
@@ -77,14 +49,11 @@ const App = () => {
 
     if (user) {
       return (
-        <div className='mb-5'>
+        
           <Router >
+          
           <NavBar/>
-          <div className="form-check form-switch" >
-                <input checked={checked} onClick={changeTheme} id="theme-switch" className="form-check-input" type="checkbox"></input>
-                <label for="theme-switch" >Dark mode</label>
-            </div>
-  
+          
           <Routes>
             <Route path='/blogs' element={<BlogPage theme={theme}/>}/>
             <Route exact path='/' element={<OpenPage theme={theme}/>}/>
@@ -101,18 +70,12 @@ const App = () => {
           </Routes>
           
         </Router>
-
-        </div>
               );
     } else {
       return (
+        
         <Router>
           <NavBar/>
-          <div className="form-check form-switch" onClick={changeTheme}>
-                <input id="theme-switch" className="form-check-input" type="checkbox"></input>
-                <label for="theme-switch" >Dark mode</label>
-            </div>
-
           <Routes>
             <Route exact path='/' theme={theme} element={<OpenPage/>}/>
             <Route path='/create' theme={theme} element={<Register/>}/>

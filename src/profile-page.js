@@ -1,21 +1,12 @@
 import { useEffect, useState } from "react";
-import { uploadBytes, getStorage, ref, getDownloadURL, getBlob } from "firebase/storage";
+import { uploadBytes, ref, getDownloadURL } from "firebase/storage";
 import { storage } from "./firebase";
-import { v4 } from "uuid";
-import Problem from "./problem";
-import { useParams, useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
 import ShowBlogs from "./blogs";
-import Comments from "./comments";
-import BlogPage from "./blog-page";
-import ProblemPage from "./problem-page";
 import ShowProblems from "./problems";
-import Challenge from "./challenge";
 import Challenges from "./challenges";
-import App from "./App";
-import NavBar from "./navbar";
 
 const ProfilePage = () => {
     const {id} = useParams();
@@ -32,7 +23,6 @@ const ProfilePage = () => {
     const [showLinkedIn, setShowLinkedIn] = useState(false);
 
 
-    const [profilePic, setProfilePic] = useState();
     const [imagename, setImageName] = useState('');
     const [image, setImage] = useState(null);
     const [imageDownload, setImageDownload] =  useState([]);
@@ -45,69 +35,58 @@ const ProfilePage = () => {
 
     const [isUser, setIsUser] = useState(false);
 
-    const navigate = useNavigate();
-
-    
-
     useEffect( () => {
         if (Cookies.get("token_id") === id) {
             setIsUser(true)
         }
-        const loadPage = async () => {
-            await findUser()
-        }
-        loadPage()
-        .catch(err => console.error)
         
-        
+        findUser()
     }, []);
 
+        setTimeout(() => {
+            downloadFile()}, 1000)
     
 
-    // const today = new Date();
-
     const findUser = async () => {
-        await fetch(`https://team-hub.onrender.com/api/user?id=${id}`)
-        .then(response => response.json())
+        await axios.get(`https://team-hub.onrender.com/api/user?id=${id}`)
+        // .then(response => response.json())
         .then(res => {
-            console.log(res);
-            setImageName(res.imagename);
-            setUserName(res.username);
-            setEmail(res.email);
-            setAbout(res.about);
-            setGithub(res.github);
-            setDiscord(res.discord);
-            setLinkedIn(res.linkedin)
+            console.log(res.data);
+            setImageName(res.data.imagename);
+            setUserName(res.data.username);
+            setEmail(res.data.email);
+            setAbout(res.data.about);
+            setGithub(res.data.github);
+            setDiscord(res.data.discord);
+            setLinkedIn(res.data.linkedin)
 
-            if (!res.imagename) {
+            if (!res.data.imagename) {
                 setImageName('Default_pfp.svg.png')
             }
 
         })
-        .then(res => {
-            })
         .catch(err => console.log(err)) 
     }
 
-    // const uploadImage = async () => {
-    //     if (image === null) return;
-    //     console.log(image.name);
-    //     await axios.post(`https://team-hub.onrender.com/api/user`, 
-    //     {
-    //         id,
-    //         imagename
-    //     })
-    //     .then(res => {
-    //         console.log(res)
-    //     })
-    //     .catch(err => console.log(err))
-    //     const imageRef = ref(storage, `profilePics/${imagename}`);
-    //     uploadBytes(imageRef, image).then(() => {
-    //         alert('Image Uploaded, name: ' + imagename)
-    //         setShowChangePic(false);
-    //         downloadFile()
-    //     })
-    //   }
+    const uploadImage = async () => {
+        if (image === null) return;
+        console.log(image.name);
+        await axios.post(`https://team-hub.onrender.com/api/user`, 
+        {
+            id,
+            imagename
+        })
+        .then(res => {
+            console.log(res)
+        })
+        .catch(err => console.log(err))
+        const imageRef = ref(storage, `profilePics/${imagename}`);
+        uploadBytes(imageRef, image).then(() => {
+            alert('Image Uploaded, name: ' + imagename)
+            setShowChangePic(false);
+            downloadFile()
+        })
+      }
 
     const uploadUsername = async () => {
         await axios.post(`https://team-hub.onrender.com/api/user`, 
@@ -207,26 +186,11 @@ const ProfilePage = () => {
         })
         .then(() => setLoading(false))
         .catch(err => console.log(err))
-
-
-         
-        
-        
         
     }
 
-    // const logout = () => {
-    //     Cookies.remove('token_name');
-    //     Cookies.remove('token_id');
-    //     Cookies.remove('token_email');
-    //     Cookies.remove('token_imagename');
-
-    //     navigate('/')
-
-    // }
-
-    setTimeout(() => {
-        downloadFile()}, 1000)
+    
+    
 
 
     return ( 
@@ -236,7 +200,7 @@ const ProfilePage = () => {
                     <div className="picture-area d-flex justify-content-center align-items-center">
                         {
                             !isLoading &&
-                            <img className="w-100 h-100 rounded" src={imageDownload}></img>
+                                <img className="profile-image w-100 h-100 rounded" data-bs-target="#exampleModal" data-bs-toggle="modal" src={imageDownload} ></img>                        
                         }
                         {
                             isLoading &&
@@ -247,6 +211,30 @@ const ProfilePage = () => {
                     </div>
                 </div>
                 <div className="px-3 d-block w-75">
+                    
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Change Image</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="file" className="form-control" onChange={(e) => {
+                            console.log(e.target.files[0])
+                            setImage(e.target.files[0])
+                            setImageName(e.target.files[0].name)
+                        }}/>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button data-bs-dismiss="modal" type="button" class="btn btn-primary" onClick={async () => {
+                            await uploadImage();
+                        }}>Save changes</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
                     <div className="d-flex flex-column gap-3">
                         <div className="btn-group">
                             <button className="btn btn-secondary w-25 ">
