@@ -95,7 +95,7 @@ const ShowBlogs = (props) => {
     if (props.profile) {
         return(
             <div className="mb-4">
-                <button onClick={refreshBlogs} className="btn btn-outline-warning mb-2">{refresh}</button>
+                <button onClick={refreshBlogs} className="btn btn-outline-info mb-2">{refresh}</button>
                 {
                 dbBlogs.map((blo) => {
 
@@ -148,7 +148,7 @@ const ShowBlogs = (props) => {
 
     return(
         <div className="mb-4">
-            <button onClick={refreshBlogs} className="btn btn-outline-warning mb-2">{refresh}</button>
+            <button onClick={refreshBlogs} className="btn btn-outline-info mb-2">{refresh}</button>
             {
             dbBlogs.map((blo) => {
                 

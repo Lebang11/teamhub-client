@@ -148,7 +148,7 @@ h3 {
 }
 
 .blog-box:hover {
-  box-shadow: 7px 7px 5px rgb(145, 115, 27);
+  box-shadow: 7px 7px 5px rgb(0, 217, 255);
   transform: scale(1.05);
 }
 

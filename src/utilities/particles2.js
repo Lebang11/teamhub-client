@@ -56,7 +56,7 @@ const ParticlesComponent2 = (props) => {
             duration: 15,
           },
           grab: {
-            distance: 150,
+            distance: 80,
           },
         },
       },
@@ -66,7 +66,7 @@ const ParticlesComponent2 = (props) => {
         },
         links: {
           color: "#E5E4E2",
-          distance: 150,
+          distance: 70,
           enable: true,
           opacity: 0.8,
           width: 1,
