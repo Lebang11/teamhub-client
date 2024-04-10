@@ -17,15 +17,11 @@ import BlogPage from './blog-page';
 import ChallengesPage from './challenges-page';
 import NavBar from './navbar';
 import Cookies from 'js-cookie';
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from './user';
 import NotUser from './not-user';
 import theme, { selectTheme } from './theme';
-import { change } from './theme';
 import ChallengeDetails from './challenge-details';
-import ParticlesComponent from './utilities/particles';
-import ParticlesComponent2 from './utilities/particles2';
 
 
 const App = () => {

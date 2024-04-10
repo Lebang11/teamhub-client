@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "./user";
-import ParticlesComponent from './utilities/particles';
 
 
 //Testing:

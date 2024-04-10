@@ -422,6 +422,7 @@ const ProfilePage = () => {
                             {                       
                                 discord && 
                                  <a href="https://discordapp.com" target="blank_" className="btn btn-secondary me-2 discord" onContextMenu={(e) => {
+                                    e.preventDefault()
                                     if (!showDiscord && isUser) {
                                         setShowDiscord(true)
                                     } else if (isUser) {

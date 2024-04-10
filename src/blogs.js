@@ -4,11 +4,8 @@
 import React from "react";
 // import App from "./App";
 import { useEffect, useState } from "react";
-import Comments from "./comments";
 import { uploadBytes, getStorage, ref, getDownloadURL, getBlob } from "firebase/storage";
 import { storage } from "./firebase";
-import Cookies from "js-cookie";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "./user";
 import Blog from "./blog";

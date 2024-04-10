@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes,Link } from 'react-router-dom';
-import { UseSelector, useSelector } from 'react-redux';
-
 function OpenPage(props) {
   const [colour, setColour] = useState('dark');
 

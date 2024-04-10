@@ -1,7 +1,6 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { uploadBytes, getStorage, ref, getDownloadURL, getBlob, listAll } from "firebase/storage";
 import { storage } from "./firebase";
 
