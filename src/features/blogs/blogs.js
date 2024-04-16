@@ -5,9 +5,9 @@ import React from "react";
 // import App from "./App";
 import { useEffect, useState } from "react";
 import { uploadBytes, getStorage, ref, getDownloadURL, getBlob } from "firebase/storage";
-import { storage } from "./firebase";
+import { storage } from "../firebase";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "./user";
+import { login } from "../redux/user";
 import Blog from "./blog";
 
 const ShowBlogs = (props) => {

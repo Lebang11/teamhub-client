@@ -12,7 +12,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import ProfilePage from './profile-page';
 import ForgotPage from './forgot';
-import ResetPage from './reset';
+import ResetPage from './features/auth/reset';
 import BlogPage from './blog-page';
 import ChallengesPage from './challenges-page';
 import NavBar from './navbar';
