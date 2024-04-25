@@ -11,7 +11,7 @@ import { login } from "./user";
 
 // const registerURL =`http://localhost:3000/api/create`
 
-const registerURL = `https://team-hub.onrender.com/api/create`
+const registerURL = `https://teamhub-server-tau.vercel.app/api/create`
 
 const Register = () => {
     const [username, setUsername] = useState("");

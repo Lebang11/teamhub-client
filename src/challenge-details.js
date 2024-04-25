@@ -16,7 +16,7 @@ const ChallengeDetails = () => {
 
     const getChallenges =  async () => {
         
-        await fetch('https://team-hub.onrender.com/api/challenges')
+        await fetch('https://teamhub-server-tau.vercel.app/api/challenges')
         .then(response => response.json())
         .then(res => {
             setDbChallenges(res)

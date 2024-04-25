@@ -45,7 +45,7 @@ const ChallengeAnswers = (props) => {
         console.log(filename);
 
 
-        await axios.post('https://team-hub.onrender.com/api/challenges/answers',
+        await axios.post('https://teamhub-server-tau.vercel.app/api/challenges/answers',
             {
                 challengeAuthorID,
                 author,
@@ -80,7 +80,7 @@ const ChallengeAnswers = (props) => {
         console.log(message);
         console.log(challengeAuthorID);
         
-        axios.post('https://team-hub.onrender.com/api/email/notification', 
+        axios.post('https://teamhub-server-tau.vercel.app/api/email/notification', 
         {   
             authorID: challengeAuthorID,
             message: message
@@ -90,7 +90,7 @@ const ChallengeAnswers = (props) => {
     }
 
     const getAnswers = async () => {
-        await fetch('https://team-hub.onrender.com/api/challenges/answers')
+        await fetch('https://teamhub-server-tau.vercel.app/api/challenges/answers')
         .then(response => response.json())
         .then(res => {
             setDbanswers(res)

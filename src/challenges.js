@@ -7,7 +7,7 @@ const Challenges = (props) => {
 
 
     const getChallenges = async () => {
-        fetch('https://team-hub.onrender.com/api/challenges')
+        fetch('https://teamhub-server-tau.vercel.app/api/challenges')
         .then(res => res.json())
         .then(response => {
             setChallenges(response);

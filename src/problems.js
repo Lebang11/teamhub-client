@@ -15,7 +15,7 @@ const ShowProblems = (props) => {
 
     const getProblems =  async () => {
         
-        await fetch('https://team-hub.onrender.com/api/problems')
+        await fetch('https://teamhub-server-tau.vercel.app/api/problems')
         .then(response => response.json())
         .then(res => {
             setDbProblems(res)

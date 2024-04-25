@@ -49,7 +49,7 @@ const ProfilePage = () => {
     
 
     const findUser = async () => {
-        await axios.get(`https://team-hub.onrender.com/api/user?id=${id}`)
+        await axios.get(`https://teamhub-server-tau.vercel.app/api/user?id=${id}`)
         // .then(response => response.json())
         .then(res => {
             console.log(res.data);
@@ -72,7 +72,7 @@ const ProfilePage = () => {
     const uploadImage = async () => {
         if (image === null) return;
         console.log(image.name);
-        await axios.post(`https://team-hub.onrender.com/api/user`, 
+        await axios.post(`https://teamhub-server-tau.vercel.app/api/user`, 
         {
             id,
             imagename
@@ -90,7 +90,7 @@ const ProfilePage = () => {
       }
 
     const uploadUsername = async () => {
-        await axios.post(`https://team-hub.onrender.com/api/user`, 
+        await axios.post(`https://teamhub-server-tau.vercel.app/api/user`, 
         {
             id,
             username
@@ -105,7 +105,7 @@ const ProfilePage = () => {
     }
 
     const uploadGitHub = async () => {
-        await axios.post(`https://team-hub.onrender.com/api/user`, 
+        await axios.post(`https://teamhub-server-tau.vercel.app/api/user`, 
         {
             id,
             github
@@ -120,7 +120,7 @@ const ProfilePage = () => {
     }
 
     const uploadLinkedIn = async () => {
-        await axios.post(`https://team-hub.onrender.com/api/user`, 
+        await axios.post(`https://teamhub-server-tau.vercel.app/api/user`, 
         {
             id,
             linkedin
@@ -135,7 +135,7 @@ const ProfilePage = () => {
     }
 
     const uploadDiscord = async () => {
-        await axios.post(`https://team-hub.onrender.com/api/user`, 
+        await axios.post(`https://teamhub-server-tau.vercel.app/api/user`, 
         {
             id,
             discord
@@ -150,7 +150,7 @@ const ProfilePage = () => {
     }
 
     const uploadEmail = async () => {
-        await axios.post(`https://team-hub.onrender.com/api/user`, 
+        await axios.post(`https://teamhub-server-tau.vercel.app/api/user`, 
         {
             id,
             email
@@ -164,7 +164,7 @@ const ProfilePage = () => {
         .catch(err => console.log(err))
     }
     const uploadAbout = async () => {
-        await axios.post(`https://team-hub.onrender.com/api/user`, 
+        await axios.post(`https://teamhub-server-tau.vercel.app/api/user`, 
         {
             id,
             about

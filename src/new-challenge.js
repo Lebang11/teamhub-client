@@ -35,7 +35,7 @@ const NewChallenge = (props) => {
             clearText()
             setLoading(false)
         } else {
-            axios.post('https://team-hub.onrender.com/api/challenges',
+            axios.post('https://teamhub-server-tau.vercel.app/api/challenges',
             {
                 title,
                 description,
@@ -61,7 +61,7 @@ const NewChallenge = (props) => {
     }
 
     const sendNotification = (message) => {
-        axios.post('https://team-hub.onrender.com/api/email/notification', 
+        axios.post('https://teamhub-server-tau.vercel.app/api/email/notification', 
         {
             message: message
         })

@@ -29,7 +29,7 @@ const Answers = (props) => {
 
         
 
-        await axios.post('https://team-hub.onrender.com/api/answers',
+        await axios.post('https://teamhub-server-tau.vercel.app/api/answers',
             {
                 author,
                 text,
@@ -63,7 +63,7 @@ const Answers = (props) => {
         
 
         
-        axios.post('https://team-hub.onrender.com/api/email/notification', 
+        axios.post('https://teamhub-server-tau.vercel.app/api/email/notification', 
         {   
             authorID: problemAuthorID,
             message: message
@@ -73,7 +73,7 @@ const Answers = (props) => {
     }
 
     const getAnswers = async () => {
-        await fetch('https://team-hub.onrender.com/api/answers')
+        await fetch('https://teamhub-server-tau.vercel.app/api/answers')
         .then(response => response.json())
         .then(res => {
             setDbanswers(res)

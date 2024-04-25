@@ -33,7 +33,7 @@ const ShowBlogs = (props) => {
     
 
     const findUser = async () => {
-        await fetch(`https://team-hub.onrender.com/api/user?id=${id}`)
+        await fetch(`https://teamhub-server-tau.vercel.app/api/user?id=${id}`)
         .then(response => response.json())
         .then(res => {
             console.log(res)
@@ -50,7 +50,7 @@ const ShowBlogs = (props) => {
 
     const getBlogs =  async () => {
         
-        await fetch('https://team-hub.onrender.com/api/blogs')
+        await fetch('https://teamhub-server-tau.vercel.app/api/blogs')
         .then(response => response.json())
         .then(res => {
             setDbBlogs(res)
@@ -113,7 +113,7 @@ const ShowBlogs = (props) => {
                     
     
                     const downloadFile = async (id) => {
-                        await fetch(`https://team-hub.onrender.com/api/user?id=${id}`)
+                        await fetch(`https://teamhub-server-tau.vercel.app/api/user?id=${id}`)
                         .then(response => response.json())
                         .then(res => {
                             console.log(res)
@@ -164,7 +164,7 @@ const ShowBlogs = (props) => {
                 
 
                 const downloadFile = async (id) => {
-                    await fetch(`https://team-hub.onrender.com/api/user?id=${id}`)
+                    await fetch(`https://teamhub-server-tau.vercel.app/api/user?id=${id}`)
                     .then(response => response.json())
                     .then(res => {
                         console.log(res)

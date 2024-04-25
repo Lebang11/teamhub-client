@@ -20,7 +20,7 @@ function ResetPage() {
         } else if (password !== passwordConfirm) {
             setError('Passwords do not match')
         } else {
-            await axios.post(`https://team-hub.onrender.com/api/user`, 
+            await axios.post(`https://teamhub-server-tau.vercel.app/api/user`, 
             {
                 id,
                 password

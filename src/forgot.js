@@ -12,7 +12,7 @@ function ForgotPage() {
 
 
   const findUser = async () => {
-    await fetch(`https://team-hub.onrender.com/api/user?email=${email}`)
+    await fetch(`https://teamhub-server-tau.vercel.app/api/user?email=${email}`)
     .then(response => response.json())
     .then(res => {
         console.log(res)
@@ -32,7 +32,7 @@ function ForgotPage() {
   const sendEmail = async () => {
 
     
-      await axios.post(`https://team-hub.onrender.com/api/email`,
+      await axios.post(`https://teamhub-server-tau.vercel.app/api/email`,
       {
         email  
       }

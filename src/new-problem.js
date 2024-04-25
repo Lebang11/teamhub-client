@@ -44,7 +44,7 @@ const NewProblem = () => {
     }
 
     const sendNotification = (message) => {
-        axios.post('https://team-hub.onrender.com/api/email/notification', 
+        axios.post('https://teamhub-server-tau.vercel.app/api/email/notification', 
         {
             message: message
         })
@@ -79,7 +79,7 @@ const NewProblem = () => {
             setError('Enter title and text')
             setLoading(false)
         } else {
-            await axios.post('https://team-hub.onrender.com/api/problems',
+            await axios.post('https://teamhub-server-tau.vercel.app/api/problems',
             {
                 author,
                 authorID,

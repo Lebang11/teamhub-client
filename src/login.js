@@ -12,7 +12,7 @@ import ParticlesComponent from './utilities/particles';
 
 // const loginURL =`http://localhost:3000/api/login`
 
-const loginURL = `https://team-hub.onrender.com/api/login`
+const loginURL = `https://teamhub-server-tau.vercel.app/api/login`
 
 const Login = () => {
     const [email, setEmail] = useState("");

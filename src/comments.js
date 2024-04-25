@@ -18,7 +18,7 @@ const Comments = (props) => {
         const author = Cookies.get('token_name');
         const blogid = props.blogid
 
-        await axios.post('https://team-hub.onrender.com/api/comments',
+        await axios.post('https://teamhub-server-tau.vercel.app/api/comments',
             {
                 author,
                 text,
@@ -31,7 +31,7 @@ const Comments = (props) => {
     }
 
     const getComments = async () => {
-        await fetch('https://team-hub.onrender.com/api/comments')
+        await fetch('https://teamhub-server-tau.vercel.app/api/comments')
         .then(response => response.json())
         .then(res => {
             setDbComments(res)

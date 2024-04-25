@@ -25,7 +25,7 @@ const NewBlog = () => {
             clearText()
             setLoading(false)
         } else {
-            await axios.post('https://team-hub.onrender.com/api/blogs',
+            await axios.post('https://teamhub-server-tau.vercel.app/api/blogs',
             {
                 author,
                 text,
