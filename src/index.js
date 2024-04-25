@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import '../src/style/index.css';
 import App from './App';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import NavBar from './navbar';
-import userReducer from "./user";
+import userReducer from "../src/redux/user";
 
 const store = configureStore({
   reducer: {

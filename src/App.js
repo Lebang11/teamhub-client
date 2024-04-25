@@ -1,27 +1,26 @@
-import './App.css';
+import './style/App.css';
 import { BrowserRouter as Router, Route, Routes, useParams } from 'react-router-dom';
 import OpenPage from './opening';
-import Register from './register';
-import Login from './login';
+import Register from './features/auth/register';
+import Login from './features/auth/login';
 import MainPage from './main';
 import { Component, useEffect, useState } from 'react';
-import Problems from './problems';
-import ProblemPage from './problem-page';
-import ProblemDetails from './problem-details';
+import ProblemPage from './features/problems/problem-page';
+import ProblemDetails from './features/problems/problem-details';
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import ProfilePage from './profile-page';
-import ForgotPage from './forgot';
+import ForgotPage from './features/auth/forgot';
 import ResetPage from './features/auth/reset';
-import BlogPage from './blog-page';
-import ChallengesPage from './challenges-page';
+import BlogPage from './features/blogs/blog-page';
+import ChallengesPage from './features/challenges/challenges-page';
 import NavBar from './navbar';
 import Cookies from 'js-cookie';
 import { useDispatch, useSelector } from 'react-redux';
-import { login } from './user';
-import NotUser from './not-user';
-import theme, { selectTheme } from './theme';
-import ChallengeDetails from './challenge-details';
+import { login } from './redux/user';
+import NotUser from './features/auth/not-user';
+import theme, { selectTheme } from './redux/theme';
+import ChallengeDetails from './features/challenges/challenge-details';
 
 
 const App = () => {

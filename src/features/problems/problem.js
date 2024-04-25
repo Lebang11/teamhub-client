@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { uploadBytes, getStorage, ref, getDownloadURL, getBlob } from "firebase/storage";
-import { storage } from "../firebase";
 import { v4 } from "uuid";
-import DownloadFile from "../downloadfile";
 import { Link } from "react-router-dom";
 
 

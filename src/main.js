@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import ShowBlogs from "./blogs";
-import NewBlog from "./new-blog";
+import ShowBlogs from "./features/blogs/blogs";
+import NewBlog from "./features/blogs/new-blog";
 import { Link } from "react-router-dom";
 import NavBar from "./navbar";
 

@@ -4,8 +4,8 @@ import { storage } from "./firebase";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
-import ShowBlogs from "./blogs/blogs";
-import ShowProblems from "./problems/problems";
+import ShowBlogs from "./features/blogs/blogs";
+import ShowProblems from "./features/problems/problems";
 import Challenges from "./features/challenges/challenges";
 
 const ProfilePage = () => {

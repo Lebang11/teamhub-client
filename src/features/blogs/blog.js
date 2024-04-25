@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Comments from "../utilities/comments";
+import Comments from "../../utilities/comments";
 
 const Blog = (props) => {
     const [comment, setComment] = useState(false);
