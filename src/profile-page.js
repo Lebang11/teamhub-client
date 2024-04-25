@@ -4,9 +4,9 @@ import { storage } from "./firebase";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
-import ShowBlogs from "./blogs";
-import ShowProblems from "./problems";
-import Challenges from "./challenges";
+import ShowBlogs from "./blogs/blogs";
+import ShowProblems from "./problems/problems";
+import Challenges from "./features/challenges/challenges";
 
 const ProfilePage = () => {
     const {id} = useParams();
@@ -200,8 +200,12 @@ const ProfilePage = () => {
                 <div className="border border-top-0 border-bottom-0 border-start-0 border-2 px-4 ">
                     <div className="picture-area d-flex justify-content-center align-items-center mb-3">
                         {
-                            !isLoading &&
+                            !isLoading && isUser &&
                                 <img className="profile-image w-100 h-100 rounded" data-bs-target="#exampleModal" data-bs-toggle="modal" src={imageDownload} ></img>                        
+                        }
+                        {
+                            !isLoading && !isUser &&
+                                <img className="profile-image w-100 h-100 rounded" src={imageDownload} ></img>                        
                         }
                         {
                             isLoading &&
@@ -211,11 +215,18 @@ const ProfilePage = () => {
                         }
                         
                     </div>
+                    {isUser && 
                         <p className="text-muted tip">*click to change</p>
+                    
+                    }
+                    {
+                        isUser && 
                         <input id="img-upload" type="file" className="form-control invisible " onChange={async (e) => {
                             setImage(e.target.files[0])
                             setImageName(e.target.files[0].name)
                         }}/>
+                    }
+                        
                 </div>
                 <div className="px-3 d-block w-75">
                     
@@ -411,6 +422,7 @@ const ProfilePage = () => {
                             {                       
                                 discord && 
                                  <a href="https://discordapp.com" target="blank_" className="btn btn-secondary me-2 discord" onContextMenu={(e) => {
+                                    e.preventDefault()
                                     if (!showDiscord && isUser) {
                                         setShowDiscord(true)
                                     } else if (isUser) {

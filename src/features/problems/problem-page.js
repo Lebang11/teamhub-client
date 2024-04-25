@@ -3,8 +3,6 @@ import ShowProblems from "./problems";
 import NewProblem from "./new-problem";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
-import NavBar from "./navbar";
-import axios from "axios";
 
 const ProblemPage = () => {
     const [problemsShown, setProblemsShown] = useState(false);

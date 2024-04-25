@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import ShowBlogs from "./blogs";
-import NewBlog from "./new-blog";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { change } from "./theme";
 import ParticlesComponent from './utilities/particles';
 import ParticlesComponent2 from './utilities/particles2';
 

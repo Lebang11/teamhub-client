@@ -1,46 +1,65 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { uploadBytes, getStorage, ref, getDownloadURL, getBlob, listAll } from "firebase/storage";
-import { storage } from "./firebase";
+import { storage } from "../../firebase";
 
-const Answers = (props) => {
+const ChallengeAnswers = (props) => {
     const [dbanswers, setDbanswers] = useState([]);
     const [showanswers, setShowanswers] = useState(false)
-    const [text, setText] = useState();
+    const [title, setText] = useState();
     const [file, setFile] = useState(null);
     const [filename, setFileName] = useState('');
     const [fileDownload, setFileDownload] = useState();
     const [email, setEmail] = useState('');
+    const [isChallengeUser, setChallengeUser] = useState(false)
 
     const [downloadMessage, setDownloadMessage] = useState('Getting File...');
 
     const today = new Date()
 
     useEffect(() => {
-        getAnswers()
+        if (props.challengeAuthorID === Cookies.get('token_id')) {
+            setChallengeUser(true)
+            console.log('is user')
+            getAnswers()
+        } else {
+            console.log('is not user')
+            setChallengeUser(false)
+        }
     }, []);
 
+
     const submitAnswer = async () => {
+        const challengeAuthorID = props.challengeAuthorID
         const author = Cookies.get('token_name');
         const authorID = Cookies.get('token_id');
-        const problemID = props.problemID
+        const challengeID = props.challengeID;
 
-        
+        console.log(challengeAuthorID);
+        console.log(author);
+        console.log(title);
+        console.log(authorID);
+        console.log(challengeID);
+        console.log(filename);
 
-        await axios.post('https://teamhub-server-tau.vercel.app/api/answers',
+
+        await axios.post('https://teamhub-server-tau.vercel.app/api/challenges/answers',
             {
+                challengeAuthorID,
                 author,
-                text,
+                title,
                 authorID,
-                problemID,
-                filename
+                challengeID,
+                filename,
             }
         )
-        .then(res => console.log('answered by '+ author))
         .then(res => uploadFile())
-        .then(res => sendNotification(`Your question was answered by ${author}`))
+        .then(res => sendNotification(`Your challenge was answered by ${author}`))
+        .then(res => {
+            alert('Challenge Answered :)')
+            window.location.reload(false)
+        })
         .catch(err=> console.log(err))
         setText('');
         getAnswers()
@@ -56,16 +75,13 @@ const Answers = (props) => {
     }
 
     const sendNotification = (message) => {
-        const problemAuthorID = props.problemAuthorID
+        const challengeAuthorID = props.challengeAuthorID
         console.log(message);
-        console.log(problemAuthorID);
-
-        
-
+        console.log(challengeAuthorID);
         
         axios.post('https://teamhub-server-tau.vercel.app/api/email/notification', 
         {   
-            authorID: problemAuthorID,
+            authorID: challengeAuthorID,
             message: message
         })
         .then(res => console.log(res))
@@ -73,7 +89,7 @@ const Answers = (props) => {
     }
 
     const getAnswers = async () => {
-        await fetch('https://teamhub-server-tau.vercel.app/api/answers')
+        await fetch('https://teamhub-server-tau.vercel.app/api/challenges/answers')
         .then(response => response.json())
         .then(res => {
             setDbanswers(res)
@@ -99,7 +115,7 @@ const Answers = (props) => {
                     <h3>answers</h3>
                     <div >
                         <div className="d-flex btn-group w-75">
-                            <input className="form-control rounded-0" onChange={(e) => setText(e.target.value)} placeholder="answer here" type="text" id="answer" value={text}/>
+                            <input className="form-control rounded-0" onChange={(e) => setText(e.target.value)} placeholder="answer title" type="text" id="answer" value={title}/>
                             <button className="btn btn-primary btn-rounded-right" onClick={submitAnswer}>Post</button>
                         </div>
                         <input className="form-control w-75" type="file" onChange={async (e) => {
@@ -107,7 +123,7 @@ const Answers = (props) => {
                         setFileName(`${today.getFullYear()}${today.getMonth()}${today.getDate()}${today.getHours()}${today.getMinutes()}-${e.target.files[0].name}`) 
                     }}/>
                         <div>
-                            {showanswers && dbanswers.map((answer) => {
+                            {isChallengeUser && showanswers && dbanswers.map((answer) => {
                                 const date = new Date(answer.date)
                                 const day = date.getDate()
                                 const month = date.toLocaleString('default', {month: 'short'})
@@ -118,22 +134,19 @@ const Answers = (props) => {
                                 const fulltime = `${timehours}:${timemin}:${timesec}`
                                 const fulldate = `${day} ${month} ${year}`;
 
-                                if (answer.problemID === props.problemID) {
+                                if (answer.challengeID === props.challengeID) {
                                     download(answer)
                                     return (
-                                    <div className="container border border-light rounded m-2">
+                                    <div className="container-lg blog-box w-100 border border-bottom rounded p-4 m-1">
                                         
-                                        <h6>
-                                            {answer.text} 
+                                        <h6 className="display-6">
+                                            {answer.title} 
                                         </h6>
-                                        <p className="lead">
-                                            
+                                        <p className="lead text-muted">
                                             by {answer.author}
                                         </p>
                                         <button className="btn btn-sm btn-outline-warning file-button mx-1" onClick={(atag) => {
                                             setDownloadMessage('Loading...')
-                                
-                                            
                                         }}>
                                             <a className="file-a text-warning  text-decoration-none" id="atag" href={fileDownload}>{downloadMessage}</a>
                                         </button>
@@ -146,6 +159,13 @@ const Answers = (props) => {
                                 )}
                             })}
                         </div>
+                        <div>
+                            {!isChallengeUser && 
+                            <h1 className="my-3">
+                                *Only Challenge Owner can view answers
+                            </h1>
+                            }
+                        </div>
                     </div>
                 </div>
             </div> 
@@ -154,4 +174,4 @@ const Answers = (props) => {
     );
 }
  
-export default Answers;
+export default ChallengeAnswers;

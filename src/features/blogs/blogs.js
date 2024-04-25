@@ -4,13 +4,10 @@
 import React from "react";
 // import App from "./App";
 import { useEffect, useState } from "react";
-import Comments from "./comments";
 import { uploadBytes, getStorage, ref, getDownloadURL, getBlob } from "firebase/storage";
-import { storage } from "./firebase";
-import Cookies from "js-cookie";
-import { Link } from "react-router-dom";
+import { storage } from "../firebase";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "./user";
+import { login } from "../redux/user";
 import Blog from "./blog";
 
 const ShowBlogs = (props) => {
@@ -95,7 +92,7 @@ const ShowBlogs = (props) => {
     if (props.profile) {
         return(
             <div className="mb-4">
-                <button onClick={refreshBlogs} className="btn btn-outline-warning mb-2">{refresh}</button>
+                <button onClick={refreshBlogs} className="btn btn-outline-info mb-2">{refresh}</button>
                 {
                 dbBlogs.map((blo) => {
 
@@ -148,7 +145,7 @@ const ShowBlogs = (props) => {
 
     return(
         <div className="mb-4">
-            <button onClick={refreshBlogs} className="btn btn-outline-warning mb-2">{refresh}</button>
+            <button onClick={refreshBlogs} className="btn btn-outline-info mb-2">{refresh}</button>
             {
             dbBlogs.map((blo) => {
                 

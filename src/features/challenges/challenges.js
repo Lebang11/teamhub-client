@@ -33,7 +33,7 @@ const Challenges = (props) => {
                         if (challenge.authorID === props.id) {
                         return (
                             <div>                            
-                                <button onClick={refreshBlogs} className="btn btn-outline-warning mb-2">{refresh}</button>
+                                <button onClick={refreshBlogs} className="btn btn-outline-info mb-2">{refresh}</button>
 
                                 <div className="container-lg blog-box w-100 border border-bottom rounded-left my-0">
                                 
@@ -53,7 +53,7 @@ const Challenges = (props) => {
                 challenges.map((challenge) => {
                     return (
                         <div>                            
-                            <button onClick={refreshBlogs} className="btn btn-outline-warning mb-2">{refresh}</button>
+                            <button onClick={refreshBlogs} className="btn btn-outline-info mb-2">{refresh}</button>
 
                             <div className="container-lg blog-box w-100 border border-bottom rounded-left my-0">
                             
