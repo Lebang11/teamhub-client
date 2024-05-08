@@ -85,6 +85,8 @@ const App = () => {
             <Route path='/user/:id' theme={theme} element={<NotUser/>}/>
             <Route path='/challenges' element={<NotUser theme={theme}/>}/>
             <Route path='/challenge/:id' element={<NotUser theme={theme}/>}/>
+            <Route path='/gaming' element={<GamingPage/>}/>
+          
           </Routes>
          
         </Router>
