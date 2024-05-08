@@ -122,6 +122,11 @@ const NavBar = (props) => {
                             </a>
                         </li>
                         <li className="nav-item">
+                            <Link to={`/gaming`} className="btn nav-link">
+                                Gaming
+                            </Link>
+                        </li>
+                        <li className="nav-item">
                             <Link to={`/user/${id}`} className="btn nav-link">
                                 Profile
                             </Link>

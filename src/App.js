@@ -14,6 +14,7 @@ import ForgotPage from './features/auth/forgot';
 import ResetPage from './features/auth/reset';
 import BlogPage from './features/blogs/blog-page';
 import ChallengesPage from './features/challenges/challenges-page';
+import GamingPage from './features/gaming/gaming-page'
 import NavBar from './navbar';
 import Cookies from 'js-cookie';
 import { useDispatch, useSelector } from 'react-redux';
@@ -61,6 +62,7 @@ const App = () => {
             <Route path='/reset/:id' element={<ResetPage theme={theme}/>}/>
             <Route path='/challenges' element={<ChallengesPage theme={theme}/>}/>
             <Route path='/challenge/:id' element={<ChallengeDetails theme={theme}/>}/>
+            <Route path='/gaming' element={<GamingPage/>}/>
           </Routes>
           
         </Router>
