@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Gamer = (props) => {
     return ( 
         <div>
-            <Link to={`/challenge/${props.gamer._id}`} className="problem-link">
+            <div className="problem-link">
                 <div className="text-center">
                     
                     <h1 className="display-5 author">
@@ -43,7 +43,7 @@ const Gamer = (props) => {
                         <div >{props.gamer.date}</div>
                     </div>
                 </div> 
-            </Link>
+            </div>
         </div>
      );
 }

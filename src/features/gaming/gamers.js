@@ -27,11 +27,12 @@ const Gamers = (props) => {
 
     return ( 
         <div>
+            <button onClick={refreshBlogs} className="btn btn-outline-info mb-2">{refresh}</button>
+
             {
                 gamers.map((gamer) => {
                     return (
-                        <div>                            
-                            <button onClick={refreshBlogs} className="btn btn-outline-info mb-2">{refresh}</button>
+                        <div className="my-3">                            
 
                             <div className="container-lg blog-box w-100 border border-bottom rounded-left my-0">
                             
