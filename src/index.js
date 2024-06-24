@@ -6,10 +6,12 @@ import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import NavBar from './navbar';
 import userReducer from "../src/redux/user";
+import themeReducer from './redux/theme';
 
 const store = configureStore({
   reducer: {
-    user: userReducer
+    user: userReducer,
+    theme: themeReducer
   },
 })
 

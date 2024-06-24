@@ -3,12 +3,12 @@ import NewGamingProfile from "./new-gaming";
 import Gamers from "./gamers";
 
 
-const GamingPage = () => {
+const GamingPage = (props) => {
     const [addProfile, setAddProfile] = useState(false)
 
     return ( 
         <div className="w-100 d-flex flex-column justify-content-center align-items-center">
-                <h2 className="display-4 text-light">Gaming</h2>
+                <h2 className="display-4">Gaming</h2>
                 <button onClick={()=>{
                     if (addProfile===false) {
                         setAddProfile(true)}
@@ -25,7 +25,7 @@ const GamingPage = () => {
                         }
                     </div>
                     <div className="mt-4">
-                        <Gamers/>
+                        <Gamers theme={props.theme}/>
                     </div>
                     
                 </div>

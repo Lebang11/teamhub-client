@@ -20,7 +20,7 @@ import Cookies from 'js-cookie';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from './redux/user';
 import NotUser from './features/auth/not-user';
-import theme, { selectTheme } from './redux/theme';
+import { selectTheme } from './redux/theme';
 import ChallengeDetails from './features/challenges/challenge-details';
 
 
@@ -29,10 +29,7 @@ const App = () => {
 
     const dispatch = useDispatch()
     let user = useSelector((state) => {return state.user.value});
-
-    ;
-    
-
+    let theme = useSelector((state) => {return state.theme.value});
     
 
     if (!Cookies.get(`token_name`) || !Cookies.get(`token_email`) || !Cookies.get(`token_id`)){
@@ -42,12 +39,13 @@ const App = () => {
     }
 
 
+
     if (user) {
       return (
         
           <Router >
           
-          <NavBar/>
+          <NavBar theme={theme}/>
           
           <Routes>
             <Route path='/blogs' element={<BlogPage theme={theme}/>}/>
@@ -62,7 +60,7 @@ const App = () => {
             <Route path='/reset/:id' element={<ResetPage theme={theme}/>}/>
             <Route path='/challenges' element={<ChallengesPage theme={theme}/>}/>
             <Route path='/challenge/:id' element={<ChallengeDetails theme={theme}/>}/>
-            <Route path='/gaming' element={<GamingPage/>}/>
+            <Route path='/gaming' element={<GamingPage theme={theme}/>}/>
           </Routes>
           
         </Router>

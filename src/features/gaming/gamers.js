@@ -11,7 +11,7 @@ const Gamers = (props) => {
         .then(res => res.json())
         .then(response => {
             setGamers(response);
-            console.log(gamers)
+            setRefresh('refresh');
         })    
     }
 
@@ -20,9 +20,8 @@ const Gamers = (props) => {
     },[])
 
     function refreshBlogs() {
-        setRefresh('Refreshing...')
+        setRefresh('refreshing...')
         getGamers();
-        
     }
 
     return ( 
@@ -36,7 +35,7 @@ const Gamers = (props) => {
 
                             <div className="container-lg blog-box w-100 border border-bottom rounded-left my-0">
                             
-                            <Gamer gamer={gamer} />
+                            <Gamer theme ={props.theme} gamer={gamer} />
                         </div>
                         </div>
                         

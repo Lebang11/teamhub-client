@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import ParticlesComponent from './utilities/particles';
 import ParticlesComponent2 from './utilities/particles2';
+import { change } from "./redux/theme";
 
 
 
@@ -18,7 +19,8 @@ const NavBar = (props) => {
     const [checked, setCheck] = useState(true);
     const [footerColour, setFooterColour] = useState('light')
 
-    let theme = window.localStorage.getItem('theme') || 'dark';
+    let theme = useSelector((state) => {return state.theme.value});
+
 
     const dispatch = useDispatch()
     const navigate = useNavigate();
@@ -27,35 +29,23 @@ const NavBar = (props) => {
         setUser(Cookies.get(`token_name`));
         setEmail(Cookies.get(`token_email`));
         setId(Cookies.get(`token_id`));
-
-        
     }, []);
 
+
+
     useEffect(() => {
-        if (theme == 'dark') {
+        if (props.theme == 'dark') {
           setCheck(true)
         } else {
           setCheck(false)
         }
-        document.documentElement.setAttribute('data-bs-theme', theme)
-        // if (theme === 'light') {
-        //   setFooterColour('light')
-        //   document.getElementById("footer").classList.add("bg-light")
-        //   document.getElementById("footer").classList.remove("bg-secondary")
-
-        // } else {
-        //   document.getElementById("footer").classList.add("bg-secondary")
-        //   document.getElementById("footer").classList.remove("bg-light")
-
-        //   setFooterColour('secondary')
-        // }
       }, [themeChanged])
 
     useEffect(() => {
         if (window.localStorage.getItem('theme') === 'dark') {
-            changeIcon("team-hub-favicon-color.png").then(console.log('dark'))
+            changeIcon("team-hub-favicon-color.png")
         } else {
-            changeIcon("team-hub-favicon-black.png").then(console.log('light'))
+            changeIcon("team-hub-favicon-black.png")
         }
     }, [window.localStorage.getItem('theme')])
     
@@ -64,15 +54,16 @@ const NavBar = (props) => {
     }
 
     const changeTheme = () => {
-        if (window.localStorage.getItem('theme') == 'dark') {
+        if (props.theme == 'dark') {
           window.localStorage.setItem('theme', 'light')
+          dispatch(change('light'))
           document.documentElement.setAttribute('data-bs-theme', 'light')
           setTheme('light')
         } else {
+          dispatch(change('dark'))
           window.localStorage.setItem('theme', 'dark')
           document.documentElement.setAttribute('data-bs-theme', 'dark')
           setTheme('dark')
-  
         }
     }
     

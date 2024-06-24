@@ -7,7 +7,7 @@ const ChallengesPage = () => {
 
     return ( 
         <div className="w-100 d-flex flex-column justify-content-center align-items-center">
-                <h3 className="display-4">Challenges</h3>
+                <h2 className="display-4">Challenges</h2>
                 <button onClick={()=>{
                     if (addChallenge===false) {
                         setAddChallenge(true)}

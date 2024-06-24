@@ -51,7 +51,7 @@ const ShowProblems = (props) => {
                         
                     
                     return (
-                            <div className="container-lg blog-box w-100 border border-bottom rounded-left my-0">
+                            <div className="container-lg blog-box w-100 border border-bottom rounded-left my-2">
                             <Problem date={blo.date} _id={blo._id} filename={blo.filename} title={blo.title} text={blo.text} author={blo.author} authorID={blo.authorID} answered={blo.answered}/>   
                             </div>   
                     )}
@@ -71,7 +71,7 @@ const ShowProblems = (props) => {
             dbProblems.map((blo) => {
 
                 return (
-                        <div className="container-lg blog-box w-100 border border-bottom rounded-left my-0">
+                        <div className="container-lg blog-box w-100 border border-bottom rounded-left my-2">
                         <Problem date={blo.date} _id={blo._id} filename={blo.filename} title={blo.title} text={blo.text} author={blo.author} authorID={blo.authorID} answered={blo.answered}/>   
                         </div>   
                 )

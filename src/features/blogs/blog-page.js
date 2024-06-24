@@ -60,7 +60,7 @@ function BlogPage() {
 
     return (
         <div className="w-100 d-flex flex-column justify-content-center align-items-center">
-                <h3 className="display-4">Blogs</h3>
+                <h2 className="display-4">Blogs</h2>
                 <div className="w-75 m-4 mt-1">
                     <button onClick={createBlog} className="btn btn-outline-secondary">new blog</button>
                 {newBlog && <NewBlog />}
