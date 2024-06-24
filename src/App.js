@@ -22,7 +22,7 @@ import { login } from './redux/user';
 import NotUser from './features/auth/not-user';
 import { selectTheme } from './redux/theme';
 import ChallengeDetails from './features/challenges/challenge-details';
-
+import NewsPage from './features/news/news-page';
 
 const App = () => {
     
@@ -48,6 +48,8 @@ const App = () => {
           <NavBar theme={theme}/>
           
           <Routes>
+          <Route path='/news' element={<NewsPage theme={theme}/>}/>
+
             <Route path='/blogs' element={<BlogPage theme={theme}/>}/>
             <Route exact path='/' element={<OpenPage theme={theme}/>}/>
             <Route path='/create' element={<Register theme={theme}/>}/>

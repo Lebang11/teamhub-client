@@ -97,6 +97,11 @@ const NavBar = (props) => {
             
                 <div id="main-nav" className="me-3 collapse navbar-collapse justify-content-end align-center">
                     <ul className="navbar-nav">
+                    <li className="nav-item">
+                            <a className="btn nav-link" onClick={() => navigate("/news")}>
+                                News
+                            </a>
+                        </li>
                         <li className="nav-item">
                             <a className="btn nav-link" onClick={() => navigate("/blogs")}>
                                 Blogs
