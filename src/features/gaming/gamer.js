@@ -34,15 +34,15 @@ const Gamer = (props) => {
 
                 {props.gamer.steamName !== '' && 
                 
-                    <p className={textColor}> <i class="fa-brands fa-steam  me-2"></i><span className="">{props.gamer.steamName}</span></p>
+                    <p className={textColor}> <i className="fa-brands fa-steam  me-2"></i><span className="">{props.gamer.steamName}</span></p>
                 }
                 {props.gamer.psnName !== '' &&
- <p className={textColor}><i class="fa-brands fa-playstation  me-2"></i>
+ <p className={textColor}><i className="fa-brands fa-playstation  me-2"></i>
  <span className={textColor}>{props.gamer.psnName}</span></p>
                 }
                 {props.gamer.xboxName !== '' && 
                 
-                    <p className={textColor}> <i class="fa-brands fa-xbox  me-2"></i><span className="">{props.gamer.xboxName}</span></p>
+                    <p className={textColor}> <i className="fa-brands fa-xbox  me-2"></i><span className="">{props.gamer.xboxName}</span></p>
                 }
                 {props.gamer.epicName !== '' &&
                 <p className={textColor}><img  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAADzElEQVR4nO2Yy0tbURCHbxeliy666aK7ttBld/kDrnM0opaiKMEn9YWKIilKFuJC6wsUH1hQRAWVigi+tRLQhfhEsQZRRAU3thYrKhhERSLNlBm8l6iJVZrcpHJ/MCRnco/Odx4z51xJ0qVLl66AV1BQ0DsA+CmEQI1sRwgR7jWAyz+IWhoA/PAmAPrDJB3gIc5Ab28vump9fZ39a2trqs/hcODm5iZmZmZe6WO1WrmdnJyMKysreH5+zv6joyMcGBjA4ODgwABQtLGx4RZgaWkJ3am0tFQ7gOnpaUxNTcWEhIQrAK2trdjU1KTOhDsAGnFSe3s7pqWl4dbWFre7urq0A1CCUUwBqKmpYTBF7vqcnp5yOzc3l9vkJ/X09OgAd56B+fl5HsH09PR/noHw8HCMjIzkT79vYgKgwO4DIPyRRi8uLjgQm812BWBvbw/tdruaHgMWwOphE7uqs7PzTgDZ2dlYUlKCGRkZ/gcYHx/HqqoqzMnJ8dgn4LOQuLYUPAGYzWZuj42NaQ9AVZYKVnl5+b0B9vf3uW2z2biYuRa2gMhCfwMYHR29sV+cTueNTe0TgNraWlxcXFStr6+P/f39/TyiBQUFNwDq6ur42cbGRjXvt7S08HGE+tASctfPJwBamqQDPNQZqKiowOXlZZydncWsrCz2mUwmXs9Ku7KyEoeHh/mSQut7cnISo6KicG5uTjWz2YzV1dV8P6B9EBsb63uAvLw8PDs7YwjalPHx8ezv6OhgPwVCbcrppObmZjw4OODvcXFx/FlUVISFhYUMTUcSeqahoQEjIiJ8D9DW1sYZhSrt7u4uBxwaGoqHh4ecbeiaGB0dzQCrq6scoHIDUwCOj4/ZTCYTP0fgOzs72hwl8vPz1RkYHBxkmLKyMvYR0MnJCd/KKLChoSGsr6/nu7ErAF0di4uLMSkpCbu7u3k2tre3eSY02QMU8MLCAq9rWsf0j+kwRr9ZLBYOnvaAUtRiYmLUPTA1NaWaxWLhekCDQEWOftfT6ENNo04/ADi9BgAANj8AfPMagNFofA0AI7fNBL3fmZmZ4VOlJ1FKnZiYwJSUlFtHHgBGZFl+JXlbsiy/FUJ8EUI4PAWQmJjIJ1PltSGJUiv5KI166gcAvwHgKwAYJF8LAF4KIT4DwImngKiY0QWFitv11yXXAj+nQZFl+Y2ktWRZfg4AnwDg8L5rHADsNAiyLL+Q/C2j0fhUCPERAL7fIfhfBB0SEvJMCjQZDIbHAPBBCLHmJvAtggwLC3si/Qd6JIR4L4Tov7T35PN3ULp0PUT9AT/gcQH59SOzAAAAAElFTkSuQmCC"/>

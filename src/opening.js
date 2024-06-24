@@ -21,13 +21,13 @@ function OpenPage(props) {
           <h1 className='text-center display-3 fw-bold'>
             Welcome to Team-Hub
           </h1>
-          <div class="opening-div mt-0 w-auto" >
-          <div class="p-2 w-100">
+          <div className="opening-div mt-0 w-auto" >
+          <div className="p-2 w-100">
               <Link className='w-100 d-flex justify-content-center text-decoration-none' to='/create'>
                 <button className={`add-myself-button btn btn-lg btn-secondary w-75`}  >Add myself to team</button>
               </Link>
           </div>
-          <div class="p-2 w-100">
+          <div className="p-2 w-100">
               <Link className='w-100 d-flex justify-content-center text-decoration-none' to='/login'>
                 <button className={`add-myself-button btn btn-lg btn-secondary w-75`}  >Login</button>
               </Link>

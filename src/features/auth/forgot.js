@@ -52,18 +52,18 @@ function ForgotPage() {
 
 
   return (
-        <div class="opening-div w-100">
+        <div className="opening-div w-100">
             {showForm && <form className='border p-4 rounded '>
               <h3>Forgot Password</h3>
               <div className='mb-3'>
-                <label for='email' className='form-label'>Email address</label>
+                <label htmlFor='email' className='form-label'>Email address</label>
                 <input className='form-control' type='email' onChange={(e) => setEmail(e.target.value)} value={email}></input>
-                <div id="emailHelp" class="form-text">We'll send a link to reset password to this email.</div>
+                <div id="emailHelp" className="form-text">We'll send a link to reset password to this email.</div>
                 <small className='text-danger'>{error}</small>
 
               </div>
 
-              <button type="button" class="btn btn-primary" onClick={() => {
+              <button type="button" className="btn btn-primary" onClick={() => {
                 findUser()
                 }}>Submit</button>
             </form>}

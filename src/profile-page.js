@@ -209,8 +209,8 @@ const ProfilePage = () => {
                         }
                         {
                             isLoading &&
-                            <div class="spinner-border text-primary position-relative" role="status">
-                            <span class="sr-only"></span>
+                            <div className="spinner-border text-primary position-relative" role="status">
+                            <span className="sr-only"></span>
                             </div>
                         }
                         
@@ -230,23 +230,23 @@ const ProfilePage = () => {
                 </div>
                 <div className="px-3 d-block w-75">
                     
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Change Image</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                    <div className="modal-header">
+                        <h1 className="modal-title fs-5" id="exampleModalLabel">Change Image</h1>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
+                    <div className="modal-body">
                         <input type="file" className="form-control" onChange={(e) => {
                             console.log(e.target.files[0])
                             setImage(e.target.files[0])
                             setImageName(e.target.files[0].name)
                         }}/>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button data-bs-dismiss="modal" type="button" class="btn btn-primary" onClick={async () => {
+                    <div className="modal-footer">
+                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button data-bs-dismiss="modal" type="button" className="btn btn-primary" onClick={async () => {
                             await uploadImage();
                         }}>Save changes</button>
                     </div>
@@ -406,7 +406,7 @@ const ProfilePage = () => {
                                         setShowGithub(false)
                                     }
                                         
-                                }}><span><i class="bi bi-github me-1"></i></span>Github</a>
+                                }}><span><i className="bi bi-github me-1"></i></span>Github</a>
                             }
                             {   !github && isUser &&
                                 <a className="btn btn-secondary me-2 github" onClick={() => {
@@ -416,7 +416,7 @@ const ProfilePage = () => {
                                         setShowGithub(false)
                                     }
                                 
-                            }}><span><i class="bi bi-github me-1"></i></span>Add Github</a>
+                            }}><span><i className="bi bi-github me-1"></i></span>Add Github</a>
                             }
 
                             {                       
@@ -429,7 +429,7 @@ const ProfilePage = () => {
                                         setShowDiscord(false)
                                     }
                                         
-                                }}><span><i class="bi bi-discord me-1"></i></span>Discord: {discord}</a>
+                                }}><span><i className="bi bi-discord me-1"></i></span>Discord: {discord}</a>
                             }
                             {   !discord && isUser &&
                                 <a className="btn btn-secondary me-2 discord"  onContextMenu={(e) => {
@@ -446,7 +446,7 @@ const ProfilePage = () => {
                                         setShowDiscord(false)
                                     }
                                 
-                            }}><span><i class="bi bi-discord me-1"></i></span>Add Discord</a>
+                            }}><span><i className="bi bi-discord me-1"></i></span>Add Discord</a>
                             }
                             {
                                 linkedin && 
@@ -457,7 +457,7 @@ const ProfilePage = () => {
                                         setShowLinkedIn(false)
                                     }
                                         
-                                }}><span><i class="bi bi-linkedin me-1"></i></span>LinkedIn</a>
+                                }}><span><i className="bi bi-linkedin me-1"></i></span>LinkedIn</a>
                             }
                             {   !linkedin && isUser &&
                                 <a className="btn btn-secondary me-2 linkedin" onClick={() => {
@@ -467,7 +467,7 @@ const ProfilePage = () => {
                                         setShowLinkedIn(false)
                                     }
                                 
-                            }}><span><i class="bi bi-linkedin me-1"></i></span>Add LinkedIn</a>
+                            }}><span><i className="bi bi-linkedin me-1"></i></span>Add LinkedIn</a>
                             }
                             
                            
@@ -527,22 +527,22 @@ const ProfilePage = () => {
             </div>
             
             <nav>
-                <div class="nav nav-tabs m-3" id="nav-tab" role="tablist">
-                    <a class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Blogs</a>
-                    <a class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Issues</a>
-                    <a class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Challenges</a>
+                <div className="nav nav-tabs m-3" id="nav-tab" role="tablist">
+                    <a className="nav-link active" id="nav-home-tab" data-bs-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Blogs</a>
+                    <a className="nav-link" id="nav-profile-tab" data-bs-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Issues</a>
+                    <a className="nav-link" id="nav-contact-tab" data-bs-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Challenges</a>
                 </div>
             </nav>
             
             
-            <div class="tab-content ms-4 mb-4" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div className="tab-content ms-4 mb-4" id="nav-tabContent">
+                <div className="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                     <ShowBlogs profile={true} id={id}/>
                 </div>
-                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                <div className="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                     <ShowProblems profile={true} id={id}/>
                 </div>
-                <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                <div className="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
                     <Challenges profile={true} id={id}/>
                 </div>
             </div>

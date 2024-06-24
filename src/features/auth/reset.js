@@ -37,19 +37,19 @@ function ResetPage() {
 
 
   return (
-        <div class="opening-div w-100">
+        <div className="opening-div w-100">
             <form className='border p-4 rounded '>
               <h3>Reset Password</h3>
               <div className='mb-3'>
-                <label for='password' className='form-label'>New Password</label>
+                <label htmlFor='password' className='form-label'>New Password</label>
                 <input className='form-control' type='password' onChange={(e) => setPassword(e.target.value)} value={password}></input>
               </div>
               <div className='mb-3'>
-                <label for='password' className='form-label'>Confirm Password</label>
+                <label htmlFor='password' className='form-label'>Confirm Password</label>
                 <input className='form-control' type='password' onChange={(e) => setPasswordConfirm(e.target.value)} value={passwordConfirm}></input>
                 <small className='text-danger'>{error}</small>
               </div>
-              <button type="button" class="btn btn-primary" onClick={updatePassword}>Submit</button>
+              <button type="button" className="btn btn-primary" onClick={updatePassword}>Submit</button>
             </form>
         </div>
      

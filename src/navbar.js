@@ -36,19 +36,16 @@ const NavBar = (props) => {
     useEffect(() => {
         if (props.theme == 'dark') {
           setCheck(true)
+          changeIcon("team-hub-favicon-color.png")
+
         } else {
           setCheck(false)
+          changeIcon("team-hub-favicon-black.png")
+
         }
       }, [themeChanged])
 
-    useEffect(() => {
-        if (window.localStorage.getItem('theme') === 'dark') {
-            changeIcon("team-hub-favicon-color.png")
-        } else {
-            changeIcon("team-hub-favicon-black.png")
-        }
-    }, [window.localStorage.getItem('theme')])
-    
+
     const changeIcon = async (img) => {
         setIcon(img)
     }
@@ -134,7 +131,7 @@ const NavBar = (props) => {
             </nav>
             <div className="form-check form-switch"  onClick={changeTheme}>
                 <input id="theme-switch" className="form-check-input" checked={checked} type="checkbox"></input>
-                <label for="theme-switch" >Dark mode</label>
+                <label htmlFor="theme-switch" >Dark mode</label>
             </div>
         </div>
      );

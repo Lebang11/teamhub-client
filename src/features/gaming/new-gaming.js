@@ -98,17 +98,17 @@ const NewGamingProfile = (props) => {
                 <button className="btn btn-lg" onClick={() => {
                     showField('steam');
                 }}>
-                    <i class="fa-brands fa-steam"></i>
+                    <i className="fa-brands fa-steam"></i>
                 </button>
                 <button className="btn btn-lg" onClick={() => {
                     showField('psn');
                 }}>
-                    <i class="fa-brands fa-playstation"></i>
+                    <i className="fa-brands fa-playstation"></i>
                 </button>
                 <button className="btn btn-lg" onClick={() => {
                     showField('xbox');
                 }}>
-                    <i class="fa-brands fa-xbox"></i>
+                    <i className="fa-brands fa-xbox"></i>
                 </button>
                 <button className="btn btn-lg" onClick={() => {
                     showField('epic');
@@ -132,9 +132,9 @@ const NewGamingProfile = (props) => {
                 }} value={name}></input>
             </div>
             <div>
-                {/* <i class="fa-brands fa-steam"></i> */}
-                {/* <i class="fa-brands fa-playstation"></i> */}
-                {/* <i class="fa-brands fa-xbox"></i> */}
+                {/* <i className="fa-brands fa-steam"></i> */}
+                {/* <i className="fa-brands fa-playstation"></i> */}
+                {/* <i className="fa-brands fa-xbox"></i> */}
 
                 <input placeholder={`Steam username`} id="steam" hidden className="form-control mb-1" style={{
                     "width": "50vw",
@@ -200,8 +200,8 @@ const NewGamingProfile = (props) => {
                 
                 }
                 {isLoading && 
-                <button class="btn btn-primary" type="button" disabled>
-                    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                <button className="btn btn-primary" type="button" disabled>
+                    <span className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
                     Loading...
                 </button>
                 }

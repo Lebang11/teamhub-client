@@ -30,7 +30,7 @@ const Articles = (props) => {
             let feedList = res.rss.channel[0].item;
             let entries = [];
 
-            console.log(feedList);
+            
             feedList.map((item) => {
             let entry = {
                 "title": item.title[0],
@@ -43,7 +43,7 @@ const Articles = (props) => {
             entries.push(entry);
 
           });
-          console.info("entries", entries);
+          
           setFeed(entries);
         }
       };
@@ -76,7 +76,7 @@ const Articles = (props) => {
                 feed.map((item) => {
                     return(
                     <div className='card p-4 m-2'>
-                        <img src={item.mediaContent.url} class="card-img-top rounded-3" alt="..."></img>
+                        <img src={item.mediaContent.url} className="card-img-top rounded-3" alt="..."></img>
                             <h5 className='card-title mt-3'>
                                 {item.title}
                             </h5>

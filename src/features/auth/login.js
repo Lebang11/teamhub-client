@@ -65,17 +65,17 @@ const Login = () => {
             
             <form onSubmit={handleSubmit} className="form-box">
                 <h1 className="display-6 ">Sign in</h1>
-                <div class="form-group w-75">
-                <input type="email" class="form-control" placeholder="Enter email" onChange={(e) => setEmail(e.target.value)} value={email} name="email"/>
+                <div className="form-group w-75">
+                <input type="email" className="form-control" placeholder="Enter email" onChange={(e) => setEmail(e.target.value)} value={email} name="email"/>
                 </div>
-                <div class="form-group w-75">
-                    <input type="password" class="form-control" placeholder="Password" onChange={(e) => setPassword(e.target.value)} value={password} name="password"/>
+                <div className="form-group w-75">
+                    <input type="password" className="form-control" placeholder="Password" onChange={(e) => setPassword(e.target.value)} value={password} name="password"/>
                 </div>
                 
-                {!isLoading &&  <button type="submit" class={`btn text-${colour} submit-button`}>{message}</button>}
+                {!isLoading &&  <button type="submit" className={`btn text-${colour} submit-button`}>{message}</button>}
                 {isLoading && 
-                <button class="btn btn-secondary" type="button" disabled>
-                <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                <button className="btn btn-secondary" type="button" disabled>
+                <span className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
                 Loading...
                 </button>
                 }
