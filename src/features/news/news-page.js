@@ -12,7 +12,7 @@ const NewsPage = (props) => {
             <div className="blogs-box w-75">
                 
             </div>
-            <div className="w-75">
+            <div className="w-75 d-flex justify-content-center">
                 <Articles theme={theme}/>
             </div>
             </div>

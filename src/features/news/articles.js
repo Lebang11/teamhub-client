@@ -72,10 +72,14 @@ const Articles = (props) => {
                     getFeed();
                 }}>{refreshButton}</button>
             </div>
-            {
+            <small className='text-muted'>News count: {feed.length}</small>
+            <div>
+                {
                 feed.map((item) => {
                     return(
-                    <div className='card p-4 m-2'>
+                    <div className='card p-4 m-2 bg-transparent' style={{
+                        "max-width": "800px"
+                    }}>
                         <img src={item.mediaContent.url} className="card-img-top rounded-3" alt="..."></img>
                             <h5 className='card-title mt-3'>
                                 {item.title}
@@ -91,6 +95,8 @@ const Articles = (props) => {
                         </div>
                 )})
             }
+            </div>
+            
         </div>
     )
 };

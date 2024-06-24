@@ -2,19 +2,18 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const Gamer = (props) => {
-    const [textColor, setTextColor] = useState("jnj");
+    const [textColor, setTextColor] = useState("");
 
 
     useEffect(() => {
-        console.log(props.theme);
         if (props.theme === 'dark') {
             setTextColor('text-light')
         } else {
             setTextColor('text-dark')
         }
     }, [props.theme]);
+    
     useEffect(() => {
-        console.log(props.theme);
         if (props.theme === 'dark') {
             setTextColor('text-light')
         } else {
@@ -50,7 +49,9 @@ const Gamer = (props) => {
                 }
                 {props.theme == 'dark' && props.gamer.eaName !== '' &&
                 <p className={textColor}><img style={{
-                    "width": "4vw"
+                    "width": "4vw",
+                    "max-width":"40px"
+                    
                 }} src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAABJlJREFUeF7tWFuoVVUUHcMixV4GfUiGFUiRUmmkCJWW1EdgEVS+II2brw+RyNKfSIsEjSL6ikqQCgo0CJKoDx+lH6lIkmiZgR+CBZqJlqK9Rnte9ol991lr77X32cb1nDV/Lvfs+RxrrrnmnESPE3s8fkQAYgb0OALxCvR4AsQiGK9AvAI9jkC8Aj2eAPEViFcgXoEeRyBegU4SQNJSAA93oqNAdinJ71vfJd0JYAzJDU3aq50Bkm4G8C2AYU06lOraSHJGJvhLAOwCcD2AW0mebMpmLQAkmdxmANOaciSj5xSAcSSPZgBYBuC19P91ybcFTdmtC8DTyWmsa8qJnJ6FJN/NBD8awIEEgCvS3wTgAZJbm7BfGQBJ1wKwu2l/m6btAO4jaUH2U3L3P3XUmUMA7iB5rlMH6gCwGsCsiob/AHCmRMaCfpLkwUzwZucjj9zLCVArK/rRxl4ZgE4NhspLuhrAdwCu88gYqBOSYmk8tWkwA2A1xmpNEe0AMDV7ZaoiMSgBkDQlqQVfAkHD2iKS71QNvMU/6ACQNBTAXnvvA4OyZ3MsyZ8C+QewDUYAXgLwoiMYu/OnPa/PhqRrnHlBAJA0256mOsoLZH4HsJzk31keSWPT07/MIftKWhQ/9OidTvKzqn4WZoCkGwDszzQhVfX7+J8h+WYu+CEAvko6zHscQj8CuN3efUmbAEx38BxJO0gDN5jKAPAZCzbgYNwDYLLj9BcDeMuj+EGS1npbY2SHYp3h5Q7eN0g+W8U5LwCSipqQKjayvJbyk0h+kzv9kWl6X+NQ/D7JeTn+5QDWOnj/AXA3yZ2hDjoBCGhCQvXn+V4n+Vz+R0kbk6v2uEPpr+n0dywHwKUAdlsj5JDZB+Aukn+GOOkD4FUA83MKrgRghl0UMp7+nJ7+gJZYku0TrN93UR/J9a0Pkqw4tlJ/EoDPPb3C8yRb02MhDkHPoKT8RJZV+h7Jp0LQdpy8BWNF9kaHvGsw+gTAowG2zgK4jeThMt5QAFwTmen+JW1CjpcZcn2XZC+BbZXyZG/++NxG6DEAH1ew8wXJh8r4SwFI+wDf2/sEySpO/eePpIkAvgZg2548rSJpDVE/SboqLZKjygLKfZ9D0jdN9rOWPYNFE9mmpJo/UtGhVkBFRaxt1pf0NoCFNWxZhtoKzf46qQwA30TWtraq4pykFckucY1Dpm3bI+netEEqzVaPD4UrtKI+YGoyam7zZIk1M1uqBJ3hNZtLAAx3yK8n2Zf9XZLd/TEBtm4CsMgD6v0krctsI98zWHUiC/CvlOVEmq51C2rRota7QvMB4JvISqPogGEuyQ86kLdiWbSqd67Q2gCQdEu677cs+L/Ilh/TOtnstBxNVvZF43TbCm0AAJKKJrILBcb5dMP7QxMGShYqNiPYrGAzQz/lASiayJrwz6XjBZK2aW6MSlZqi0nas+oEoKjfb8zBnKLT+dG4CUOSRnhesL9I/uYEoAnDF5uOus3FxRan198IQNccZc1AYgbUBK5rxGIGdM1R1gwkZkBN4LpGLGZA1xxlzUBiBtQErmvEYgZ0zVHWDKTnM+BfBhVjUL9YA30AAAAASUVORK5CYII="/>
                 
                      <span className="">{props.gamer.eaName}</span></p>
@@ -58,7 +59,8 @@ const Gamer = (props) => {
                 {props.theme == 'light' && props.gamer.eaName !== '' &&
                 <p className={textColor}><img style={{
                     "width": "4vw",
-                    "height": "3.5vh"
+                    "height": "3.5vh",
+                    "max-width":"40px"
                 }} src="pngwing.com.png"/>
                 
                      <span className="">{props.gamer.eaName}</span></p>

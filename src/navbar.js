@@ -16,7 +16,7 @@ const NavBar = (props) => {
     const [id, setId] = useState('');
     const [icon, setIcon] = useState(null);
     const [themeChanged, setTheme] = useState('')
-    const [checked, setCheck] = useState(true);
+    const [checked, setCheck] = useState(false);
     const [footerColour, setFooterColour] = useState('light')
 
     let theme = useSelector((state) => {return state.theme.value});

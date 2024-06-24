@@ -31,6 +31,7 @@ const App = () => {
     let user = useSelector((state) => {return state.user.value});
     let theme = useSelector((state) => {return state.theme.value});
     
+    document.documentElement.setAttribute('data-bs-theme', theme)
 
     if (!Cookies.get(`token_name`) || !Cookies.get(`token_email`) || !Cookies.get(`token_id`)){
       dispatch(login(false))
@@ -71,8 +72,10 @@ const App = () => {
       return (
         
         <Router>
-          <NavBar/>
+          <NavBar theme={theme}/>
           <Routes>
+          <Route path='/news' element={<NewsPage theme={theme}/>}/>
+
             <Route exact path='/' theme={theme} element={<OpenPage/>}/>
             <Route path='/create' theme={theme} element={<Register/>}/>
             <Route path='/login' theme={theme} element={<Login/>}/>
@@ -85,7 +88,7 @@ const App = () => {
             <Route path='/user/:id' theme={theme} element={<NotUser/>}/>
             <Route path='/challenges' element={<NotUser theme={theme}/>}/>
             <Route path='/challenge/:id' element={<NotUser theme={theme}/>}/>
-            <Route path='/gaming' element={<GamingPage/>}/>
+            <Route path='/gaming' element={<GamingPage theme={theme}/>}/>
           
           </Routes>
          
