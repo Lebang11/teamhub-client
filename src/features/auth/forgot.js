@@ -7,6 +7,7 @@ function ForgotPage() {
   const [error, setError] = useState('')
   const [showForm, setShowForm] = useState(true);
   const [showMessage, setShowMessage] = useState(false);
+  const [isLoading, setLoading] = useState(false);
 
 
 
@@ -25,7 +26,9 @@ function ForgotPage() {
     
     .then(res => {
         })
-    .catch(err => console.log(err)) 
+    .catch(err => console.log(err))
+    setLoading(false);
+
 }
 
   const sendEmail = async () => {
@@ -43,11 +46,6 @@ function ForgotPage() {
         setShowMessage(true)
       })
       .catch(err => console.log(err))
-
-
-      
-
-  
   }
 
 
@@ -63,9 +61,21 @@ function ForgotPage() {
 
               </div>
 
-              <button type="button" className="btn btn-primary" onClick={() => {
+              {/* <button type="button" className="btn btn-primary" onClick={() => {
                 findUser()
-                }}>Submit</button>
+                }}>Submit</button> */}
+
+              {!isLoading &&  <button className="btn btn-primary" onClick={(e) => {
+                e.preventDefault();
+                setLoading(true);
+                findUser();
+              }}>Submit</button>}
+                {isLoading && 
+                <button className="btn btn-secondary" type="button" disabled>
+                <span className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                Loading...
+                </button>
+                }
             </form>}
             {showMessage && <div>
               <h1 className='display-1'>Check Emails</h1>

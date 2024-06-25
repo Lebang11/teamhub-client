@@ -47,17 +47,6 @@ const Articles = (props) => {
           setFeed(entries);
         }
       };
-      const cleanParsedXMLEntry = (entry) => {
-        const media = entry["media:group"][0];
-        return {
-          author: entry.author[0].name[0],
-          id: entry["yt:videoId"][0],
-          link: entry.link[0].$.href,
-          name: entry.title[0],
-          publishDate: entry.published[0],
-          thumbnailUrl: media["media:thumbnail"][0].$.url,
-        };
-      };
 
     useEffect(() => {
         getFeed();
